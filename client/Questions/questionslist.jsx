@@ -10,7 +10,7 @@ class Questionslist extends React.Component {
     super(props);
     this.state = {
       questions: [],
-      productid: '59555',
+      productid: '59554',
       bStyle: 'none'
     };
     this.get = this.get.bind(this);
@@ -19,27 +19,22 @@ class Questionslist extends React.Component {
   }
 
   sortHelpfulness(arr) {
-    var convertedArray = [];
+    var zeroesArray = [];
 
     for (var i = 0; i < arr.length; i ++) {
-      convertedArray.push(arr[i]);
-    }
-
-    convertedArray.sort((a, b) => (a.question_helpfulness) - (b.question_helpfulness));
-    var end = convertedArray.length - 1;
-    for (var i = 0; i < convertedArray.length; i ++) {
-      if (convertedArray[i].helpfulness === 0) {
-        convertedArray.unshift(convertedArray[i]);
-        convertedArray.splice(i + 1, 1);
-      }
-
-      if(i === end) {
-        break;
+      if (arr[i].question_helpfulness === 0) {
+        zeroesArray.push(arr[i]);
+        arr.splice(i, 1);
       }
     }
-    convertedArray.reverse();
-    console.log(convertedArray);
-    return convertedArray;
+
+    arr.sort((a, b) => (a.question_helpfulness) - (b.question_helpfulness));
+    arr.reverse();
+
+    for (var i = 0; i < zeroesArray.length; i ++) {
+      arr.push(zeroesArray[i]);
+    }
+    return arr;
   }
   // post() {
   //   var options = {

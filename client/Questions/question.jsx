@@ -11,14 +11,24 @@ class Question extends React.Component {
     this.arrayify = this.arrayify.bind(this);
     this.sortHelpfulness = this. sortHelpfulness.bind(this);
     this.report = this.report.bind(this);
+    this.sortSeller = this.sortSeller.bind(this);
   }
 
-  // sortSeller(arr) {
-  //   var newArr = [];
-  //   for (var i = 0; i < arr.length; i ++) {
-  //     if (arr[i])
-  //   }
-  // }
+  sortSeller(arr) {
+    var sellerArr = [];
+    for (var i = 0; i < arr.length; i ++) {
+      if (arr[i].answerer_name === 'Seller') {
+        sellerArr.unshift(arr[i]);
+        arr.splice(i, 1);
+      }
+    }
+
+    for (var i = 0; i < sellerArr.length; i ++) {
+      arr.unshift(sellerArr[i]);
+    }
+
+    return arr;
+  }
 
   report(e) {
     e.preventDefault();
@@ -28,27 +38,22 @@ class Question extends React.Component {
   }
 
   sortHelpfulness(arr) {
-    var convertedArray = [];
+    var zeroesArray = [];
 
     for (var i = 0; i < arr.length; i ++) {
-      convertedArray.push(arr[i]);
-    }
-
-    convertedArray.sort((a, b) => (a.question_helpfulness) - (b.question_helpfulness));
-    var end = convertedArray.length - 1;
-    for (var i = 0; i < convertedArray.length; i ++) {
-      if (convertedArray[i].helpfulness === 0) {
-        convertedArray.unshift(convertedArray[i]);
-        convertedArray.splice(i + 1, 1);
-      }
-
-      if(i === end) {
-        break;
+      if (arr[i].helpfulness === 0) {
+        zeroesArray.push(arr[i]);
+        arr.splice(i, 1);
       }
     }
-    convertedArray.reverse();
-    console.log(convertedArray);
-    return convertedArray;
+
+    arr.sort((a, b) => (a.helpfulness) - (b.helpfulness));
+    arr.reverse();
+
+    for (var i = 0; i < zeroesArray.length; i ++) {
+      arr.push(zeroesArray[i]);
+    }
+    return arr;
   }
 
   arrayify(obj) {
@@ -69,7 +74,7 @@ class Question extends React.Component {
         <a onClick={this.report} style={{display: 'inline-block', padding: '5px'}} href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
       </span>
       <b style={{display: 'flex'}}>A: </b>
-      <Answerlist answers={this.sortHelpfulness(this.arrayify(this.props.answers))} />
+      <Answerlist answers={this.sortSeller(this.sortHelpfulness(this.arrayify(this.props.answers)))} />
       <button style={{display: (this.arrayify(this.props.answers).length > 2) ? 'block' : 'none'}}>See more answers</button>
       <b>Asker</b>
       <div>{this.props.asker_name}</div>

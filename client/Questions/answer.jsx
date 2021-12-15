@@ -36,7 +36,7 @@ class Answer extends React.Component {
       </span>
 
 
-      <div>by <b>Seller</b>  <span style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span>, {this.dateFormatter(this.props.date)}</div>
+      <div>by <b style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller</b>  <span style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span>, {this.dateFormatter(this.props.date)}</div>
       <b>Helpfulness:</b>
       <div>{this.props.helpfulness}</div>
       <b>Photos:</b>
