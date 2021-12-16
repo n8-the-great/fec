@@ -40,7 +40,7 @@ class Answerlist extends React.Component {
 
   render() {
     if (this.state.expanded === false && this.props.answers.length > 2) {
-      return (<div style={{border: 'solid red 5px'}}>
+      return (<div style={{boxSizing: 'border-box', border: '1px solid #ccc'}}>
         {this.arrayShortener(this.props.answers).map(answer => (
           <Answer key={answer.id} answerid={JSON.stringify(answer.id)} index={this.props.answers.indexOf(answer)} body={answer.body} date={answer.date} name={answer.answerer_name} helpfulness={answer.helpfulness} photos={answer.photos}/>
       ))}
@@ -48,7 +48,7 @@ class Answerlist extends React.Component {
       </div>
       );
     } else if (this.state.expanded === true && this.props.answers.length > 2) {
-      return (<div style={{border: 'solid red 5px'}}>
+      return (<div style={{height: '400px', width: '600px', border: '1px solid #ccc', overflow:'auto'}}>
       {this.props.answers.map(answer => (
         <Answer key={answer.id} answerid={JSON.stringify(answer.id)} index={this.props.answers.indexOf(answer)} body={answer.body} date={answer.date} name={answer.answerer_name} helpfulness={answer.helpfulness} photos={answer.photos}/>
     ))}
@@ -67,3 +67,4 @@ class Answerlist extends React.Component {
 }
 
 export default Answerlist;
+
