@@ -12,7 +12,6 @@ class App extends React.Component {
 
   render() {
      return (<div>
-       <div>Hey there friends</div>
        <Questionslist />
      </div>
      );

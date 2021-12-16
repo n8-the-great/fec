@@ -10,7 +10,7 @@ class Questionslist extends React.Component {
     super(props);
     this.state = {
       questions: [],
-      productid: '59554',
+      productid: '59555',
       bStyle: 'none'
     };
     this.get = this.get.bind(this);
@@ -90,6 +90,9 @@ class Questionslist extends React.Component {
   }
 
   render() {
+    if (this.state.questions.length === 0) {
+      return(<button>Submit new question</button>);
+    }
     return (<div>
       <input placeholder='Search for a question'/>
       <button>Search</button>
@@ -102,6 +105,7 @@ class Questionslist extends React.Component {
       <button>Submit new question</button>
       <button onClick={this.post}>post tester</button>
     </div>);
+
   }
 }
 
