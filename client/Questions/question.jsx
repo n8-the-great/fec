@@ -10,22 +10,13 @@ class Question extends React.Component {
       qStyle: 'none',
       reported: false,
       helpfulness: this.props.question_helpfulness,
-      expanded: false,
-      answerExpanded: false
+      expanded: false
     }
     this.arrayify = this.arrayify.bind(this);
     this.sortHelpfulness = this. sortHelpfulness.bind(this);
     this.report = this.report.bind(this);
     this.sortSeller = this.sortSeller.bind(this);
     this.voteHelpful = this.voteHelpful.bind(this);
-    this.expandAnswers = this.expandAnswers.bind(this);
-  }
-
-  expandAnswers(e) {
-    e.preventDefault();
-    this.setState({
-      expanded: true
-    })
   }
 
   arrayify(obj) {
@@ -101,7 +92,7 @@ class Question extends React.Component {
 
 
   render() {
-    return (<div style={{display: (this.props.index <= 1) ? 'block' : this.state.qStyle}}>
+    return (<div>
       <b>Q:</b>
       <span>{this.props.question_body} </span>
       <span>Helpful?</span>
