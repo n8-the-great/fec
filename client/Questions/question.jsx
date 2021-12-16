@@ -1,17 +1,39 @@
 import React from 'react';
 import Answerlist from './answerlist.jsx';
+import axios from 'axios';
+import token from '../../config.js';
 
 class Question extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       qStyle: 'none',
-      reported: false
+      reported: false,
+      helpfulness: this.props.question_helpfulness,
+      expanded: false,
+      answerExpanded: false
     }
     this.arrayify = this.arrayify.bind(this);
     this.sortHelpfulness = this. sortHelpfulness.bind(this);
     this.report = this.report.bind(this);
     this.sortSeller = this.sortSeller.bind(this);
+    this.voteHelpful = this.voteHelpful.bind(this);
+    this.expandAnswers = this.expandAnswers.bind(this);
+  }
+
+  expandAnswers(e) {
+    e.preventDefault();
+    this.setState({
+      expanded: true
+    })
+  }
+
+  arrayify(obj) {
+    var arr = [];
+    for (var key in obj) {
+      arr.push(obj[key]);
+    }
+    return arr;
   }
 
   sortSeller(arr) {
@@ -26,7 +48,6 @@ class Question extends React.Component {
     for (var i = 0; i < sellerArr.length; i ++) {
       arr.unshift(sellerArr[i]);
     }
-
     return arr;
   }
 
@@ -56,13 +77,28 @@ class Question extends React.Component {
     return arr;
   }
 
-  arrayify(obj) {
-    var arr = [];
-    for (var key in obj) {
-      arr.push(obj[key]);
+  voteHelpful(e) {
+    e.preventDefault();
+    var options = {
+      method: 'put',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/' + this.props.question_id + '/helpful',
+      headers: {
+        Authorization: token,
+        accept: 'application/json',
+        'content-type': 'application/json',
+      }
     }
-    return arr;
+    axios(options)
+    .then(result => {
+      this.setState({
+        helpfulness: this.state.helpfulness + 1
+      })
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
+
 
   render() {
     return (<div style={{display: (this.props.index <= 1) ? 'block' : this.state.qStyle}}>
@@ -70,12 +106,11 @@ class Question extends React.Component {
       <span>{this.props.question_body} </span>
       <span>Helpful?</span>
       <span>
-        <a style={{display: 'inline-block', padding: '5px'}} href='#'>Yes {this.props.question_helpfulness}</a>
+        <a style={{display: 'inline-block', padding: '5px'}} href='#' onClick={this.voteHelpful}>Yes {this.state.helpfulness}</a>
         <a onClick={this.report} style={{display: 'inline-block', padding: '5px'}} href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
       </span>
       <b style={{display: 'flex'}}>A: </b>
       <Answerlist answers={this.sortSeller(this.sortHelpfulness(this.arrayify(this.props.answers)))} />
-      <button style={{display: (this.arrayify(this.props.answers).length > 2) ? 'block' : 'none'}}>See more answers</button>
       <b>Asker</b>
       <div>{this.props.asker_name}</div>
       <b>Date</b>
