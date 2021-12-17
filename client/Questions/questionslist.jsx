@@ -4,6 +4,7 @@ import axios from 'axios';
 import sample from '../../sampledata.js';
 import Question from './question.jsx';
 import Promise from 'bluebird';
+import Search from './search.jsx';
 
 class Questionslist extends React.Component {
   constructor(props) {
@@ -12,13 +13,53 @@ class Questionslist extends React.Component {
       questions: [],
       productid: '59555',
       bStyle: 'none',
-      expanded: false
+      expanded: false,
+      keyword: ''
     };
     this.get = this.get.bind(this);
     // this.post = this.post.bind(this);
     this.sortHelpfulness = this.sortHelpfulness.bind(this);
     this.toggleQuestions = this.toggleQuestions.bind(this);
     this.arrayShortener = this.arrayShortener.bind(this);
+    this.searchKeyword = this.searchKeyword.bind(this);
+    this.searchSort = this.searchSort.bind(this);
+  }
+
+  searchSort(arr) {
+    if (this.state.keyword.length >= 3 ) {
+      var contains = [];
+      var original = arr;
+      for (var i = 0; i < original.length; i ++) {
+        if (original[i].question_body.includes(this.state.keyword)) {
+          contains.unshift(original[i]);
+          original.splice(i, 1);
+        }
+      }
+
+      for (var i = 0; i < original.length; i ++) {
+        contains.push(original[i]);
+      }
+
+      return contains;
+    } else {
+      return arr;
+    }
+  }
+
+  searchKeyword(keyword) {
+    if (keyword.length > 0) {
+      this.setState({
+        keyword: keyword
+      }, () => {
+        console.log('parent state', this.state.keyword);
+      });
+    } else {
+      this.setState({
+        keyword: ''
+      }, () => {
+        console.log('parent state', this.state.keyword);
+      });
+    }
   }
 
   arrayShortener(arr) {
@@ -129,11 +170,10 @@ class Questionslist extends React.Component {
       return(<button>Submit new question</button>);
     } else if (this.state.questions.length > 2 && this.state.expanded === false) {
     return (<div>
-      <input placeholder='Search for a question'/>
-      <button>Search</button>
+      <Search search={this.searchKeyword}/>
       <h1>Product ID</h1>
       <div>{this.state.productid}</div>
-      {this.arrayShortener(this.state.questions).map(question => (
+      {this.searchSort(this.arrayShortener(this.state.questions)).map(question => (
         <Question key={this.state.questions.indexOf(question)} index={this.state.questions.indexOf(question)} answers={question.answers} product_id={this.state.productid} asker_name={question.asker_name} question_body={question.question_body} question_date={question.question_date} question_helpfulness={question.question_helpfulness} question_id={question.question_id} reported={JSON.stringify(question.reported)} />
       ))}
       <button onClick={this.toggleQuestions}>More Answered Questions</button>
@@ -141,11 +181,9 @@ class Questionslist extends React.Component {
     </div>);
     } else if (this.state.questions.length > 2 && this.state.expanded === true) {
       return (<div>
-        <input placeholder='Search for a question'/>
-        <button>Search</button>
-        <h1>Product ID</h1>
+        <Search search={this.searchKeyword}/>
         <div>{this.state.productid}</div>
-        {this.state.questions.map(question => (
+        {this.searchSort(this.state.questions).map(question => (
           <Question key={this.state.questions.indexOf(question)} index={this.state.questions.indexOf(question)} answers={question.answers} product_id={this.state.productid} asker_name={question.asker_name} question_body={question.question_body} question_date={question.question_date} question_helpfulness={question.question_helpfulness} question_id={question.question_id} reported={JSON.stringify(question.reported)} />
         ))}
         <button onClick={this.toggleQuestions}>Collapse questions</button>

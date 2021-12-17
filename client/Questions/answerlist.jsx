@@ -56,7 +56,7 @@ class Answerlist extends React.Component {
     </div>
     );
     } else {
-      return (<div style={{border: 'solid red 5px'}}>
+      return (<div style={{boxSizing: 'border-box', border: '1px solid #ccc'}}>
       {this.props.answers.map(answer => (
         <Answer key={answer.id} answerid={JSON.stringify(answer.id)} index={this.props.answers.indexOf(answer)} body={answer.body} date={answer.date} name={answer.answerer_name} helpfulness={answer.helpfulness} photos={answer.photos}/>
     ))}
