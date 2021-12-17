@@ -104,8 +104,23 @@ class Questionslist extends React.Component {
     });
   }
 
+  getReported() {
+    var options = {
+      method: 'get',
+      url: 'http://127.0.0.1:3000/fec'
+    }
+  }
+
+  getHelpful() {
+
+  }
+
   componentDidMount() {
-    //on page load, only display up to 2 questions and 2 answers per question
+    //we also need to do a 'get' on our own database to find which questions/answers have already been marked helpful or (for answers) been reported
+
+    //obtain the information of questions and answers, and set state per question/answer based on this information
+
+    //the 'helpful' and 'report' button will display based on the state of the question/answer
     this.get();
   }
 
