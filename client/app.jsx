@@ -1,20 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Reviews from './reviews/index.jsx';
+import StarRating from './overview/StarRating.jsx';
+import GeneralProductInfo from './overview/GeneralProductInfo.jsx';
+import './style.css';
 
 class App extends React.Component {
   constructor (props) {
-    super(props)
-    this.state = {
-    }
+    super(props);
   }
 
   render() {
      return (
-      <div>
-        <Reviews /> 
-      </div>
-       
+
+       <div>
+         <GeneralProductInfo/>
+       </div>
      );
   }
 }
