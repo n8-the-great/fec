@@ -1,19 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Reviews from './reviews/index.jsx';
 
 class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-
     }
   }
 
   render() {
      return (
-       <div>Hey there friends</div>
+      <div>
+        <Reviews /> 
+      </div>
+       
      );
   }
 }
 
-ReactDOM.render(< App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
