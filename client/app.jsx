@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StarRating from './overview/StarRating.jsx';
+import GeneralProductInfo from './overview/GeneralProductInfo.jsx';
 import './style.css';
 
 class App extends React.Component {
@@ -11,8 +12,8 @@ class App extends React.Component {
   render() {
      return (
 
-       <div>Hey there friends
-         <StarRating/>
+       <div>
+         <GeneralProductInfo/>
        </div>
      );
   }

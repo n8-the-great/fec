@@ -4,6 +4,7 @@ body {
 }
 
 .stars {
+  background-color: darkgray;
   width: 100%
 }
 
@@ -39,4 +40,29 @@ body {
   width: 10px;
   float: left;
   color: purple;
+}
+
+.product-general-info {
+  background-color: darkslategray;
+  width:100%;
+}
+
+.product-overview {
+  color: gray;
+  outline-style:solid;
+  width: 63%;
+}
+
+.gallery-placeholder {
+  color: gray;
+  outline-style:solid;
+  width: 63%;
+}
+
+.product-info {
+  color: gray;
+  outline-style:solid;
+  width: 35%;
+  margin-left: 64%;
+  float: left;
 }
