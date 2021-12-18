@@ -24,7 +24,7 @@ afterEach(() => {
 it('Review renders "Reviews" for now ', () => {
   act(() => {
     //render components
-    render(< Reviews />, container);
+    render(<Reviews />, container);
   })
   //make assertions
   expect(container.textContent).toBe('Reviews');

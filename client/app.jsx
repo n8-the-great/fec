@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Reviews from 'reviews';
+import Reviews from './reviews/index.jsx';
 
 class App extends React.Component {
   constructor (props) {
