@@ -1,0 +1,42 @@
+body {
+  color: grey;
+  background-color: lightgray;
+}
+
+.stars {
+  width: 100%
+}
+
+.star-left {
+  width: 10px;
+  float: left;
+  color: red;
+}
+
+.star-middle-left {
+  color: yellow;
+  width: 10px;
+  margin-left: 5px;
+  float: left;
+}
+
+.star-middle {
+  width: 10px;
+  margin-left: 5px;
+  float: left;
+  color: green;
+}
+
+.star-middle-right {
+  color: blue;
+  width: 10px;
+  margin-left: 5px;
+  float: left;
+}
+
+.star-right {
+  margin-left: 5px;
+  width: 10px;
+  float: left;
+  color: purple;
+}
