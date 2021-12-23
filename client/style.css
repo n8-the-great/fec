@@ -1,0 +1,68 @@
+body {
+  color: grey;
+  background-color: lightgray;
+}
+
+.stars {
+  background-color: darkgray;
+  width: 100%
+}
+
+.star-left {
+  width: 10px;
+  float: left;
+  color: red;
+}
+
+.star-middle-left {
+  color: yellow;
+  width: 10px;
+  margin-left: 5px;
+  float: left;
+}
+
+.star-middle {
+  width: 10px;
+  margin-left: 5px;
+  float: left;
+  color: green;
+}
+
+.star-middle-right {
+  color: blue;
+  width: 10px;
+  margin-left: 5px;
+  float: left;
+}
+
+.star-right {
+  margin-left: 5px;
+  width: 10px;
+  float: left;
+  color: purple;
+}
+
+.product-general-info {
+  background-color: darkslategray;
+  width:100%;
+}
+
+.product-overview {
+  color: gray;
+  outline-style:solid;
+  width: 63%;
+}
+
+.gallery-placeholder {
+  color: gray;
+  outline-style:solid;
+  width: 63%;
+}
+
+.product-info {
+  color: gray;
+  outline-style:solid;
+  width: 35%;
+  margin-left: 64%;
+  float: left;
+}
