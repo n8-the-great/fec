@@ -1,5 +1,4 @@
 import React from 'react';
-import emptyStar from '../main/assets/emptystar.png'
 
 class StarRating extends React.Component {
 

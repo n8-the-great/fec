@@ -48,7 +48,7 @@ class GeneralProductInfo extends React.Component {
 
         <div className='product-info'>
           <h3 className='product-category'>{this.state.product.category}</h3>
-          <h1 className='product-title'>{this.state.product.name}</h1>
+          <h1 className='product-title'>{this.state.product.title}</h1>
           <div className='product-price'>{this.state.product.default_price}</div>
           <div className='style-selector-placeholder'>Choose some styles</div>
         </div>
