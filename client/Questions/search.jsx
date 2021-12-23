@@ -20,13 +20,6 @@ class Search extends React.Component {
         [e.target.name]: ''
       }, this.props.search(e.target.value));
     }
-    console.log(this.state['keyword']);
-  }
-
-  search(term) {
-    var options = {
-      method: 'get'
-    }
   }
 
   render() {

@@ -10,7 +10,7 @@ class Question extends React.Component {
       qStyle: 'none',
       reported: false,
       helpfulness: this.props.question_helpfulness,
-      expanded: false
+      expandedView: 1
     }
     this.arrayify = this.arrayify.bind(this);
     this.sortHelpfulness = this. sortHelpfulness.bind(this);
@@ -92,7 +92,7 @@ class Question extends React.Component {
 
 
   render() {
-    return (<div>
+    return (<div style={{display: (this.props.index <= this.props.expandedView) ? 'block ' : 'none'}}>
       <b>Q:</b>
       <span>{this.props.question_body} </span>
       <span>Helpful?</span>
