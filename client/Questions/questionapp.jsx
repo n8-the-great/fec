@@ -9,7 +9,6 @@ class Questionapp extends React.Component {
     super(props);
     this.state = {
       questions: [],
-      productid: '59555',
       keyword: '',
       expandedView: 1
     };
@@ -102,7 +101,7 @@ class Questionapp extends React.Component {
   get() {
     var options = {
       method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=' + this.state.productid,
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=' + JSON.stringify(this.props.product.id),
       headers: {
         Authorization: token,
         accept: 'application/json',
@@ -132,14 +131,15 @@ class Questionapp extends React.Component {
 
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     this.get();
+    console.log('second questionapp', this.props.product);
   }
 
   render() {
     return (<div>
       <Search search={this.searchKeyword}/>
-      <Questionslist questions={this.searchSort(this.state.questions)} productid={this.state.productid} expandedView={this.state.expandedView}/>
+      <Questionslist questions={this.searchSort(this.state.questions)} productid={JSON.stringify(this.props.product.id)} productname={this.props.product.name} expandedView={this.state.expandedView}/>
       <button onClick={this.toggleQuestions} style={{display: (this.state.expandedView >= this.state.questions.length - 1) ? 'none' : 'block'}}>More Answered Questions</button>
       <button>Submit new question</button>
     </div>
