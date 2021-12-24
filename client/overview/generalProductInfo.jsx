@@ -43,7 +43,6 @@ class GeneralProductInfo extends React.Component {
         <button onClick={this.selectProduct}>product id get test</button>
         General Product Info
 
-
         <div className='product-info'>
           <h3 className='product-category'>{this.props.product.category}</h3>
           <h1 className='product-title'>{this.props.product.name}</h1>
