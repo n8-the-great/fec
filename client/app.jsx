@@ -31,8 +31,6 @@ class App extends React.Component {
       // console.log('name', result.data.name, 'id', result.data.id);
       this.setState({
         product: result.data
-      }, () => {
-        console.log('thissateproduct',this.state.product, this.state.product.id, this.state.product.name);
       });
     })
     .catch(err => {

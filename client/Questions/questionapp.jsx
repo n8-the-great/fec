@@ -3,6 +3,7 @@ import Questionslist from './questionslist.jsx';
 import Search from './search.jsx';
 import token from '../../config.js';
 import axios from 'axios';
+import Modal from './modal.jsx';
 
 class Questionapp extends React.Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class Questionapp extends React.Component {
     this.state = {
       questions: [],
       keyword: '',
-      expandedView: 1
+      expandedView: 1,
+      showModal: false
     };
     this.get = this.get.bind(this);
     // this.post = this.post.bind(this);
@@ -18,6 +20,7 @@ class Questionapp extends React.Component {
     this.toggleQuestions = this.toggleQuestions.bind(this);
     this.searchKeyword = this.searchKeyword.bind(this);
     this.searchSort = this.searchSort.bind(this);
+    this.modalToggle = this.modalToggle.bind(this);
   }
 
   searchSort(arr) {
@@ -56,21 +59,25 @@ class Questionapp extends React.Component {
 
   sortHelpfulness(arr) {
     var zeroesArray = [];
-
     for (var i = 0; i < arr.length; i ++) {
       if (arr[i].question_helpfulness === 0) {
         zeroesArray.push(arr[i]);
         arr.splice(i, 1);
       }
     }
-
     arr.sort((a, b) => (a.question_helpfulness) - (b.question_helpfulness));
     arr.reverse();
-
     for (var i = 0; i < zeroesArray.length; i ++) {
       arr.push(zeroesArray[i]);
     }
     return arr;
+  }
+
+  modalToggle(e) {
+    e.preventDefault();
+    this.setState({
+      showModal: !this.state.showModal
+    })
   }
   // post() {
   //   var options = {
@@ -133,15 +140,15 @@ class Questionapp extends React.Component {
 
   componentDidUpdate() {
     this.get();
-    console.log('second questionapp', this.props.product);
   }
 
   render() {
     return (<div>
       <Search search={this.searchKeyword}/>
+      <Modal productname={this.props.product.name} showModal={this.state.showModal}/>
       <Questionslist questions={this.searchSort(this.state.questions)} productid={JSON.stringify(this.props.product.id)} productname={this.props.product.name} expandedView={this.state.expandedView}/>
       <button onClick={this.toggleQuestions} style={{display: (this.state.expandedView >= this.state.questions.length - 1) ? 'none' : 'block'}}>More Answered Questions</button>
-      <button>Submit new question</button>
+      <button onClick={this.modalToggle}>Submit new question</button>
     </div>
     );
   }
