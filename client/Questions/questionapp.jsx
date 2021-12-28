@@ -4,6 +4,7 @@ import Search from './search.jsx';
 import token from '../../config.js';
 import axios from 'axios';
 import Modal from './modal.jsx';
+import Answermodal from './answermodal.jsx';
 
 class Questionapp extends React.Component {
   constructor(props) {
@@ -145,7 +146,8 @@ class Questionapp extends React.Component {
   render() {
     return (<div>
       <Search search={this.searchKeyword}/>
-      <Modal productname={this.props.product.name} showModal={this.state.showModal}/>
+      <Modal productname={this.props.product.name} showModal={this.state.showModal} modalToggle={this.modalToggle}/>
+      <Answermodal />
       <Questionslist questions={this.searchSort(this.state.questions)} productid={JSON.stringify(this.props.product.id)} productname={this.props.product.name} expandedView={this.state.expandedView}/>
       <button onClick={this.toggleQuestions} style={{display: (this.state.expandedView >= this.state.questions.length - 1) ? 'none' : 'block'}}>More Answered Questions</button>
       <button onClick={this.modalToggle}>Submit new question</button>

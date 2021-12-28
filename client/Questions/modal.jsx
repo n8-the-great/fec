@@ -9,6 +9,7 @@ class Modal extends React.Component {
     this.mandatoryAreFilled = this.mandatoryAreFilled.bind(this);
     this.emailIsValid = this.emailIsValid.bind(this);
     this.submit = this.submit.bind(this);
+    this.close = this.close.bind(this);
   }
 
   inputChange(e) {
@@ -38,7 +39,8 @@ class Modal extends React.Component {
   submit(e) {
     e.preventDefault();
     if (this.mandatoryAreFilled(this.state.question) && this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
-      console.log('submitted');
+      alert('submission successful');
+      this.props.modalToggle(e);
     } else if (this.mandatoryAreFilled(this.state.question) && !this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
       console.log('You must enter the following: Your Nickname and Your Email');
     } else if (!this.mandatoryAreFilled(this.state.question) && !this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
@@ -56,6 +58,11 @@ class Modal extends React.Component {
     }
   }
 
+  close(e) {
+    e.preventDefault();
+    this.props.modalToggle(e);
+  }
+
   componentDidMount() {
     this.setState({
       question: '',
@@ -69,7 +76,10 @@ class Modal extends React.Component {
       return null;
     }
     return (<div className='modal'>
+      <span className='modalclose' onClick={this.close}>X</span>
+      <span>
       <h1>Ask Your Question</h1>
+      </span>
       <h5>About the {this.props.productname}</h5>
       <div>Your Question *</div>
       <textarea rows='20' cols='50' className='modalquestion' name='question' maxLength='1000' onChange={this.inputChange} value={this.state.question || ''}></textarea>

@@ -111,3 +111,13 @@ body {
 .modalsubmit {
 
 }
+
+.modalclose {
+  float: right;
+  color: black;
+  border: solid black 2px;
+}
+
+.modalclose:hover {
+  cursor: pointer;
+}
