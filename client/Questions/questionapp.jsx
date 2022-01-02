@@ -13,7 +13,8 @@ class Questionapp extends React.Component {
       questions: [],
       keyword: '',
       expandedView: 1,
-      showModal: false
+      showModal: false,
+      showAnswerModal: false
     };
     this.get = this.get.bind(this);
     // this.post = this.post.bind(this);
@@ -22,6 +23,7 @@ class Questionapp extends React.Component {
     this.searchKeyword = this.searchKeyword.bind(this);
     this.searchSort = this.searchSort.bind(this);
     this.modalToggle = this.modalToggle.bind(this);
+    this.answerModalToggle = this.answerModalToggle.bind(this);
   }
 
   searchSort(arr) {
@@ -78,6 +80,13 @@ class Questionapp extends React.Component {
     e.preventDefault();
     this.setState({
       showModal: !this.state.showModal
+    })
+  }
+
+  answerModalToggle(e) {
+    e.preventDefault();
+    this.setState({
+      showAnswerModal: !this.state.showAnswerModal
     })
   }
   // post() {
@@ -147,8 +156,8 @@ class Questionapp extends React.Component {
     return (<div>
       <Search search={this.searchKeyword}/>
       <Modal productname={this.props.product.name} showModal={this.state.showModal} modalToggle={this.modalToggle}/>
-      <Answermodal />
-      <Questionslist questions={this.searchSort(this.state.questions)} productid={JSON.stringify(this.props.product.id)} productname={this.props.product.name} expandedView={this.state.expandedView}/>
+      <Answermodal showAnswerModal={this.state.showAnswerModal}/>
+      <Questionslist questions={this.searchSort(this.state.questions)} productid={JSON.stringify(this.props.product.id)} productname={this.props.product.name} expandedView={this.state.expandedView} answerModalToggle={this.answerModalToggle}/>
       <button onClick={this.toggleQuestions} style={{display: (this.state.expandedView >= this.state.questions.length - 1) ? 'none' : 'block'}}>More Answered Questions</button>
       <button onClick={this.modalToggle}>Submit new question</button>
     </div>

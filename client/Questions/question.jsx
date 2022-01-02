@@ -99,7 +99,7 @@ class Question extends React.Component {
       <span>
         <a style={{display: 'inline-block', padding: '5px'}} href='#' onClick={this.voteHelpful}>Yes {this.state.helpfulness}</a>
         <a onClick={this.report} style={{display: 'inline-block', padding: '5px'}} href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
-        <a href='#'>Add Answer</a>
+        <a href='#' onClick={this.props.answerModalToggle}>Add Answer</a>
       </span>
       <b style={{display: 'flex'}}>A: </b>
       <Answerlist answers={this.sortSeller(this.sortHelpfulness(this.arrayify(this.props.answers)))} />

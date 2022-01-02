@@ -9,6 +9,9 @@ class Answermodal extends React.Component {
   }
 
   render() {
+    if (this.props.showAnswerModal === false) {
+      return null;
+    }
     return (<div>
       <h1>Submit your Answer</h1>
       <h5>product: question</h5>
