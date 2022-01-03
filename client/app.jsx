@@ -6,12 +6,15 @@ import GeneralProductInfo from './overview/GeneralProductInfo.jsx';
 import token from '../config.js';
 import axios from 'axios';
 import './style.css';
+import RelatedProducts from './components/RelatedProducts.jsx'
 
 class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      product: {}
+      product: {},
+      id: 59555,
+      related: []
     }
     this.productSelector = this.productSelector.bind(this);
   }
@@ -44,12 +47,13 @@ class App extends React.Component {
     this.productSelector();
   }
 
+
   render() {
-     return (<div>
-        <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
-        <Questionapp product={this.state.product}/>
-        <Reviews />
-      </div>);
+    return (<div>
+      <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
+      <Questionapp product={this.state.product}/>
+      <RelatedProducts id={this.state.id}/>
+    </div>);
   }
 }
 
