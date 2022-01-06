@@ -2,17 +2,33 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
-var RelatedProduct = (props) => {
+import token from '../../config.js';
 
-  console.log('relatedProd comp');
-  console.log(props);
+class RelatedProduct extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      product: undefined
+    }
+  };
 
-  return (
-    <div>
-      Related Product component
-    </div>
-  );
 
+
+  render() {
+    // console.log('relatedProduct prop');
+    // console.log(this.props);
+    return (
+      <div>
+      <br />
+      <br />
+      <div className = 'productImage'> {this.props.thumbnail} </div>
+      <div className = 'productCategory'>{this.props.category} </div>
+      <div className = 'productName'>{this.props.item}</div>
+      <div className = 'productPrice'>{this.props.price}</div>
+
+      </div>
+    );
+  }
 }
 
 
