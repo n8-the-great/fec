@@ -63,74 +63,44 @@ class RelatedProducts extends React.Component {
 
 
   componentDidMount() {
-    //console.log('component did mount');
 
     this.relatedProductsRequest(this.props.id)
       .then((relatedProductArray) => {
-        // console.log('relatedProductArray: ', relatedProductArray);
+
         var doNextPromise = (p) => {
           this.productRequest(relatedProductArray[p])
             .then((product) => {
               this.setState({
                 related: [...this.state.related, product],
               })
-              // go to next index
+
+              return this.productStylesRequest(relatedProductArray[p]);
+            })
+            .then((productStyles) => {
+
+              // make shallow copy of item
+              var relatedItems = [...this.state.related];
+
+              // shallow copy of item to mutate
+              var relatedItem = {...relatedItems[p]};
+
+              // replace property
+              relatedItem.thumbnail_url = productStyles.results[0].photos[0].thumbnail_url;
+              relatedItems[p] = relatedItem;
+
+
+              this.setState({
+                related: relatedItems
+              });
+
               p++;
               if (p < relatedProductArray.length) {
                 doNextPromise(p);
               }
-              //return this.productStylesRequest(relatedProductArray[p]);
             })
-            // .then((styleInfo) => {
-            //   item.thumbnail_url = styleInfo.results[0].photos[0].thumbnail_url;
-            //   item.img_url = styleInfo.results[0].photos[0].url;
-            //   console.log('item');
-            //   console.log(item);
-            //   result.push(item);
-            //   console.log('result');
-            //   console.log(result);
-            //   // this.setState({
-            //   //   related: result,
-            //   // })
-            //   p++;
-            //   console.log(p);
-            //   if (p < data.length) {
-            //     doNextPromise(p);
-            //   }
-            // })
         }
-
-
+        // call the above recursive function on the first index
         doNextPromise(0);
-
-
-        // for (var i = 0; i < data.length; i++) {
-        //   console.log('i:', i);
-        //   this.productRequest(data[i])
-        //     .then((product) => {
-        //       console.log('product');
-        //       console.log(product);
-        //       item.id = product.id;
-        //       item.category = product.category;
-        //       item.name = product.name;
-        //       item.default_price = product.default_price;
-        //       return this.productStylesRequest(item.id);
-        //     })
-        //     .then((styleInfo) => {
-        //       item.thumbnail_url = styleInfo.results[0].photos[0].thumbnail_url;
-        //       item.img_url = styleInfo.results[0].photos[0].url;
-        //       console.log('item');
-        //       console.log(item);
-        //       result.push(item);
-        //       this.setState({
-        //         related: result,
-        //       })
-
-        //     })
-        // }
-
-
-
       })
       .catch((error) => {
         console.log(error);
@@ -162,8 +132,6 @@ class RelatedProducts extends React.Component {
               />
             ))
           }
-
-          <br />
         </div>
       );
     }
