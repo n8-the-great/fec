@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, "../client/main")));
 app.use(cors());
 app.use(bodyParser.json());
 
+app.get('/')
 
 app.get('/products/:product_id/related', (req, res) => {
 
