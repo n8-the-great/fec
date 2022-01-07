@@ -10,6 +10,8 @@ class RelatedProducts extends React.Component {
     super(props);
     this.state = {
       related: [],
+      currentCarousel: [],
+      carouselSize: 4
     }
     this.requestPromise = this.requestPromise.bind(this);
     this.productRequest = this.productRequest.bind(this);
