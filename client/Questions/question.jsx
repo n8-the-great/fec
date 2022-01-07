@@ -17,6 +17,12 @@ class Question extends React.Component {
     this.report = this.report.bind(this);
     this.sortSeller = this.sortSeller.bind(this);
     this.voteHelpful = this.voteHelpful.bind(this);
+    this.answerModalToggle = this.answerModalToggle.bind(this);
+  }
+
+  answerModalToggle(e) {
+    e.preventDefault();
+    this.props.answerModalToggle(this.props.question_body);
   }
 
   arrayify(obj) {
@@ -99,11 +105,9 @@ class Question extends React.Component {
       <span>
         <a style={{display: 'inline-block', padding: '5px'}} href='#' onClick={this.voteHelpful}>Yes {this.state.helpfulness}</a>
         <a onClick={this.report} style={{display: 'inline-block', padding: '5px'}} href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
-        <a href='#' onClick={this.props.answerModalToggle}>Add Answer</a>
+        <a href='#' onClick={this.answerModalToggle}>Add Answer</a>
       </span>
-      <b style={{display: 'flex'}}>A: </b>
-      <Answerlist answers={this.sortSeller(this.sortHelpfulness(this.arrayify(this.props.answers)))} />
-      <b>Asker</b>
+      <b style={{display: 'flex'}}>Asker</b>
       <div>{this.props.asker_name}</div>
       <b>Date</b>
       <div>{this.props.question_date}</div>
@@ -111,6 +115,8 @@ class Question extends React.Component {
       <div>{this.props.question_helpfulness}</div>
       <b>Question ID</b>
       <div>{this.props.question_id}</div>
+      <b style={{display: 'flex'}}>A: </b>
+      <Answerlist answers={this.sortSeller(this.sortHelpfulness(this.arrayify(this.props.answers)))} />
     </div>);
   }
 }

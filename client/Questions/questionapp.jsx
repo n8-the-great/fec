@@ -14,7 +14,8 @@ class Questionapp extends React.Component {
       keyword: '',
       expandedView: 1,
       showModal: false,
-      showAnswerModal: false
+      showAnswerModal: false,
+      currentQuestion: ''
     };
     this.get = this.get.bind(this);
     // this.post = this.post.bind(this);
@@ -83,10 +84,10 @@ class Questionapp extends React.Component {
     })
   }
 
-  answerModalToggle(e) {
-    e.preventDefault();
+  answerModalToggle(question) {
     this.setState({
-      showAnswerModal: !this.state.showAnswerModal
+      showAnswerModal: !this.state.showAnswerModal,
+      currentQuestion: question
     })
   }
   // post() {
@@ -149,17 +150,20 @@ class Questionapp extends React.Component {
   }
 
   componentDidUpdate() {
-    this.get();
+    if (this.state.questions.length === 0) {
+      this.get();
+    }
   }
 
   render() {
     return (<div>
       <Search search={this.searchKeyword}/>
       <Modal productname={this.props.product.name} showModal={this.state.showModal} modalToggle={this.modalToggle}/>
-      <Answermodal showAnswerModal={this.state.showAnswerModal}/>
+      <Answermodal showAnswerModal={this.state.showAnswerModal} productname={this.props.product.name} currentQuestion={this.state.currentQuestion} answerModalToggle={this.answerModalToggle}/>
       <Questionslist questions={this.searchSort(this.state.questions)} productid={JSON.stringify(this.props.product.id)} productname={this.props.product.name} expandedView={this.state.expandedView} answerModalToggle={this.answerModalToggle}/>
-      <button onClick={this.toggleQuestions} style={{display: (this.state.expandedView >= this.state.questions.length - 1) ? 'none' : 'block'}}>More Answered Questions</button>
-      <button onClick={this.modalToggle}>Submit new question</button>
+      <button className='morequestions' onClick={this.toggleQuestions} style={{display: (this.state.expandedView >= this.state.questions.length - 1) ? 'none' : 'block'}}>More Answered Questions</button>
+      <button className='newquestion' onClick={this.modalToggle}>Submit new question</button>
+
     </div>
     );
   }

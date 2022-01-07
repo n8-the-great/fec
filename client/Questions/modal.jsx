@@ -42,19 +42,19 @@ class Modal extends React.Component {
       alert('submission successful');
       this.props.modalToggle(e);
     } else if (this.mandatoryAreFilled(this.state.question) && !this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
-      console.log('You must enter the following: Your Nickname and Your Email');
+      alert('You must enter the following: Your Nickname and Your Email');
     } else if (!this.mandatoryAreFilled(this.state.question) && !this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
-      console.log('You must enter the following: Your Question and Your Nickname');
+      alert('You must enter the following: Your Question and Your Nickname');
     } else if (!this.mandatoryAreFilled(this.state.question) && this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
-      console.log('You must enter the following: Your Question and Your Email');
+      alert('You must enter the following: Your Question and Your Email');
     } else if (!this.mandatoryAreFilled(this.state.question) && this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
-      console.log('You must enter the following: Your Question');
+      alert('You must enter the following: Your Question');
     } else if (this.mandatoryAreFilled(this.state.question) && !this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
-      console.log('You must enter the following: Your Nickname');
+      alert('You must enter the following: Your Nickname');
     } else if (this.mandatoryAreFilled(this.state.question) && this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
-      console.log('You must enter the following: Your Email');
+      alert('You must enter the following: Your Email');
     } else if (!this.mandatoryAreFilled(this.state.question) && !this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
-      console.log('You must enter the following: Your Question and Your Nickname and Your Email');
+      alert('You must enter the following: Your Question and Your Nickname and Your Email');
     }
   }
 
