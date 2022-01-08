@@ -11,12 +11,13 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      product: {}
+      product: {},
+      haveProduct: false
     }
     this.productSelector = this.productSelector.bind(this);
   }
 
-  productSelector(id=59554) {
+  productSelector(id=59555) {
     var options = {
       method: 'get',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
@@ -30,9 +31,8 @@ class App extends React.Component {
     .then(result => {
       // console.log('name', result.data.name, 'id', result.data.id);
       this.setState({
-        product: result.data
-      }, () => {
-        console.log('thissateproduct',this.state.product, this.state.product.id, this.state.product.name);
+        product: result.data,
+        haveProduct: true
       });
     })
     .catch(err => {
@@ -46,12 +46,15 @@ class App extends React.Component {
 
   render() {
      return (<div>
-        <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
-        <Questionapp product={this.state.product}/>
-        <Reviews />
+      {this.state.haveProduct
+       ? <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
+       : <div>Retrieving Product Data</div>
+      }
       </div>);
   }
 }
-
+/*
+<Questionapp product={this.state.product}/>
+*/
 
 ReactDOM.render(<App />, document.getElementById('app'));
