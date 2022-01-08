@@ -52,7 +52,7 @@ class App extends React.Component {
     return (<div>
       <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
       <Questionapp product={this.state.product}/>
-      <RelatedProducts id={this.state.id}/>
+      <RelatedProducts product={this.state.id}/>
     </div>);
   }
 }

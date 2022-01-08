@@ -18,13 +18,13 @@ class RelatedProduct extends React.Component {
     // console.log('relatedProduct prop');
     // console.log(this.props);
     return (
-      <div>
+      <div className="carousel-item" style={{ width: width }}>
       <br />
-      <br />
-      <div className = 'productImage'> {this.props.thumbnail} </div>
-      <div className = 'productCategory'>{this.props.category} </div>
-      <div className = 'productName'>{this.props.item}</div>
-      <div className = 'productPrice'>{this.props.price}</div>
+
+      <div className = 'productImage'> {this.props.thumbnail} </div><br /><br />
+      <div className = 'productCategory'>{this.props.category} </div><br /><br />
+      <div className = 'productName'>{this.props.item}</div><br /><br />
+      <div className = 'productPrice'>{this.props.price}</div><br /><br />
 
       </div>
     );

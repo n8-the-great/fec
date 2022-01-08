@@ -66,7 +66,7 @@ class RelatedProducts extends React.Component {
 
   componentDidMount() {
 
-    this.relatedProductsRequest(this.props.id)
+    this.relatedProductsRequest(this.props.product)
       .then((relatedProductArray) => {
 
         var doNextPromise = (p) => {
@@ -119,21 +119,25 @@ class RelatedProducts extends React.Component {
       );
     } else {
       return(
-        <div className="relatedProducts">
-          Related Products
-          {
-            this.state.related.map((item, index) => (
-              <RelatedProduct
-                key = {index}
-                category = {item.category}
-                item = {item.name}
-                price = {item.default_price}
-                thumbnail = {item.thumbnail_url}
-                img_url = {item.img_url}
-                // add star rating later
-              />
-            ))
-          }
+        <div className="carousel">
+          <div className="carousel-inner" style={{ transform: "translateX(-0%)" }}>
+            Related Products <br />
+            {
+              this.state.related.map((item, index) => (
+
+                // return React.cloneElement(item, {width: "100%"})
+                <RelatedProduct
+                  key = {index}
+                  category = {item.category}
+                  item = {item.name}
+                  price = {item.default_price}
+                  thumbnail = {item.thumbnail_url}
+                  img_url = {item.img_url}
+                  // add star rating later
+                />, {width: "100%"}
+              ))
+            }
+          </div>
         </div>
       );
     }

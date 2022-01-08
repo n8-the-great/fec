@@ -66,3 +66,19 @@ body {
   margin-left: 64%;
   float: left;
 }
+
+.carousel {
+  overflow: hidden;
+}
+
+.carousel-inner {
+  white-space: nowrap;
+  transition: transform 0.3s;
+}
+
+.carousel-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
