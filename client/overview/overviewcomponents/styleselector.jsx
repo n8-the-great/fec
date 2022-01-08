@@ -1,6 +1,6 @@
 import React from 'react';
 import token from '../../../config.js';
-// const axios = require('axios');
+
 import axios from 'axios';
 
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/';
