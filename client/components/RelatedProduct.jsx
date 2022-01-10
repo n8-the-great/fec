@@ -7,7 +7,7 @@ import token from '../../config.js';
 var RelatedProduct = (props) => {
 
   return (
-    <div className="carousel-item" style={ {width: "50%"} }>
+    <div className="carousel-item" style={ {width: "25%"} }>
 
       <div className = "carousel-productDetails">
         <div className = 'related-productImage' src={props.thumbnail} />

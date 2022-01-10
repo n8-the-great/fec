@@ -90,6 +90,15 @@ body {
   display: block;
 }
 
+.carousel-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-buttons > button {
+  margin: 5px;
+}
+
 .related-productImage {
   border: 1px solid #ddd;
   border-radius: 4px;

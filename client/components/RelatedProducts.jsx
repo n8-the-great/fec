@@ -64,6 +64,18 @@ class RelatedProducts extends React.Component {
     return this.requestPromise(getStylesFromURL, id);
   }
 
+  updateCarousel(newIndex) {
+    if (newIndex < 0) {
+      newIndex = 0;
+    } else if (newIndex >= this.state.related.count) {
+      newIndex = this.state.related.count - 1;
+    }
+
+    this.setState({
+      activeCarousel: newIndex,
+    });
+  }
+
 
   componentDidMount() {
 
@@ -124,7 +136,7 @@ class RelatedProducts extends React.Component {
 
         <div className="carousel">
           <div className="carousel-inner"
-               style={{ transform: `translateX(-${this.state.activeCarousel * 100}%)` }}>
+               style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/4}%)` }}>
             Related Products <br />
             {
               this.state.related.map((item, index) => (
@@ -141,6 +153,12 @@ class RelatedProducts extends React.Component {
                 />
               ))
             }
+
+          </div>
+          <div className="carousel-buttons">
+            <button onClick = {() => { this.updateCarousel(this.state.activeCarousel - 1);}}>Previous</button>
+            <button onClick = {() => { this.updateCarousel(this.state.activeCarousel + 1);}}>Next</button>
+
           </div>
         </div>
       );
