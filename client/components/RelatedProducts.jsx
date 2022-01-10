@@ -10,8 +10,9 @@ class RelatedProducts extends React.Component {
     super(props);
     this.state = {
       related: [],
-      currentCarousel: [],
+      activeCarousel: 0,
       carouselSize: 4
+
     }
     this.requestPromise = this.requestPromise.bind(this);
     this.productRequest = this.productRequest.bind(this);
@@ -46,7 +47,7 @@ class RelatedProducts extends React.Component {
 
 
   productRequest(id) {
-    var getProdFromURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}/`;
+    var getProdFromURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}`;
 
     return this.requestPromise(getProdFromURL, id);
   }
@@ -119,8 +120,11 @@ class RelatedProducts extends React.Component {
       );
     } else {
       return(
+
+
         <div className="carousel">
-          <div className="carousel-inner" style={{ transform: "translateX(-0%)" }}>
+          <div className="carousel-inner"
+               style={{ transform: `translateX(-${this.state.activeCarousel * 100}%)` }}>
             Related Products <br />
             {
               this.state.related.map((item, index) => (
@@ -134,7 +138,7 @@ class RelatedProducts extends React.Component {
                   thumbnail = {item.thumbnail_url}
                   img_url = {item.img_url}
                   // add star rating later
-                />, {width: "100%"}
+                />
               ))
             }
           </div>

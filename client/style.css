@@ -81,4 +81,19 @@ body {
   align-items: center;
   justify-content: center;
   height: 200px;
+  background-color: green;
+  color: #fff;
+  font-size: 10px;
+}
+
+.carousel-productDetails {
+  display: block;
+}
+
+.related-productImage {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+
 }

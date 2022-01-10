@@ -44,7 +44,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.productSelector();
+    // this.productSelector();
   }
 
 
