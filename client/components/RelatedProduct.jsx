@@ -11,9 +11,9 @@ var RelatedProduct = (props) => {
 
       <div className = "carousel-productDetails">
         <div className = 'related-productImage' src={props.thumbnail} />
-        <div className = 'related-productCategory'>{props.category}  </div>
-        <div className = 'related-productName'>{props.item} </div>
-        <div className = 'related-productPrice'>{props.price} </div>
+        <div className = 'related-productCategory related-details'>{props.category}  </div>
+        <div className = 'related-productName related-details'>{props.item} </div>
+        <div className = 'related-productPrice related-details'>{props.price} </div>
       </div>
     </div>
   );
