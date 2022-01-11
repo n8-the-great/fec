@@ -1,5 +1,7 @@
 import React from 'react';
 import ImageUploader from 'react-image-uploader';
+import token from '../../config.js';
+import axios from 'axios';
 
 class Answermodal extends React.Component {
   constructor(props) {
@@ -11,6 +13,9 @@ class Answermodal extends React.Component {
     this.close= this.close.bind(this);
     this.inputChange = this.inputChange.bind(this);
     this.imageChange = this.imageChange.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
+    this.mandatoryAreFilled = this.mandatoryAreFilled.bind(this);
+    this.emailIsValid = this.emailIsValid.bind(this);
     this.submit = this.submit.bind(this);
   }
 
@@ -24,7 +29,7 @@ class Answermodal extends React.Component {
     }
   }
 
-  submit(e) {
+  uploadImage(e) {
     e.preventDefault();
     if(this.state.image && this.state.imageCount < 4) {
       this.setState({
@@ -55,6 +60,66 @@ class Answermodal extends React.Component {
 
   }
 
+  mandatoryAreFilled(text) {
+    if (text === '') {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  emailIsValid(email) {
+    if ((email.substring(email.length - 4, email.length) === '.com' || email.substring(email.length - 4, email.length) === '.org') && email.includes('@')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  submit(e) {
+    e.preventDefault();
+    if (this.mandatoryAreFilled(this.state.answer) && this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
+      var options = {
+        method: 'post',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${Number(this.props.currentQuestionId)}/answers`,
+        headers: {
+          Authorization: token
+        },
+        data: {
+          "body": this.state.answer,
+          "name": this.state.nickname,
+          "email": this.state.email,
+          "photos": []
+        }
+      }
+
+      console.log(options);
+      axios(options)
+      .then(result => {
+        console.log(result);
+        alert('submission successful');
+        this.props.answerModalToggle(this.props.currentQuestion, this.props.currentQuestionId);
+      })
+      .catch(err => {
+        alert(err);
+      });
+    } else if (this.mandatoryAreFilled(this.state.answer) && !this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
+      alert('You must enter the following: Your Nickname and Your Email');
+    } else if (!this.mandatoryAreFilled(this.state.answer) && !this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
+      alert('You must enter the following: Your Answer and Your Nickname');
+    } else if (!this.mandatoryAreFilled(this.state.answer) && this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
+      alert('You must enter the following: Your Answer and Your Email');
+    } else if (!this.mandatoryAreFilled(this.state.answer) && this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
+      alert('You must enter the following: Your Answer');
+    } else if (this.mandatoryAreFilled(this.state.answer) && !this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
+      alert('You must enter the following: Your Nickname');
+    } else if (this.mandatoryAreFilled(this.state.answer) && this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
+      alert('You must enter the following: Your Email');
+    } else if (!this.mandatoryAreFilled(this.state.answer) && !this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
+      alert('You must enter the following: Your Answer and Your Nickname and Your Email');
+    }
+  }
+
   render() {
     if (this.props.showAnswerModal === false) {
       return null;
@@ -77,7 +142,8 @@ class Answermodal extends React.Component {
       <span>Upload your photos<input type='file'
        className={this.state.addFileClass} name='photo'
        accept='image/png, image/jpeg' onChange={this.imageChange}/></span>
-      <button className='answermodalsubmit' onClick={this.submit}>Submit</button>
+      <button className='answermodalsubmit' onClick={this.uploadImage}>Submit Photo</button>
+      <span><button onClick={this.submit}>Submit Answer</button></span>
     </div>
     );
   }

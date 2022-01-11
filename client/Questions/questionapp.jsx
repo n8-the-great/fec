@@ -18,7 +18,6 @@ class Questionapp extends React.Component {
       currentQuestion: ''
     };
     this.get = this.get.bind(this);
-    // this.post = this.post.bind(this);
     this.sortHelpfulness = this.sortHelpfulness.bind(this);
     this.toggleQuestions = this.toggleQuestions.bind(this);
     this.searchKeyword = this.searchKeyword.bind(this);
@@ -84,42 +83,18 @@ class Questionapp extends React.Component {
     })
   }
 
-  answerModalToggle(question) {
+  answerModalToggle(question, questionId) {
     this.setState({
       showAnswerModal: !this.state.showAnswerModal,
-      currentQuestion: question
+      currentQuestion: question,
+      currentQuestionId: questionId
     })
   }
-  // post() {
-  //   var options = {
-  //     method: 'post',
-  //     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp32/qa/questions',
-  //     data: {
-  //       body: 'testquestion',
-  //       name: 'testusername',
-  //       email: 'testemail',
-  //       product_id: 0
-  //     },
-  //     headers: {
-  //       Authorization: token,
-  //       accept: 'application/json',
-  //       'content-type': 'application/json'
-  //     }
-  //   }
-
-  //   axios(options)
-  //   .then(result => {
-  //     console.log(result);
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
-  // }
 
   get() {
     var options = {
       method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=' + JSON.stringify(this.props.product.id),
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${JSON.stringify(this.props.product.id)}`,
       headers: {
         Authorization: token,
         accept: 'application/json',
@@ -158,12 +133,11 @@ class Questionapp extends React.Component {
   render() {
     return (<div>
       <Search search={this.searchKeyword}/>
-      <Modal productname={this.props.product.name} showModal={this.state.showModal} modalToggle={this.modalToggle}/>
-      <Answermodal showAnswerModal={this.state.showAnswerModal} productname={this.props.product.name} currentQuestion={this.state.currentQuestion} answerModalToggle={this.answerModalToggle}/>
+      <Modal productname={this.props.product.name} productid={this.props.product.id} showModal={this.state.showModal} modalToggle={this.modalToggle}/>
+      <Answermodal showAnswerModal={this.state.showAnswerModal} productname={this.props.product.name} currentQuestion={this.state.currentQuestion} currentQuestionId={this.state.currentQuestionId} answerModalToggle={this.answerModalToggle}/>
       <Questionslist questions={this.searchSort(this.state.questions)} productid={JSON.stringify(this.props.product.id)} productname={this.props.product.name} expandedView={this.state.expandedView} answerModalToggle={this.answerModalToggle}/>
       <button className='morequestions' onClick={this.toggleQuestions} style={{display: (this.state.expandedView >= this.state.questions.length - 1) ? 'none' : 'block'}}>More Answered Questions</button>
       <button className='newquestion' onClick={this.modalToggle}>Submit new question</button>
-
     </div>
     );
   }

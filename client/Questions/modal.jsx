@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import token from '../../config.js';
 
 class Modal extends React.Component {
   constructor(props) {
@@ -39,8 +41,30 @@ class Modal extends React.Component {
   submit(e) {
     e.preventDefault();
     if (this.mandatoryAreFilled(this.state.question) && this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
-      alert('submission successful');
-      this.props.modalToggle(e);
+      var options = {
+        method: 'post',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions`,
+        headers: {
+          Authorization: token
+        },
+        data: {
+          "body": this.state.question,
+          "name": this.state.nickname,
+          "email": this.state.email,
+          "product_id": Number(this.props.productid)
+        }
+      }
+
+      console.log(options);
+      axios(options)
+      .then(result => {
+        console.log(result);
+        alert('submission successful');
+        this.props.modalToggle(e);
+      })
+      .catch(err => {
+        alert(err);
+      });
     } else if (this.mandatoryAreFilled(this.state.question) && !this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
       alert('You must enter the following: Your Nickname and Your Email');
     } else if (!this.mandatoryAreFilled(this.state.question) && !this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
@@ -89,7 +113,7 @@ class Modal extends React.Component {
       <div>Your Email *</div>
       <textarea placeholder='Why did you like the product or not?' rows='20' cols='50' className='modalemail' name='email' maxLength='60' onChange={this.inputChange} value={this.state.email || ''}></textarea>
       <div className='modalwarning2'>For authentication reasons, you will not be emailed</div>
-      <button onClick={this.submit}className='modalsubmit'>Submit</button>
+      <button onClick={this.submit} className='modalsubmit'>Submit</button>
     </div>
     );
   }

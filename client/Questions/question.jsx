@@ -10,7 +10,8 @@ class Question extends React.Component {
       qStyle: 'none',
       reported: false,
       helpfulness: this.props.question_helpfulness,
-      expandedView: 1
+      expandedView: 1,
+      voted: false
     }
     this.arrayify = this.arrayify.bind(this);
     this.sortHelpfulness = this. sortHelpfulness.bind(this);
@@ -22,7 +23,7 @@ class Question extends React.Component {
 
   answerModalToggle(e) {
     e.preventDefault();
-    this.props.answerModalToggle(this.props.question_body);
+    this.props.answerModalToggle(this.props.question_body, this.props.question_id);
   }
 
   arrayify(obj) {
@@ -88,7 +89,8 @@ class Question extends React.Component {
     axios(options)
     .then(result => {
       this.setState({
-        helpfulness: this.state.helpfulness + 1
+        helpfulness: this.state.helpfulness + 1,
+        voted: true
       })
     })
     .catch(err => {
@@ -103,7 +105,7 @@ class Question extends React.Component {
       <span>{this.props.question_body} </span>
       <span>Helpful?</span>
       <span>
-        <a style={{display: 'inline-block', padding: '5px'}} href='#' onClick={this.voteHelpful}>Yes {this.state.helpfulness}</a>
+        <a style={{display: 'inline-block', padding: '5px'}} href='#' onClick={this.state.voted ? null : this.voteHelpful}>Yes {this.state.helpfulness}</a>
         <a onClick={this.report} style={{display: 'inline-block', padding: '5px'}} href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
         <a href='#' onClick={this.answerModalToggle}>Add Answer</a>
       </span>

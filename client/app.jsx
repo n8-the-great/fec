@@ -16,7 +16,7 @@ class App extends React.Component {
     this.productSelector = this.productSelector.bind(this);
   }
 
-  productSelector(id=59554) {
+  productSelector(id=59555) {
     var options = {
       method: 'get',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
