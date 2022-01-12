@@ -9,6 +9,7 @@ class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      product: props.product,
       related: [],
       activeCarousel: 0,
       carouselSize: 4
@@ -79,47 +80,57 @@ class RelatedProducts extends React.Component {
 
   componentDidMount() {
 
-    this.relatedProductsRequest(this.props.product)
-      .then((relatedProductArray) => {
+    this.props.productSelector()
+      .then(() => {
+        if (Object.keys(this.props.product).length !== 0) {
 
-        var doNextPromise = (p) => {
-          this.productRequest(relatedProductArray[p])
-            .then((product) => {
-              this.setState({
-                related: [...this.state.related, product],
-              })
+          this.relatedProductsRequest(this.props.product.id)
+            .then((relatedProductArray) => {
 
-              return this.productStylesRequest(relatedProductArray[p]);
-            })
-            .then((productStyles) => {
+              var doNextPromise = (p) => {
+                this.productRequest(relatedProductArray[p])
+                  .then((product) => {
+                    this.setState({
+                      related: [...this.state.related, product],
+                    })
 
-              // make shallow copy of item
-              var relatedItems = [...this.state.related];
+                    return this.productStylesRequest(relatedProductArray[p]);
+                  })
+                  .then((productStyles) => {
 
-              // shallow copy of item to mutate
-              var relatedItem = {...relatedItems[p]};
+                    // make shallow copy of item
+                    var relatedItems = [...this.state.related];
 
-              // replace property
-              relatedItem.thumbnail_url = productStyles.results[0].photos[0].thumbnail_url;
-              relatedItems[p] = relatedItem;
+                    // shallow copy of item to mutate
+                    var relatedItem = {...relatedItems[p]};
+
+                    // replace property
+                    relatedItem.thumbnail_url = productStyles.results[0].photos[0].thumbnail_url;
+                    relatedItems[p] = relatedItem;
 
 
-              this.setState({
-                related: relatedItems
-              });
+                    this.setState({
+                      related: relatedItems
+                    });
 
-              p++;
-              if (p < relatedProductArray.length) {
-                doNextPromise(p);
+                    p++;
+                    if (p < relatedProductArray.length) {
+                      doNextPromise(p);
+                    }
+                  })
               }
+              // call the above recursive function on the first index
+              doNextPromise(0);
             })
-        }
-        // call the above recursive function on the first index
-        doNextPromise(0);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+            .catch((error) => {
+              console.log(error);
+            })
+          } else {
+            console.log('props.product is empty');
+          }
+    })
+
+
   }
 
 
@@ -132,8 +143,6 @@ class RelatedProducts extends React.Component {
       );
     } else {
       return(
-
-
         <div className="carousel">
           <div className="carousel-inner"
                style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/4}%)` }}>
