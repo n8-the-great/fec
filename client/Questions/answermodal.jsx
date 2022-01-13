@@ -8,7 +8,8 @@ class Answermodal extends React.Component {
     super(props);
     this.state = {
       imageCount: 0,
-      addFileClass: 'addFileTrue'
+      addFileClass: 'addFileTrue',
+      images: []
     };
     this.close= this.close.bind(this);
     this.inputChange = this.inputChange.bind(this);
@@ -17,6 +18,21 @@ class Answermodal extends React.Component {
     this.mandatoryAreFilled = this.mandatoryAreFilled.bind(this);
     this.emailIsValid = this.emailIsValid.bind(this);
     this.submit = this.submit.bind(this);
+    this.imagesAreValid = this.imagesAreValid.bind(this);
+  }
+
+  imagesAreValid(imageArray) {
+    if(imageArray.length === 0) {
+      return true;
+    }
+    var valid = true;
+    for (var i = 0; i < imageArray.length; i ++) {
+      if (imageArray[i].substring(imageArray[i].length - 4, imageArray[i].length) !== '.jpg' && imageArray[i].substring(imageArray[i].length - 4, imageArray[i].length) !== '.png' && imageArray[i].substring(imageArray[i].length - 4, imageArray[i].length) !== '.gif') {
+        valid = false;
+      }
+    }
+
+    return valid;
   }
 
   imageChange (e) {
@@ -32,13 +48,37 @@ class Answermodal extends React.Component {
   uploadImage(e) {
     e.preventDefault();
     if(this.state.image && this.state.imageCount < 4) {
-      this.setState({
-        currentImage: this.state.image,
-        imageCount: this.state.imageCount + 1
+      var formData = new FormData();
+      formData.append('file', this.state.image);
+      formData.append('upload_preset', 'ovajzq8x');
+      var options = {
+        method: 'post',
+        url: 'https://api.cloudinary.com/v1_1/domfdxk5r/upload',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: formData
+      };
+
+      axios(options)
+      .then(result => {
+        this.setState({
+          images: [...this.state.images, result.data.secure_url],
+          currentImage: result.data.secure_url,
+          imageCount: this.state.imageCount + 1
+        }, () => {
+          console.log(this.state.images);
+          alert('Image upload successful');
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
     } else if (this.state.image && this.state.imageCount >= 4) {
       this.setState({
         addFileClass: 'addFileFalse'
+      }, () => {
+        alert('Maximum number of photos have been uploaded, you may not upload any additional photos after this one');
       })
     }
   }
@@ -79,44 +119,73 @@ class Answermodal extends React.Component {
   submit(e) {
     e.preventDefault();
     if (this.mandatoryAreFilled(this.state.answer) && this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
-      var options = {
-        method: 'post',
-        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${Number(this.props.currentQuestionId)}/answers`,
-        headers: {
-          Authorization: token
-        },
-        data: {
-          "body": this.state.answer,
-          "name": this.state.nickname,
-          "email": this.state.email,
-          "photos": []
+      if(this.imagesAreValid(this.state.images)) {
+        var options = {
+          method: 'post',
+          url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${Number(this.props.currentQuestionId)}/answers`,
+          headers: {
+            Authorization: token
+          },
+          data: {
+            "body": this.state.answer,
+            "name": this.state.nickname,
+            "email": this.state.email,
+            "photos": this.state.images
+          }
         }
+        axios(options)
+        .then(result => {
+          alert('Submission successful');
+          this.props.answerModalToggle(this.props.currentQuestion, this.props.currentQuestionId, this.props.get);
+        })
+        .catch(err => {
+          alert(err);
+        });
+      } else {
+        alert('Please ensure that your uploaded photos are of the following accepted types: .png, .gif, or .jpeg');
       }
-
-      console.log(options);
-      axios(options)
-      .then(result => {
-        console.log(result);
-        alert('submission successful');
-        this.props.answerModalToggle(this.props.currentQuestion, this.props.currentQuestionId);
-      })
-      .catch(err => {
-        alert(err);
-      });
     } else if (this.mandatoryAreFilled(this.state.answer) && !this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
-      alert('You must enter the following: Your Nickname and Your Email');
+      if(this.imagesAreValid(this.state.images)) {
+        alert('You must enter the following: Your Nickname and Your Email');
+      } else {
+        alert('You must enter the following: Your Nickname and Your Email. Also, please ensure that your uploaded photos are of the following accepted types: .png, .gif, or .jpeg');
+      }
     } else if (!this.mandatoryAreFilled(this.state.answer) && !this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
-      alert('You must enter the following: Your Answer and Your Nickname');
+      if(this.imagesAreValid(this.state.images)) {
+        alert('You must enter the following: Your Answer and Your Nickname');
+      } else {
+        alert('You must enter the following: Your Answer and Your Nickname. Also, please ensure that your uploaded photos are of the following accepted types: .png, .gif, or .jpeg');
+      }
     } else if (!this.mandatoryAreFilled(this.state.answer) && this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
-      alert('You must enter the following: Your Answer and Your Email');
+      if(this.imagesAreValid(this.state.images)) {
+        alert('You must enter the following: Your Answer and Your Email');
+      } else {
+        alert('You must enter the following: Your Answer and Your Email. Also, please ensure that your uploaded photos are of the following accepted types: .png, .gif, or .jpeg');
+      }
     } else if (!this.mandatoryAreFilled(this.state.answer) && this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
-      alert('You must enter the following: Your Answer');
+      if(this.imagesAreValid(this.state.images)) {
+        alert('You must enter the following: Your Answer');
+      } else {
+        alert('You must enter the following: Your Answer. Also, please ensure that your uploaded photos are of the following accepted types: .png, .gif, or .jpeg');
+      }
     } else if (this.mandatoryAreFilled(this.state.answer) && !this.mandatoryAreFilled(this.state.nickname) && this.emailIsValid(this.state.email)) {
-      alert('You must enter the following: Your Nickname');
+      if(this.imagesAreValid(this.state.images)) {
+        alert('You must enter the following: Your Nickname');
+      } else {
+        alert('You must enter the following: Your Nickname. Also, please ensure that your uploaded photos are of the following accepted types: .png, .gif, or .jpeg');
+      }
     } else if (this.mandatoryAreFilled(this.state.answer) && this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
-      alert('You must enter the following: Your Email');
+      if(this.imagesAreValid(this.state.images)) {
+        alert('You must enter the following: Your Email');
+      } else {
+        alert('You must enter the following: Your Email. Also, please ensure that your uploaded photos are of the following accepted types: .png, .gif, or .jpeg');
+      }
     } else if (!this.mandatoryAreFilled(this.state.answer) && !this.mandatoryAreFilled(this.state.nickname) && !this.emailIsValid(this.state.email)) {
-      alert('You must enter the following: Your Answer and Your Nickname and Your Email');
+      if(this.imagesAreValid(this.state.images)) {
+        alert('You must enter the following: Your Answer and Your Nickname and Your Email');
+      } else {
+        alert('You must enter the following: Your Answer and Your Nickname and Your Email. Also, please ensure that your uploaded photos are of the following accepted types: .png, .gif, or .jpeg');
+      }
     }
   }
 
@@ -141,8 +210,8 @@ class Answermodal extends React.Component {
       <div className='answermodalwarning2'>For authentication reasons, you will not be emailed</div>
       <span>Upload your photos<input type='file'
        className={this.state.addFileClass} name='photo'
-       accept='image/png, image/jpeg' onChange={this.imageChange}/></span>
-      <button className='answermodalsubmit' onClick={this.uploadImage}>Submit Photo</button>
+       accept='image/png, image/jpeg, image/gif' onChange={this.imageChange}/></span>
+      <button className={this.state.addFileClass} onClick={this.uploadImage}>Submit Photo</button>
       <span><button onClick={this.submit}>Submit Answer</button></span>
     </div>
     );

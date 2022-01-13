@@ -83,11 +83,13 @@ class Questionapp extends React.Component {
     })
   }
 
-  answerModalToggle(question, questionId) {
+  answerModalToggle(question, questionId, cb=() => {}) {
     this.setState({
       showAnswerModal: !this.state.showAnswerModal,
       currentQuestion: question,
       currentQuestionId: questionId
+    }, () => {
+      cb();
     })
   }
 
@@ -113,17 +115,6 @@ class Questionapp extends React.Component {
     });
   }
 
-  getReported() {
-    var options = {
-      method: 'get',
-      url: 'http://127.0.0.1:3000/fec'
-    }
-  }
-
-  getHelpful() {
-
-  }
-
   componentDidUpdate() {
     if (this.state.questions.length === 0) {
       this.get();
@@ -133,8 +124,8 @@ class Questionapp extends React.Component {
   render() {
     return (<div>
       <Search search={this.searchKeyword}/>
-      <Modal productname={this.props.product.name} productid={this.props.product.id} showModal={this.state.showModal} modalToggle={this.modalToggle}/>
-      <Answermodal showAnswerModal={this.state.showAnswerModal} productname={this.props.product.name} currentQuestion={this.state.currentQuestion} currentQuestionId={this.state.currentQuestionId} answerModalToggle={this.answerModalToggle}/>
+      <Modal productname={this.props.product.name} productid={this.props.product.id} showModal={this.state.showModal} modalToggle={this.modalToggle} getQuestionModalValues={this.getQuestionModalValues}/>
+      <Answermodal showAnswerModal={this.state.showAnswerModal} productname={this.props.product.name} currentQuestion={this.state.currentQuestion} currentQuestionId={this.state.currentQuestionId} answerModalToggle={this.answerModalToggle} get={this.get}/>
       <Questionslist questions={this.searchSort(this.state.questions)} productid={JSON.stringify(this.props.product.id)} productname={this.props.product.name} expandedView={this.state.expandedView} answerModalToggle={this.answerModalToggle}/>
       <button className='morequestions' onClick={this.toggleQuestions} style={{display: (this.state.expandedView >= this.state.questions.length - 1) ? 'none' : 'block'}}>More Answered Questions</button>
       <button className='newquestion' onClick={this.modalToggle}>Submit new question</button>

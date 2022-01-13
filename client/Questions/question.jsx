@@ -105,18 +105,12 @@ class Question extends React.Component {
       <span>{this.props.question_body} </span>
       <span>Helpful?</span>
       <span>
-        <a style={{display: 'inline-block', padding: '5px'}} href='#' onClick={this.state.voted ? null : this.voteHelpful}>Yes {this.state.helpfulness}</a>
+        <a style={{display: 'inline-block', padding: '5px'}} href={this.state.voted ? null : '#'} onClick={this.state.voted ? null : this.voteHelpful}>Yes {this.state.helpfulness}</a>
         <a onClick={this.report} style={{display: 'inline-block', padding: '5px'}} href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
         <a href='#' onClick={this.answerModalToggle}>Add Answer</a>
       </span>
       <b style={{display: 'flex'}}>Asker</b>
       <div>{this.props.asker_name}</div>
-      <b>Date</b>
-      <div>{this.props.question_date}</div>
-      <b>Helpfulness</b>
-      <div>{this.props.question_helpfulness}</div>
-      <b>Question ID</b>
-      <div>{this.props.question_id}</div>
       <b style={{display: 'flex'}}>A: </b>
       <Answerlist answers={this.sortSeller(this.sortHelpfulness(this.arrayify(this.props.answers)))} />
     </div>);

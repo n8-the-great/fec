@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Questionapp from './Questions/questionapp.jsx';
 import Reviews from './reviews/index.jsx';
-import GeneralProductInfo from './overview/GeneralProductInfo.jsx';
+import GeneralProductInfo from './overview/generalProductInfo.jsx';
 import token from '../config.js';
 import axios from 'axios';
 import './style.css';
@@ -16,7 +16,7 @@ class App extends React.Component {
     this.productSelector = this.productSelector.bind(this);
   }
 
-  productSelector(id=59555) {
+  productSelector(id=59554) {
     var options = {
       method: 'get',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
@@ -28,7 +28,6 @@ class App extends React.Component {
     }
     axios(options)
     .then(result => {
-      // console.log('name', result.data.name, 'id', result.data.id);
       this.setState({
         product: result.data
       });
