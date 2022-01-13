@@ -9,7 +9,7 @@ class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: props.product,
+      product: {},
       related: [],
       activeCarousel: 0,
       carouselSize: 4
@@ -153,8 +153,10 @@ class RelatedProducts extends React.Component {
                 // return React.cloneElement(item, {width: "100%"})
                 <RelatedProduct
                   key = {index}
+                  previewProduct = {this.props.product}
+                  features = {item.features}
                   category = {item.category}
-                  item = {item.name}
+                  itemName = {item.name}
                   price = {item.default_price}
                   thumbnail = {item.thumbnail_url}
                   img_url = {item.img_url}

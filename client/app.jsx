@@ -13,7 +13,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       product: {},
-      id: 59555,
+      id: 59554,
       related: []
     }
     this.productSelector = this.productSelector.bind(this);
