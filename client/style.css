@@ -143,7 +143,23 @@ body {
   padding: 10px;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
-  display: flex;
+  float: left;
+}
+
+.modal-body-item {
+  float: left;
+}
+
+.modal-body-left {
+  width: 25%;
+}
+
+.modal-body-middle {
+  width: 50%;
+}
+
+.modal-body-right {
+  width: 25%;
 }
 
 .modal-products {

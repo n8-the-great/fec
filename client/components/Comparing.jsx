@@ -1,32 +1,78 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import CompareTable from './CompareTable.jsx';
 import $ from 'jquery';
 
 
 var Comparing = (props) => {
-  console.log('comparing');
-  console.log(props);
+  // console.log('comparing');
+  // console.log(props);
 
   if (!props.show) {
     return null;
   }
 
-  var features = {};
+  var features = [];
   var productFeature;
 
+  // add features
   for (var i = 0; i < props.preview.features.length; i++) {
-    productFeature = props.preview.features[i];
-    features[productFeature.feature] = {"preview": productFeature.value};
+    if (props.preview.features[i].value === null) {
+      productFeature = props.preview.features[i].feature;
+    } else {
+      productFeature = `${props.preview.features[i].value} ${props.preview.features[i].feature}`;
+    }
+
+    features.push([productFeature, true, false]);
   }
 
   for (var i = 0; i < props.relatedFeatures.length; i++) {
-    productFeature = props.relatedFeatures[i];
-    features[productFeature.feature] = {"related": productFeature.value};
+    if (props.relatedFeatures[i].value === null) {
+      productFeature = props.relatedFeatures[i].feature;
+    } else {
+      productFeature = `${props.relatedFeatures[i].value} ${props.relatedFeatures[i].feature}`;
+    }
+
+    var wasFoundAtIndex = features.indexOf([productFeature, true, false]);
+    if (wasFoundAtIndex !== -1) {
+      features[wasFoundAtIndex] = [productFeature, true, true];
+    } else {
+      features.push([productFeature, false, true]);
+    }
   }
 
-  console.log('current features: ');
-  console.log(features);
+  // var renderComparisonTable = features.map((item, index) => {
+  //   return(
+  //     <div className="modal-body-item">
+  //       <div className="modal-body-left">{item[1]}</div>
+  //       <div className="modal-body-middle">{item[0]}</div>
+  //       <div className="modal-body-right">{item[2]}</div>
+  //     </div>
+  //   )
+  // })
 
+  var displayCheckMarkForIncludedFeature = (included) => {
+    if (included) {
+      return ('&#10004;');
+    } else {
+      return ('&nbsp');
+    }
+  }
+
+// why is this not working
+// var renderComparisonTable = features.map(
+//   function(item) {
+//     return
+//     <div className="modal-body-item">
+//       <div className="modal-body-left">{item[1]}</div>
+//       <div className="modal-body-middle">{item[0]}</div>
+//       <div className="modal-body-right">{item[2]}</div>
+//     </div>
+//   }
+// )
+
+  // add rating to features
+  // maybe add price to features (comparison)
 
   return (
     <div className="modal">
@@ -39,7 +85,17 @@ var Comparing = (props) => {
           </div>
         </div>
         <div className="modal-body">
-          display feature table here
+          {
+            features.map((item, index) => {
+              key={index}
+              return(
+                <div className="modal-body-item">
+                  <div className="modal-body-left">{displayCheckMarkForIncludedFeature(item[1])}</div>
+                  <div className="modal-body-middle">{item[0]}</div>
+                  <div className="modal-body-right">{displayCheckMarkForIncludedFeature(item[2])}</div>
+                </div>
+              )})
+          }
         </div>
         <div className="modal-footer">
           <button className="button">Close</button>
