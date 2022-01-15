@@ -6,7 +6,8 @@ import GeneralProductInfo from './overview/GeneralProductInfo.jsx';
 import token from '../config.js';
 import axios from 'axios';
 import './style.css';
-import RelatedProducts from './components/RelatedProducts.jsx'
+import RelatedProducts from './components/RelatedProducts.jsx';
+import Outfits from './components/Outfits.jsx'
 
 class App extends React.Component {
   constructor (props) {
@@ -54,6 +55,7 @@ class App extends React.Component {
       <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
       {/* <Questionapp product={this.state.product}/> */}
       <RelatedProducts product={this.state.product} productSelector={this.productSelector}/>
+      <Outfits product={this.state.product}/>
     </div>);
   }
 }
