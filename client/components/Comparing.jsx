@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-// import CompareTable from './CompareTable.jsx';
+import CompareTable from './CompareTable.jsx';
 import $ from 'jquery';
 
 
 var Comparing = (props) => {
   // console.log('comparing');
   // console.log(props);
+
+
+  var [show, setShow] = useState(true);
+
+  var changeShow = () => {
+    if (show === false) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  }
 
   if (!props.show) {
     return null;
@@ -41,41 +52,29 @@ var Comparing = (props) => {
     }
   }
 
-  // var renderComparisonTable = features.map((item, index) => {
-  //   return(
-  //     <div className="modal-body-item">
-  //       <div className="modal-body-left">{item[1]}</div>
-  //       <div className="modal-body-middle">{item[0]}</div>
-  //       <div className="modal-body-right">{item[2]}</div>
-  //     </div>
-  //   )
-  // })
 
-  var displayCheckMarkForIncludedFeature = (included) => {
+  var displayCheckMarkIf = (included) => {
     if (included) {
-      return ('&#10004;');
+      return (<h4>&#10004;</h4>);
     } else {
-      return ('&nbsp');
+      return (<h4>&nbsp;</h4>);
     }
   }
-
-// why is this not working
-// var renderComparisonTable = features.map(
-//   function(item) {
-//     return
-//     <div className="modal-body-item">
-//       <div className="modal-body-left">{item[1]}</div>
-//       <div className="modal-body-middle">{item[0]}</div>
-//       <div className="modal-body-right">{item[2]}</div>
-//     </div>
-//   }
-// )
+var renderComparisonTable = features.map( (detail) => {
+  return(
+    <div className="modal-body-detail">
+      <div className="modal-body-left">{displayCheckMarkIf(detail[1])}</div>
+      <div className="modal-body-middle">{detail[0]}</div>
+      <div className="modal-body-right">{displayCheckMarkIf(detail[2])}</div>
+    </div>
+  )}
+)
 
   // add rating to features
   // maybe add price to features (comparison)
 
   return (
-    <div className="modal">
+    <div className="modal" onClick={ () => {changeShow()}}>
       <div className="modal-content">
         <div className="modal-header">
           <h5 className="modal-title">Comparing</h5>
@@ -85,17 +84,8 @@ var Comparing = (props) => {
           </div>
         </div>
         <div className="modal-body">
-          {
-            features.map((item, index) => {
-              key={index}
-              return(
-                <div className="modal-body-item">
-                  <div className="modal-body-left">{displayCheckMarkForIncludedFeature(item[1])}</div>
-                  <div className="modal-body-middle">{item[0]}</div>
-                  <div className="modal-body-right">{displayCheckMarkForIncludedFeature(item[2])}</div>
-                </div>
-              )})
-          }
+          {/* <CompareTable compareTable={features}/> */}
+          {renderComparisonTable}
         </div>
         <div className="modal-footer">
           <button className="button">Close</button>

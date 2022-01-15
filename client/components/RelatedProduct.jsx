@@ -29,7 +29,7 @@ var RelatedProduct = (props) => {
       {changeShow()}
     }>
 
-
+      <div className="carousel-action" onClick={ () => {changeShow()}}>&#9733;</div>
       <div className = "carousel-productDetails">
         <div className = 'related-productImage' src={props.thumbnail} />
         <div className = 'related-productCategory related-details'>{props.category}  </div>

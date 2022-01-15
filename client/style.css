@@ -72,12 +72,14 @@ body {
   overflow: hidden;
 }
 
+
 .carousel-inner {
   white-space: nowrap;
   transition: transform 0.3s;
 }
 
 .carousel-item {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -96,7 +98,12 @@ body {
   background-color: whitesmoke;
 
 }
-
+.carousel-action {
+  position: absolute;
+  font-size: 13px;
+  top: 2px;
+  right: 2px;
+}
 .carousel-buttons {
   display: flex;
   justify-content: center;
@@ -127,7 +134,7 @@ body {
 }
 
 .modal-content {
-  width: 500px;
+  width: 900px;
   background-color: #fff;
 }
 
@@ -143,10 +150,9 @@ body {
   padding: 10px;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
-  float: left;
 }
 
-.modal-body-item {
+.modal-body-detail {
   float: left;
 }
 
