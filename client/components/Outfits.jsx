@@ -11,59 +11,41 @@ class Outfits extends React.Component {
     this.state = {
       product: {},
       wardrobe: [],
+      length: 0,
       activeCarousel: 0,
       carouselSize: 4
 
     }
-    this.requestPromise = this.requestPromise.bind(this);
-    this.productRequest = this.productRequest.bind(this);
-    this.relatedProductsRequest = this.relatedProductsRequest.bind(this);
-    this.productStylesRequest = this.productStylesRequest.bind(this);
+   this.onAddClick = this.onAddClick.bind(this);
+   this.onDeleteClick = this.onDeleteClick.bind(this);
 
   };
 
 
-  requestPromise(urlReq, id) {
-    return new Promise((resolve, reject) => {
-      $.ajax({
-        url: urlReq,
-        type: 'GET',
-        // data: JSON.stringify(dataObj),
-        beforeSend: function (xhr) {
-          xhr.setRequestHeader('Authorization', token.ID);
-        },
-        contentType: 'application/json',
-        dataType: 'json',
-        success: function (response) {
-          resolve(response);
-          // runs a cb on an array of nums
-        },
-        failure: function (response) {
-          console.log('failed!');
-          reject(response);
-        }
+  onAddClick(e) {
+    console.log('add click');
+
+    var newOutfit = this.props.product;
+    var wardrobe = [...this.state.wardrobe];
+
+    if (!wardrobe.includes(newOutfit)) {
+      wardrobe.push(newOutfit);
+
+      this.setState({
+        wardrobe: wardrobe,
+        length: this.state.length + 1
       });
-    })
+    } else {
+      console.log('outfit already exists');
+    }
+
   }
 
-
-  productRequest(id) {
-    var getProdFromURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}`;
-
-    return this.requestPromise(getProdFromURL, id);
+  onDeleteClick(e) {
+    console.log('delete click');
+    console.log(e);
   }
 
-  relatedProductsRequest(id) {
-    var getRelatedFromURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}/related`;
-
-    return this.requestPromise(getRelatedFromURL, id);
-  }
-
-  productStylesRequest(id) {
-    var getStylesFromURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}/styles`;
-
-    return this.requestPromise(getStylesFromURL, id);
-  }
 
   updateCarousel(newIndex) {
     if (newIndex < 0) {
@@ -78,66 +60,14 @@ class Outfits extends React.Component {
   }
 
 
-  // componentDidMount() {
-  //   this.props.productSelector()
-  //     .then(() => {
-  //       if (Object.keys(this.props.product).length !== 0) {
-
-  //         this.relatedProductsRequest(this.props.product.id)
-  //           .then((relatedProductArray) => {
-
-  //             var doNextPromise = (p) => {
-  //               this.productRequest(relatedProductArray[p])
-  //                 .then((product) => {
-  //                   this.setState({
-  //                     related: [...this.state.related, product],
-  //                   })
-
-  //                   return this.productStylesRequest(relatedProductArray[p]);
-  //                 })
-  //                 .then((productStyles) => {
-
-  //                   // make shallow copy of item
-  //                   var relatedItems = [...this.state.related];
-
-  //                   // shallow copy of item to mutate
-  //                   var relatedItem = {...relatedItems[p]};
-
-  //                   // replace property
-  //                   relatedItem.thumbnail_url = productStyles.results[0].photos[0].thumbnail_url;
-  //                   relatedItems[p] = relatedItem;
-
-
-  //                   this.setState({
-  //                     related: relatedItems
-  //                   });
-
-  //                   p++;
-  //                   if (p < relatedProductArray.length) {
-  //                     doNextPromise(p);
-  //                   }
-  //                 })
-  //             }
-  //             // call the above recursive function on the first index
-  //             doNextPromise(0);
-  //           })
-  //           .catch((error) => {
-  //             console.log(error);
-  //           })
-  //         } else {
-  //           console.log('props.product is empty');
-  //         }
-  //   })
-  // }
-
   // always render a Outfit add
 
   render() {
-    if (this.state.wardrobe.length === 0) {
+    if (this.state.length === 0) {
       return (
         <div className="carousel">
           <div className="carousel-inner">
-            <Outfit key = {0} defaultAdd = {true} />
+            <Outfit key = {0} defaultAdd = {true}  action = {this.onAddClick}/>
           </div>
         </div>
       )
@@ -148,20 +78,14 @@ class Outfits extends React.Component {
           <div className="carousel-inner"
                 style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/4}%)` }}>
             Outfits <br />
-            <Outfit key = {0} defaultAdd = {true} />
-            {
-              this.state.wardrobe.map((item, index) => (
+            <Outfit key = {0} defaultAdd = {true} action = {this.onAddClick}/>
+            { this.state.wardrobe.map((item, index) => (
 
                 // return React.cloneElement(item, {width: "100%"})
                 <Outfit
                   key = {index + 1}
-                  previewProduct = {this.props.product}
-                  features = {this.props.features}
-                  category = {this.props.category}
-                  itemName = {this.props.name}
-                  price = {this.props.default_price}
-                  thumbnail = {this.props.thumbnail_url}
-                  img_url = {this.props.img_url}
+                  product = {item}
+                  action = {this.onDeleteClick}
                   // add star rating later
                 />
               ))

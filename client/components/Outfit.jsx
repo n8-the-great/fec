@@ -6,25 +6,19 @@ import token from '../../config.js';
 
 var Outfit = (props) => {
 
-
-  var [show, setShow] = useState(false);
-
-  var changeShow = () => {
-    if (show === false) {
-      setShow(true);
-    } else {
-      setShow(false);
-    }
+  var clickHandler = (e) => {
+    e.preventDefault();
+    props.action(e);
   }
+
+
 
   if (props.defaultAdd === true) {
     return (
       <React.Fragment>
       <div className="carousel-item" style={ {width: "25%"} } >
-        <div className="carousel-action" onClick={ () => {changeShow()}}>&#9733;</div>
-
         <div className = "carousel-productDetails">
-          <div className = 'carousel-add'> + <br /> Add to Outfit </div>
+          <div className = 'carousel-add' onClick={clickHandler}> + <br /> Add to Outfit </div>
         </div>
       </div>
       </React.Fragment>
@@ -34,11 +28,8 @@ var Outfit = (props) => {
 
     return (
       <React.Fragment>
-        <div className="carousel-item" style={ {width: "25%"} } onClick={ () =>
-          {changeShow()}
-        }>
-
-          <div className="carousel-action" onClick={ () => {changeShow()}}>&#9733;</div>
+        <div className="carousel-item" style={ {width: "25%"} }>
+          <div className="carousel-action" onClick={clickHandler}>&#9733;</div>
           <div className = "carousel-productDetails">
             <div className = 'related-productImage' src={props.thumbnail} />
             <div className = 'related-productCategory related-details'>{props.product.category}  </div>
