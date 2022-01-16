@@ -31,10 +31,10 @@ var RelatedProduct = (props) => {
 
       <div className="carousel-action" onClick={ () => {changeShow()}}>&#9733;</div>
       <div className = "carousel-productDetails">
-        <div className = 'related-productImage' src={props.thumbnail} />
-        <div className = 'related-productCategory related-details'>{props.category}  </div>
-        <div className = 'related-productName related-details'>{props.itemName} </div>
-        <div className = 'related-productPrice related-details'>{props.price} </div>
+        <div className = 'carousel-productImage'> <img src={props.thumbnail}></img> </div>
+        <div className = 'carousel-productCategory carousel-details'>{props.category}  </div>
+        <div className = 'carousel-productName carousel-details'>{props.itemName} </div>
+        <div className = 'carousel-productPrice carousel-details'>{props.price} </div>
       </div>
       <Comparing preview={props.previewProduct} relatedName={props.itemName} relatedFeatures={props.features} show={show}/>
     </div>

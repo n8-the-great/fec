@@ -31,10 +31,10 @@ var Outfit = (props) => {
         <div className="carousel-item" style={ {width: "25%"} }>
           <div className="carousel-action" onClick={clickHandler}>&#9733;</div>
           <div className = "carousel-productDetails">
-            <div className = 'related-productImage' src={props.thumbnail} />
-            <div className = 'related-productCategory related-details'>{props.product.category}  </div>
-            <div className = 'related-productName related-details'>{props.product.name} </div>
-            <div className = 'related-productPrice related-details'>{props.product.default_price} </div>
+            <div className = 'carousel-productImage' src={props.thumbnail} />
+            <div className = 'carousel-productCategory carousel-details'>{props.product.category}  </div>
+            <div className = 'carousel-productName carousel-details'>{props.product.name} </div>
+            <div className = 'carousel-productPrice carousel-details'>{props.product.default_price} </div>
           </div>
         </div>
     </React.Fragment>

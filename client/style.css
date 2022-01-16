@@ -70,6 +70,7 @@ body {
 .carousel {
   padding-left: 2%;
   overflow: hidden;
+  z-index: 0;
 }
 
 
@@ -83,8 +84,10 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20%;
-  height: 45%;
+  max-width: 25%;
+  max-height: 30%;
+  width: auto;
+  height: auto;
   background-color: whitesmoke;
   color: black;
   font-size: 10px;
@@ -96,7 +99,11 @@ body {
 .carousel-productDetails {
   display: block;
   background-color: whitesmoke;
-
+  max-width: 75%;
+  max-height: 75%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 .carousel-action {
   position: absolute;
@@ -113,12 +120,15 @@ body {
   margin: 5px;
 }
 
-.related-productImage {
+.carousel-productImage {
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 5px;
-  width: 150px;
-
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
 }
 
 .modal {
@@ -131,6 +141,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 
 .modal-content {
