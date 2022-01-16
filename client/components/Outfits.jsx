@@ -13,8 +13,6 @@ class Outfits extends React.Component {
       wardrobe: [],
       length: 0,
       activeCarousel: 0,
-      carouselSize: 4
-
     }
    this.onAddClick = this.onAddClick.bind(this);
    this.onDeleteClick = this.onDeleteClick.bind(this);
@@ -23,8 +21,6 @@ class Outfits extends React.Component {
 
 
   onAddClick(e) {
-    console.log('add click');
-
     var newOutfit = this.props.product;
     var wardrobe = [...this.state.wardrobe];
 
@@ -33,7 +29,7 @@ class Outfits extends React.Component {
 
       this.setState({
         wardrobe: wardrobe,
-        length: this.state.length + 1
+        length: wardrobe.length
       });
     } else {
       console.log('outfit already exists');
@@ -44,14 +40,28 @@ class Outfits extends React.Component {
   onDeleteClick(e) {
     console.log('delete click');
     console.log(e);
+
+    var wardrobe = [...this.state.wardrobe];
+
+    if (wardrobe.length === 1) {
+      wardrobe.pop();
+    } else {
+      wardrobe.slice(e, 1);
+    }
+
+
+    this.setState({
+      wardrobe: wardrobe,
+      length: wardrobe.length
+    });
   }
 
 
   updateCarousel(newIndex) {
     if (newIndex < 0) {
       newIndex = 0;
-    } else if (newIndex >= this.state.related.count) {
-      newIndex = this.state.related.count - 1;
+    } else if (newIndex >= this.state.length) {
+      newIndex = this.state.length - 1;
     }
 
     this.setState({
@@ -84,6 +94,7 @@ class Outfits extends React.Component {
                 // return React.cloneElement(item, {width: "100%"})
                 <Outfit
                   key = {index + 1}
+                  index = {index}
                   product = {item}
                   action = {this.onDeleteClick}
                   // add star rating later

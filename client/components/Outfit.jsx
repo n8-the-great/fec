@@ -8,7 +8,7 @@ var Outfit = (props) => {
 
   var clickHandler = (e) => {
     e.preventDefault();
-    props.action(e);
+    props.action(props.index);
   }
 
 
@@ -36,7 +36,6 @@ var Outfit = (props) => {
             <div className = 'related-productName related-details'>{props.product.name} </div>
             <div className = 'related-productPrice related-details'>{props.product.default_price} </div>
           </div>
-
         </div>
     </React.Fragment>
     );
