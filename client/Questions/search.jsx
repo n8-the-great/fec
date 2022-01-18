@@ -24,7 +24,7 @@ class Search extends React.Component {
 
   render() {
     return(<div>
-      <input style={{width: '400px'}} onChange={this.inputChange} name='keyword' placeholder='Have a question? Search for answers...'/>
+      <input className='search' onChange={this.inputChange} name='keyword' placeholder='Have a question? Search for answers...'/>
     </div>
     );
   }

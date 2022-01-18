@@ -16,14 +16,14 @@ class App extends React.Component {
     this.productSelector = this.productSelector.bind(this);
   }
 
-  productSelector(id=59554) {
+  productSelector(id=59556) {
     var options = {
       method: 'get',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
       headers: {
         Authorization: token,
         accept: 'application/json',
-        'content-type': 'application/json',
+        'content-type': 'application/json'
       }
     }
     axios(options)
@@ -45,7 +45,6 @@ class App extends React.Component {
      return (<div>
         <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
         <Questionapp product={this.state.product}/>
-        <Reviews />
       </div>);
   }
 }

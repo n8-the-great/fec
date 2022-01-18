@@ -85,9 +85,7 @@ class Answer extends React.Component {
           <a style={{display: 'inline-block', padding: '5px'}} onClick={this.state.reported ? null : this.report}  href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
         </span>
         <div>by <b style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller</b>  <span style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span>, {this.dateFormatter(this.props.date)}</div>
-        <b>Helpfulness:</b>
-        <div>{this.props.helpfulness}</div>
-        <b>Photos:</b>
+        <b style={{display: this.props.photos.length > 0 ? 'block' : 'none'}}>Photos:</b>
         <img src={this.props.photos[0]}/>
         <img src={this.props.photos[1]}/>
         <img src={this.props.photos[2]}/>
@@ -104,9 +102,6 @@ class Answer extends React.Component {
         <a onClick={this.report} style={{display: 'inline-block', padding: '5px'}} href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
       </span>
       <div>by <b style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller</b>  <span style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span>, {this.dateFormatter(this.props.date)}</div>
-      <b>Helpfulness:</b>
-      <div>{this.props.helpfulness}</div>
-      <b>Photos:</b>
       <img src={this.props.photos[0]}/>
       <img src={this.props.photos[1]}/>
       <img src={this.props.photos[2]}/>

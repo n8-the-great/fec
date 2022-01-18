@@ -122,7 +122,8 @@ class Questionapp extends React.Component {
   }
 
   render() {
-    return (<div>
+    return (<div className='questionapp'>
+      <div className='questionapptitle'>{`Questions & Answers`}</div>
       <Search search={this.searchKeyword}/>
       <Modal productname={this.props.product.name} productid={this.props.product.id} showModal={this.state.showModal} modalToggle={this.modalToggle} getQuestionModalValues={this.getQuestionModalValues}/>
       <Answermodal showAnswerModal={this.state.showAnswerModal} productname={this.props.product.name} currentQuestion={this.state.currentQuestion} currentQuestionId={this.state.currentQuestionId} answerModalToggle={this.answerModalToggle} get={this.get}/>

@@ -8,7 +8,7 @@ class Answermodal extends React.Component {
     super(props);
     this.state = {
       imageCount: 0,
-      addFileClass: 'addFileTrue',
+      addFileClass: 'addfiletrue',
       images: []
     };
     this.close= this.close.bind(this);
@@ -197,50 +197,34 @@ class Answermodal extends React.Component {
       <img className='image' src={this.state.currentImage} />
       <span className='answermodalclose' onClick={this.close}>X</span>
       <span>
-      <h1>Submit your Answer</h1>
+      <h1 className='answermodaltitle'>Submit your Answer</h1>
       </span>
-      <h5>{this.props.productname}: {this.props.currentQuestion}</h5>
-      <div>Your Answer *</div>
+      <h5 className='answermodalsubtitle'>{this.props.productname}: {this.props.currentQuestion}</h5>
+      <div>
+        <span>Your Answer </span>
+        <span className='required'>*</span>
+      </div>
       <textarea rows='20' cols='50' className='answermodalanswer' name='answer' maxLength='1000' onChange={this.inputChange} value={this.state.answer || ''}></textarea>
-      <div className='answermodalnicknameheader'>Your Nickname *</div>
+      <div>
+        <span className='answermodalnicknameheader'>Your Nickname </span>
+        <span className='required'>*</span>
+      </div>
       <textarea placeholder='Example: jackson11!' rows='20' cols='50' className='answermodalnickname' name='nickname' maxLength='60' onChange={this.inputChange} value={this.state.nickname || ''}></textarea>
       <div className='answermodalwarning'>For privacy reasons, do not use your full name or email address</div>
-      <div>Your Email *</div>
+      <div>
+        <span>Your Email </span>
+        <span className='required'>*</span>
+      </div>
       <textarea placeholder='Why did you like the product or not?' rows='20' cols='50' className='answermodalemail' name='email' maxLength='60' onChange={this.inputChange} value={this.state.email || ''}></textarea>
       <div className='answermodalwarning2'>For authentication reasons, you will not be emailed</div>
-      <span>Upload your photos<input type='file'
+      <span className={this.state.addFileClass}>Upload your photos<input type='file'
        className={this.state.addFileClass} name='photo'
        accept='image/png, image/jpeg, image/gif' onChange={this.imageChange}/></span>
-      <button className={this.state.addFileClass} onClick={this.uploadImage}>Submit Photo</button>
-      <span><button onClick={this.submit}>Submit Answer</button></span>
+      <button className={this.state.addFileClass === 'addfiletrue' ? 'submitphototrue' : this.state.addFileClass} onClick={this.uploadImage}>Submit Photo</button>
+      <span><button className='submitanswer' onClick={this.submit}>Submit Answer</button></span>
     </div>
     );
   }
-
-  // render() {
-  //   if (this.props.showModal === false) {
-  //     return null;
-  //   }
-  //   return (<div className='modal'>
-  //     <span className='modalclose' onClick={this.close}>X</span>
-  //     <span>
-  //     <h1>Ask Your Question</h1>
-  //     </span>
-  //     <h5>About the {this.props.productname}</h5>
-  //     <div>Your Question *</div>
-  //     <textarea rows='20' cols='50' className='modalquestion' name='question' maxLength='1000' onChange={this.inputChange} value={this.state.question || ''}></textarea>
-  //     <div className='modalnicknameheader'>Your Nickname *</div>
-  //     <textarea placeholder='Example: jackson11!' rows='20' cols='50' className='modalnickname' name='nickname' maxLength='60' onChange={this.inputChange} value={this.state.nickname || ''}></textarea>
-  //     <div className='modalwarning'>For privacy reasons, do not use your full name or email address</div>
-
-      // <div>Your Email *</div>
-      // <textarea placeholder='Why did you like the product or not?' rows='20' cols='50' className='modalemail' name='email' maxLength='60' onChange={this.inputChange} value={this.state.email || ''}></textarea>
-      // <div className='modalwarning2'>For authentication reasons, you will not be emailed</div>
-
-  //     <button onClick={this.submit}className='modalsubmit'>Submit</button>
-  //   </div>
-  //   );
-  // }
 }
 
 export default Answermodal;

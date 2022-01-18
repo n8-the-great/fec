@@ -101,16 +101,20 @@ class Question extends React.Component {
 
   render() {
     return (<div style={{display: (this.props.index <= this.props.expandedView) ? 'block ' : 'none'}}>
-      <b>Q:</b>
+      <div className='questionq'>
+      <b>Q: </b>
       <span>{this.props.question_body} </span>
-      <span>Helpful?</span>
-      <span>
-        <a style={{display: 'inline-block', padding: '5px'}} href={this.state.voted ? null : '#'} onClick={this.state.voted ? null : this.voteHelpful}>Yes {this.state.helpfulness}</a>
-        <a onClick={this.report} style={{display: 'inline-block', padding: '5px'}} href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
-        <a href='#' onClick={this.answerModalToggle}>Add Answer</a>
+      </div>
+      <span className='questionuseroptions'>
+        <span>Helpful?</span>
+        <span>
+          <a style={{display: 'inline-block', padding: '5px'}} href={this.state.voted ? null : '#'} onClick={this.state.voted ? null : this.voteHelpful}>Yes {this.state.helpfulness}</a>
+          <a onClick={this.report} style={{display: 'inline-block', padding: '5px'}} href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
+          <a href='#' onClick={this.answerModalToggle}>Add Answer</a>
+        </span>
       </span>
-      <b style={{display: 'flex'}}>Asker</b>
-      <div>{this.props.asker_name}</div>
+      <b className='asker'>Asker</b>
+      <div className='askername'>{this.props.asker_name}</div>
       <b style={{display: 'flex'}}>A: </b>
       <Answerlist answers={this.sortSeller(this.sortHelpfulness(this.arrayify(this.props.answers)))} />
     </div>);
