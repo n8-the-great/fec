@@ -6,33 +6,39 @@ import GeneralProductInfo from './overview/GeneralProductInfo.jsx';
 import token from '../config.js';
 import axios from 'axios';
 import './style.css';
+import RelatedProducts from './components/RelatedProducts.jsx';
+import Outfits from './components/Outfits.jsx'
 
 class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      product: {}
+      product: {},
+      id: 59554,
+      related: []
     }
     this.productSelector = this.productSelector.bind(this);
   }
 
   productSelector(id=59554) {
+    console.log('changing to this id: ', id);
     var options = {
       method: 'get',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
       headers: {
+        // Authorization: token,
         Authorization: token,
         accept: 'application/json',
         'content-type': 'application/json',
       }
     }
-    axios(options)
+    return axios(options)
     .then(result => {
       // console.log('name', result.data.name, 'id', result.data.id);
       this.setState({
         product: result.data
       }, () => {
-        console.log('thissateproduct',this.state.product, this.state.product.id, this.state.product.name);
+        console.log('this state product',this.state.product, this.state.product.id, this.state.product.name);
       });
     })
     .catch(err => {
@@ -40,16 +46,20 @@ class App extends React.Component {
     });
   }
 
+
   componentDidMount() {
     this.productSelector();
   }
 
+
   render() {
-     return (<div>
-        <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
-        <Questionapp product={this.state.product}/>
-        <Reviews />
-      </div>);
+
+    return (<div>
+      <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
+      {/* <Questionapp product={this.state.product}/> */}
+      <RelatedProducts product={this.state.product} productSelector={this.productSelector}/>
+      <Outfits product={this.state.product}/>
+    </div>);
   }
 }
 
