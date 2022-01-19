@@ -16,7 +16,8 @@ var RelatedProduct = (props) => {
 
   var [show, setShow] = useState(false);
 
-  var changeShow = () => {
+  var changeShow = (e) => {
+    e.preventDefault();
     if (show === false) {
       setShow(true);
     } else {
@@ -24,17 +25,22 @@ var RelatedProduct = (props) => {
     }
   }
 
+  var changeProduct = (e) => {
+    e.preventDefault();
+    // console.log(props);
+    props.product_selection(props.relatedProduct.id);
+  }
+
+
   return (
-    <div className="carousel-item" style={ {width: "25%"} } onClick={ () =>
-      {changeShow()}
-    }>
+    <div className="carousel-item" style={ {width: "25%"} }>
 
       <div className="carousel-action" onClick={ () => {changeShow()}}>&#9733;</div>
       <div className = "carousel-productDetails">
-        <div className = 'carousel-productImage'> <img src={props.thumbnail}></img> </div>
-        <div className = 'carousel-productCategory carousel-details'>{props.category}  </div>
-        <div className = 'carousel-productName carousel-details'>{props.itemName} </div>
-        <div className = 'carousel-productPrice carousel-details'>{props.price} </div>
+        <div className = 'carousel-productImage' onClick={changeProduct}> <img src={props.relatedProduct.thumbnail_url}></img> </div>
+        <div className = 'carousel-productCategory carousel-details'>{props.relatedProduct.category}  </div>
+        <div className = 'carousel-productName carousel-details'>{props.relatedProduct.name} </div>
+        <div className = 'carousel-productPrice carousel-details'>{props.relatedProduct.default_price} </div>
       </div>
       <Comparing preview={props.previewProduct} relatedName={props.itemName} relatedFeatures={props.features} show={show}/>
     </div>

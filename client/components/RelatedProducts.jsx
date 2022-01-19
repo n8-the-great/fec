@@ -19,6 +19,7 @@ class RelatedProducts extends React.Component {
     this.productRequest = this.productRequest.bind(this);
     this.relatedProductsRequest = this.relatedProductsRequest.bind(this);
     this.productStylesRequest = this.productStylesRequest.bind(this);
+    this.updateRelated = this.updateRelated.bind(this);
 
   };
 
@@ -30,7 +31,7 @@ class RelatedProducts extends React.Component {
         type: 'GET',
         // data: JSON.stringify(dataObj),
         beforeSend: function (xhr) {
-          xhr.setRequestHeader('Authorization', token.ID);
+          xhr.setRequestHeader('Authorization', token);
         },
         contentType: 'application/json',
         dataType: 'json',
@@ -77,16 +78,18 @@ class RelatedProducts extends React.Component {
     });
   }
 
-
-  componentDidMount() {
-
-    this.props.productSelector()
+  updateRelated(id = 59554) {
+    return new Promise((resolve, reject) => {
+      this.setState({
+        related: [],
+        activeCarousel: 0,
+      });
+      this.props.productSelector(id) // update preview
       .then(() => {
         if (Object.keys(this.props.product).length !== 0) {
-
           this.relatedProductsRequest(this.props.product.id)
             .then((relatedProductArray) => {
-
+              // recursive function for each
               var doNextPromise = (p) => {
                 this.productRequest(relatedProductArray[p])
                   .then((product) => {
@@ -108,7 +111,6 @@ class RelatedProducts extends React.Component {
                     relatedItem.thumbnail_url = productStyles.results[0].photos[0].thumbnail_url;
                     relatedItems[p] = relatedItem;
 
-
                     this.setState({
                       related: relatedItems
                     });
@@ -128,9 +130,13 @@ class RelatedProducts extends React.Component {
           } else {
             console.log('props.product is empty');
           }
+      })
     })
+  }
 
 
+  componentDidMount() {
+    this.updateRelated();
   }
 
 
@@ -142,27 +148,25 @@ class RelatedProducts extends React.Component {
       </div>
       );
     } else {
+      console.log(this.state);
       return(
         <div className="carousel">
           <div className="carousel-inner"
                style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/4}%)` }}>
             Related Products <br />
             {
-              this.state.related.map((item, index) => (
+              this.state.related.map((item, index) => {
 
+                return (
                 // return React.cloneElement(item, {width: "100%"})
                 <RelatedProduct
                   key = {index}
                   previewProduct = {this.props.product}
-                  features = {item.features}
-                  category = {item.category}
-                  itemName = {item.name}
-                  price = {item.default_price}
-                  thumbnail = {item.thumbnail_url}
-                  img_url = {item.img_url}
+                  relatedProduct = {item}
+                  product_selection = {this.updateRelated}
                   // add star rating later
                 />
-              ))
+              );})
             }
 
           </div>

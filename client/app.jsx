@@ -21,12 +21,13 @@ class App extends React.Component {
   }
 
   productSelector(id=59554) {
+    console.log('changing to this id: ', id);
     var options = {
       method: 'get',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
       headers: {
         // Authorization: token,
-        Authorization: token.ID,
+        Authorization: token,
         accept: 'application/json',
         'content-type': 'application/json',
       }
@@ -45,12 +46,14 @@ class App extends React.Component {
     });
   }
 
+
   componentDidMount() {
-    // this.productSelector();
+    this.productSelector();
   }
 
 
   render() {
+
     return (<div>
       <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
       {/* <Questionapp product={this.state.product}/> */}

@@ -1,6 +1,7 @@
 body {
   color: grey;
   background-color: lightgray;
+  height: 100%;
 }
 
 .stars {
@@ -71,12 +72,14 @@ body {
   padding-left: 2%;
   overflow: hidden;
   z-index: 0;
+  height: 40%;
 }
 
 
 .carousel-inner {
   white-space: nowrap;
   transition: transform 0.3s;
+  height: 100%;
 }
 
 .carousel-item {
@@ -84,16 +87,14 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  max-width: 25%;
-  max-height: 30%;
-  width: auto;
-  height: auto;
-  background-color: whitesmoke;
+  background-color: green;
   color: black;
   font-size: 10px;
   border: 2px solid black;
   border-radius: 5px;
   margin: 10px;
+  height: 95%;
+
 }
 
 .carousel-productDetails {
@@ -130,6 +131,8 @@ body {
   width: auto;
   object-fit: contain;
 }
+
+
 
 .modal {
   position: fixed;
