@@ -1,16 +1,6 @@
 import React from 'react';
 import Answer from './answer.jsx';
 
-// var Answerlist = (props) => (
-//   <div style={{border: 'solid red 5px'}}>
-//     {props.answers.map(answer => {
-//       return <Answer key={answer.id} answerid={JSON.stringify(answer.id)} index={props.answers.indexOf(answer)} body={answer.body} date={answer.date} name={answer.answerer_name} helpfulness={answer.helpfulness} photos={answer.photos}/>
-//     }
-//     )}
-  // <button style={{display: (props.answers.length > 2) ? 'block' : 'none'}}>See more answers</button>
-  // </div>
-// )
-
 class Answerlist extends React.Component {
   constructor(props) {
     super(props);
@@ -48,7 +38,7 @@ class Answerlist extends React.Component {
       </div>
       );
     } else if (this.state.expanded === true && this.props.answers.length > 2) {
-      return (<div style={{boxSizing: 'border-box', border: '1px solid #ccc', backgroundColor: '#e4e7ed', overflow:'auto'}}>
+      return (<div style={{height: '200px', width: '400px', border: '1px solid #ccc', backgroundColor: '#e4e7ed', overflow:'auto'}}>
       {this.props.answers.map(answer => (
         <Answer className='answer' key={answer.id} answerid={JSON.stringify(answer.id)} index={this.props.answers.indexOf(answer)} body={answer.body} date={answer.date} name={answer.answerer_name} helpfulness={answer.helpfulness} photos={answer.photos}/>
     ))}

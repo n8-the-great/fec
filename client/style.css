@@ -87,7 +87,8 @@ body {
 
 .newquestion {
   background-color: white;
-  float: left;
+  display: flex;
+  justify-content: center;
 }
 
 .newquestion:hover {
@@ -138,8 +139,8 @@ body {
   position: fixed;
   bottom: 250px;
   top: 250px;
-  right: 150px;
-  left: 150px;
+  right: 1100px;
+  left: 300px;
 }
 
 .modaltitle {
@@ -200,11 +201,14 @@ body {
 }
 
 .modalsubmit {
-
+  background-color: white;
+  display: flex;
 }
 
-.answermodalsubmit {
-
+.modalsubmit:hover {
+  cursor: pointer;
+  background-color: #226df5;
+  color: white;
 }
 
 .modalclose {
@@ -223,9 +227,9 @@ body {
   border: solid black 2px;
   background-color: white;
   position: fixed;
-  bottom: 50px;
-  top: 50px;
-  right: 50px;
+  bottom: 100px;
+  top: 200px;
+  right: 1100px;
   left: 50px;
 }
 
@@ -266,7 +270,7 @@ body {
 .submitanswer {
   background-color: white;
   display: flex;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .submitanswer:hover {
@@ -312,4 +316,5 @@ body {
 img {
   max-width: 50px;
   height: auto;
+  margin: 10px;
 }
