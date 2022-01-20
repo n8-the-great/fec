@@ -40,11 +40,28 @@ class App extends React.Component {
       }
       return axios(options)
       .then(result => {
-        // console.log('name', result.data.name, 'id', result.data.id);
-        this.setState({
-          product: result.data
-        }, () => {
-          console.log('this state product',this.state.product, this.state.product.id, this.state.product.name);
+        var options = {
+          method: 'get',
+          url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}/styles`,
+          headers: {
+            // Authorization: token,
+            Authorization: token,
+            accept: 'application/json',
+            'content-type': 'application/json',
+          }
+        }
+        return axios(options)
+        .then((stylesResult) => {
+          result.data.styles = stylesResult.data.results;
+
+          this.setState({
+            product: result.data
+          }), () => {
+            console.log('this state product',this.state.product, this.state.product.id, this.state.product.name);
+          }
+        })
+        .catch(err => {
+          console.log(err);
         });
       })
       .catch(err => {
@@ -52,12 +69,6 @@ class App extends React.Component {
       });
     }
   }
-
-
-  // componentDidMount() {
-  //   this.productSelector();
-  // }
-
 
   render() {
 
