@@ -217,45 +217,45 @@ class Answermodal extends React.Component {
     if (this.props.showAnswerModal === false) {
       return null;
     }
-    return (<div className='answermodal'>
-      <div>
-        <span style={{display: this.state.currentImage && this.state.currentImage.length > 0 ? 'block' : 'none'}} className='imagemodalclose' onClick={this.imageClose}>X</span>
-        <img src={this.state.currentImage} className='imagemodal' />
+    return (<div className='answermodal QuestionsAndAnswers'>
+      <div className='QuestionsAndAnswers'>
+        <span style={{display: this.state.currentImage && this.state.currentImage.length > 0 ? 'block' : 'none'}} className='imagemodalclose QuestionsAndAnswers' onClick={this.imageClose}>X</span>
+        <img src={this.state.currentImage} className='imagemodal QuestionsAndAnswers' />
       </div>
-      <span className='answermodalclose' onClick={this.close}>X</span>
-      <span>
-      <h1 className='answermodaltitle'>Submit your Answer</h1>
+      <span className='answermodalclose QuestionsAndAnswers' onClick={this.close}>X</span>
+      <span className='QuestionsAndAnswers'>
+      <h1 className='answermodaltitle QuestionsAndAnswers'>Submit your Answer</h1>
       </span>
-      <h5 className='answermodalsubtitle'>{this.props.productname}: {this.props.currentQuestion}</h5>
-      <div>
-        <div>
-          <span>Your Answer </span>
-          <span className='required'>*</span>
+      <h5 className='answermodalsubtitle QuestionsAndAnswers'>{this.props.productname}: {this.props.currentQuestion}</h5>
+      <div className='QuestionsAndAnswers'>
+        <div className='QuestionsAndAnswers'>
+          <span className='QuestionsAndAnswers'>Your Answer </span>
+          <span className='required QuestionsAndAnswers'>*</span>
         </div>
-        <textarea rows='20' cols='50' className='answermodalanswer' name='answer' maxLength='1000' onChange={this.inputChange} value={this.state.answer || ''}></textarea>
+        <textarea rows='20' cols='50' className='answermodalanswer QuestionsAndAnswers' name='answer' maxLength='1000' onChange={this.inputChange} value={this.state.answer || ''}></textarea>
       </div>
-      <img onClick={this.thumbnailClick} className='image' src={this.state.images[0]} />
-      <img onClick={this.thumbnailClick} className='image' src={this.state.images[1]} />
-      <img onClick={this.thumbnailClick} className='image' src={this.state.images[2]} />
-      <img onClick={this.thumbnailClick} className='image' src={this.state.images[3]} />
-      <img onClick={this.thumbnailClick} className='image' src={this.state.images[4]} />
-      <div className='answermodalnicknameheader'>
-        <span>Your Nickname </span>
-        <span className='required'>*</span>
+      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[0]} />
+      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[1]} />
+      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[2]} />
+      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[3]} />
+      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[4]} />
+      <div className='answermodalnicknameheader QuestionsAndAnswers'>
+        <span className='QuestionsAndAnswers'>Your Nickname </span>
+        <span className='required QuestionsAndAnswers'>*</span>
       </div>
-      <textarea placeholder='Example: jackson11!' rows='20' cols='50' className='answermodalnickname' name='nickname' maxLength='60' onChange={this.inputChange} value={this.state.nickname || ''}></textarea>
-      <div className='answermodalwarning'>For privacy reasons, do not use your full name or email address</div>
-      <div>
-        <span>Your Email </span>
-        <span className='required'>*</span>
+      <textarea placeholder='Example: jackson11!' rows='20' cols='50' className='answermodalnickname QuestionsAndAnswers' name='nickname' maxLength='60' onChange={this.inputChange} value={this.state.nickname || ''}></textarea>
+      <div className='answermodalwarning QuestionsAndAnswers'>For privacy reasons, do not use your full name or email address</div>
+      <div className='QuestionsAndAnswers'>
+        <span className='QuestionsAndAnswers'>Your Email </span>
+        <span className='required QuestionsAndAnswers'>*</span>
       </div>
-      <textarea placeholder='Why did you like the product or not?' rows='20' cols='50' className='answermodalemail' name='email' maxLength='60' onChange={this.inputChange} value={this.state.email || ''}></textarea>
-      <div className='answermodalwarning2'>For authentication reasons, you will not be emailed</div>
-      <span className={this.state.addFileClass}>Upload your photos<input type='file'
-       className={this.state.addFileClass} name='photo'
+      <textarea placeholder='Why did you like the product or not?' rows='20' cols='50' className='answermodalemail QuestionsAndAnswers' name='email' maxLength='60' onChange={this.inputChange} value={this.state.email || ''}></textarea>
+      <div className='answermodalwarning2 QuestionsAndAnswers'>For authentication reasons, you will not be emailed</div>
+      <span className={this.state.addFileClass + ' ' + 'QuestionsAndAnswers'}>Upload your photos<input type='file'
+       className={this.state.addFileClass + ' ' + 'QuestionsAndAnswers'} name='photo'
        accept='image/png, image/jpeg, image/gif' onChange={this.imageChange}/></span>
-      <button className={this.state.addFileClass === 'addfiletrue' ? 'submitphototrue' : this.state.addFileClass} onClick={this.uploadImage}>Submit Photo</button>
-      <span><button className='submitanswer' onClick={this.submit}>Submit Answer</button></span>
+      <button className={(this.state.addFileClass === 'addfiletrue' ? 'submitphototrue' : this.state.addFileClass) + ' ' + 'QuestionsAndAnswers'} onClick={this.uploadImage}>Submit Photo</button>
+      <span className='QuestionsAndAnswers'><button className='submitanswer QuestionsAndAnswers' onClick={this.submit}>Submit Answer</button></span>
     </div>
     );
   }

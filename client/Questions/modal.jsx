@@ -99,30 +99,30 @@ class Modal extends React.Component {
     if (this.props.showModal === false) {
       return null;
     }
-    return (<div className='qmodal'>
-      <span className='modalclose' onClick={this.close}>X</span>
-      <span>
-      <h1 className='modaltitle'>Ask Your Question</h1>
+    return (<div className='qmodal QuestionsAndAnswers'>
+      <span className='modalclose QuestionsAndAnswers' onClick={this.close}>X</span>
+      <span className='QuestionsAndAnswers'>
+      <h1 className='modaltitle QuestionsAndAnswers'>Ask Your Question</h1>
       </span>
-      <h5 className='modalsubtitle'>About the {this.props.productname}</h5>
-      <div>
-        <span>Your Question </span>
-        <span className='required'>*</span>
+      <h5 className='modalsubtitle QuestionsAndAnswers'>About the {this.props.productname}</h5>
+      <div className='QuestionsAndAnswers'>
+        <span className='QuestionsAndAnswers'>Your Question </span>
+        <span className='required QuestionsAndAnswers'>*</span>
       </div>
-      <textarea rows='20' cols='50' className='modalquestion' name='question' maxLength='1000' onChange={this.inputChange} value={this.state.question || ''}></textarea>
-      <div className='modalnicknameheader'>
-        <span>Your Nickname </span>
-        <span className='required'>*</span>
+      <textarea rows='20' cols='50' className='modalquestion QuestionsAndAnswers' name='question' maxLength='1000' onChange={this.inputChange} value={this.state.question || ''}></textarea>
+      <div className='modalnicknameheader QuestionsAndAnswers'>
+        <span className='QuestionsAndAnswers'>Your Nickname </span>
+        <span className='required QuestionsAndAnswers'>*</span>
       </div>
-      <textarea placeholder='Example: jackson11!' rows='20' cols='50' className='modalnickname' name='nickname' maxLength='60' onChange={this.inputChange} value={this.state.nickname || ''}></textarea>
-      <div className='modalwarning'>For privacy reasons, do not use your full name or email address</div>
-      <div>
-        <span>Your Email </span>
-        <span className='required'>*</span>
+      <textarea placeholder='Example: jackson11!' rows='20' cols='50' className='modalnickname QuestionsAndAnswers' name='nickname' maxLength='60' onChange={this.inputChange} value={this.state.nickname || ''}></textarea>
+      <div className='modalwarning QuestionsAndAnswers'>For privacy reasons, do not use your full name or email address</div>
+      <div className='QuestionsAndAnswers'>
+        <span className='QuestionsAndAnswers'>Your Email </span>
+        <span className='required QuestionsAndAnswers'>*</span>
       </div>
-      <textarea placeholder='Why did you like the product or not?' rows='20' cols='50' className='modalemail' name='email' maxLength='60' onChange={this.inputChange} value={this.state.email || ''}></textarea>
-      <div className='modalwarning2'>For authentication reasons, you will not be emailed</div>
-      <button onClick={this.submit} className='modalsubmit'>Submit</button>
+      <textarea placeholder='Why did you like the product or not?' rows='20' cols='50' className='modalemail QuestionsAndAnswers' name='email' maxLength='60' onChange={this.inputChange} value={this.state.email || ''}></textarea>
+      <div className='modalwarning2 QuestionsAndAnswers'>For authentication reasons, you will not be emailed</div>
+      <button onClick={this.submit} className='modalsubmit QuestionsAndAnswers'>Submit</button>
     </div>
     );
   }

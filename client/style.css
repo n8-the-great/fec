@@ -64,10 +64,17 @@ body {
   width: 63%;
 }
 
-.gallery-placeholder {
+.gallery {
   color: gray;
   outline-style:solid;
   width: 63%;
+
+}
+
+.gallery-main-image {
+  max-height: 600px;
+  max-width: 100%;
+  margin-bottom: 50px;
 }
 
 .product-info {
@@ -402,6 +409,14 @@ body {
 /*=================================================================*/
 /* Related Products */
 /*=================================================================*/
+
+.style-button {
+  color:black;
+}
+
+.style-button:hover {
+  color:grey;
+}
 .carousel {
   padding-left: 2%;
   overflow: hidden;

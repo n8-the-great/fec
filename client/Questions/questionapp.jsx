@@ -124,14 +124,14 @@ class Questionapp extends React.Component {
 
 
   render() {
-    return (<div className='questionapp'>
-      <div className='questionapptitle'>{`Questions & Answers`}</div>
+    return (<div className='questionapp QuestionsAndAnswers' onClick={this.props.clickTracker}>
+      <div className='questionapptitle QuestionsAndAnswers'>{`Questions & Answers`}</div>
       <Search search={this.searchKeyword}/>
       <Modal productname={this.props.product.name} productid={this.props.product.id} showModal={this.state.showModal} modalToggle={this.modalToggle} getQuestionModalValues={this.getQuestionModalValues}/>
       <Answermodal showAnswerModal={this.state.showAnswerModal} productname={this.props.product.name} currentQuestion={this.state.currentQuestion} currentQuestionId={this.state.currentQuestionId} answerModalToggle={this.answerModalToggle} get={this.get}/>
       <Questionslist questions={this.searchSort(this.state.questions)} productid={JSON.stringify(this.props.product.id)} productname={this.props.product.name} expandedView={this.state.expandedView} answerModalToggle={this.answerModalToggle}/>
-      <button className='morequestions' onClick={this.toggleQuestions} style={{display: (this.state.expandedView >= this.state.questions.length - 1) ? 'none' : 'block'}}>More Answered Questions</button>
-      <button className='newquestion' onClick={this.modalToggle}>Submit new question</button>
+      <button className='morequestions QuestionsAndAnswers' onClick={this.toggleQuestions} style={{display: (this.state.expandedView >= this.state.questions.length - 1) ? 'none' : 'block'}}>More Answered Questions</button>
+      <button className='newquestion QuestionsAndAnswers' onClick={this.modalToggle}>Submit new question</button>
     </div>
     );
   }

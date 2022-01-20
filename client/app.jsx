@@ -7,20 +7,22 @@ import token from '../config.js';
 import axios from 'axios';
 import './style.css';
 import RelatedProducts from './components/RelatedProducts.jsx';
-import Outfits from './components/Outfits.jsx'
+import Outfits from './components/Outfits.jsx';
 
 class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       product: {},
+      haveProduct: false,
+      id: 59556,
       related: []
     }
     this.productSelector = this.productSelector.bind(this);
+    this.clickTracker = this.clickTracker.bind(this);
   }
 
   productSelector(id=59556) {
-    console.log('changing to this id: ', id);
     var options = {
       method: 'get',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
@@ -33,9 +35,8 @@ class App extends React.Component {
     return axios(options)
     .then(result => {
       this.setState({
-        product: result.data
-      }, () => {
-        console.log('this state product',this.state.product, this.state.product.id, this.state.product.name);
+        product: result.data,
+        haveProduct: true
       });
     })
     .catch(err => {
@@ -69,7 +70,7 @@ getDateTime() {
 
   clickTracker(e) {
     e.preventDefault();
-    console.log(e.target.classList[e.target.classList.length - 1]);
+    console.log(e.target.localName, e.target.classList[e.target.classList.length - 1], this.getDateTime());
 
     var options = {
       method: 'post',
@@ -95,13 +96,15 @@ getDateTime() {
 
   render() {
     return (<div className='app'>
-      <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
-      <Questionapp onClick={this.clickTracker.bind(this)} product={this.state.product}/>
+      <GeneralProductInfo productid={this.state.id} product={this.state.product} productSelector={this.productSelector}/>
+      <Questionapp clickTracker={this.clickTracker} product={this.state.product}/>
       <RelatedProducts product={this.state.product} productSelector={this.productSelector}/>
       <Outfits product={this.state.product}/>
     </div>);
   }
 }
-
+/*
+<Questionapp product={this.state.product}/>
+*/
 
 ReactDOM.render(<App />, document.getElementById('app'));

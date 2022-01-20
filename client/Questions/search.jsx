@@ -23,8 +23,8 @@ class Search extends React.Component {
   }
 
   render() {
-    return(<div>
-      <input className='search' onChange={this.inputChange} name='keyword' placeholder='Have a question? Search for answers...'/>
+    return(<div className='QuestionsAndAnswers'>
+      <input className='search QuestionsAndAnswers' onChange={this.inputChange} name='keyword' placeholder='Have a question? Search for answers...'/>
     </div>
     );
   }
