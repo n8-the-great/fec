@@ -6,6 +6,7 @@ import $ from 'jquery';
 
 var Comparing = (props) => {
   // console.log('comparing');
+  // console.log('props: ');
   // console.log(props);
 
 
@@ -19,6 +20,10 @@ var Comparing = (props) => {
     }
   }
 
+  var onActionClick = () => {
+    props.hide();
+  }
+
   if (!props.show) {
     return null;
   }
@@ -27,21 +32,21 @@ var Comparing = (props) => {
   var productFeature;
 
   // add features
-  for (var i = 0; i < props.preview.features.length; i++) {
-    if (props.preview.features[i].value === null) {
-      productFeature = props.preview.features[i].feature;
+  for (var i = 0; i < props.previewProduct.features.length; i++) {
+    if (props.previewProduct.features[i].value === null) {
+      productFeature = props.previewProduct.features[i].feature;
     } else {
-      productFeature = `${props.preview.features[i].value} ${props.preview.features[i].feature}`;
+      productFeature = `${props.previewProduct.features[i].value} ${props.previewProduct.features[i].feature}`;
     }
 
     features.push([productFeature, true, false]);
   }
 
-  for (var i = 0; i < props.relatedFeatures.length; i++) {
-    if (props.relatedFeatures[i].value === null) {
-      productFeature = props.relatedFeatures[i].feature;
+  for (var i = 0; i < props.relatedProduct.features.length; i++) {
+    if (props.relatedProduct.features[i].value === null) {
+      productFeature = props.relatedProduct.features[i].feature;
     } else {
-      productFeature = `${props.relatedFeatures[i].value} ${props.relatedFeatures[i].feature}`;
+      productFeature = `${props.relatedProduct.features[i].value} ${props.relatedProduct.features[i].feature}`;
     }
 
     var wasFoundAtIndex = features.indexOf([productFeature, true, false]);
@@ -52,21 +57,41 @@ var Comparing = (props) => {
     }
   }
 
+  console.log('features table: ');
+  console.log(features);
 
-  var displayCheckMarkIf = (included) => {
+
+  var displayCheckMarkIf = (included, side) => {
     if (included) {
-      return (<h4>&#10004;</h4>);
+      if (side === 'left') {
+        return (<span className="modal-body-left">&#10004;</span>);
+      } else {
+        return (<span className="modal-body-right">&#10004;</span>);
+      }
     } else {
-      return (<h4>&nbsp;</h4>);
+      if (side === 'left') {
+        return (<span className="modal-body-left">&nbsp;</span>);
+      } else {
+        return (<span className="modal-body-right">&nbsp;</span>);
+      }
+
     }
   }
 var renderComparisonTable = features.map( (detail) => {
   return(
     <div className="modal-body-detail">
-      <div className="modal-body-left">{displayCheckMarkIf(detail[1])}</div>
-      <div className="modal-body-middle">{detail[0]}</div>
-      <div className="modal-body-right">{displayCheckMarkIf(detail[2])}</div>
+      {displayCheckMarkIf(detail[1], 'left')}
+      <span className="modal-body-middle">{detail[0]}</span>
+      {displayCheckMarkIf(detail[2], 'right')}
+      <br/>
     </div>
+
+
+    // <div className="modal-body-detail">
+    //   <div className="modal-body-left">{displayCheckMarkIf(detail[1])}</div>
+    //   <div className="modal-body-middle">{detail[0]}</div>
+    //   <div className="modal-body-right">{displayCheckMarkIf(detail[2])}</div>
+    // </div>
   )}
 )
 
@@ -74,22 +99,23 @@ var renderComparisonTable = features.map( (detail) => {
   // maybe add price to features (comparison)
 
   return (
-    <div className="modal" onClick={ () => {changeShow()}}>
+    <div className="modal" onClick={onActionClick}>
+      <div className="modal-action" onClick={onActionClick}>&#9733;</div>
       <div className="modal-content">
         <div className="modal-header">
           <h5 className="modal-title">Comparing</h5>
           <div className="modal-products">
-            <h4 className="modal-leftName">{props.preview.name}</h4>
-            <h4 className="modal-rightName">{props.relatedName}</h4>
+            <h4 className="modal-leftName">{props.previewProduct.name}</h4>
+            <h4 className="modal-rightName">{props.relatedProduct.name}</h4>
           </div>
         </div>
         <div className="modal-body">
           {/* <CompareTable compareTable={features}/> */}
           {renderComparisonTable}
         </div>
-        <div className="modal-footer">
+        {/* <div className="modal-footer">
           <button className="button">Close</button>
-        </div>
+        </div> */}
       </div>
     </div>
   )

@@ -11,12 +11,13 @@ var Outfit = (props) => {
     props.action(props.index);
   }
 
+  console.log(props);
 
 
   if (props.defaultAdd === true) {
     return (
       <React.Fragment>
-      <div className="carousel-item" style={ {width: "25%"} } >
+      <div className="carousel-item" style={ {width: "20%"} } >
         <div className = "carousel-productDetails">
           <div className = 'carousel-add' onClick={clickHandler}> + <br /> Add to Outfit </div>
         </div>
@@ -28,13 +29,18 @@ var Outfit = (props) => {
 
     return (
       <React.Fragment>
-        <div className="carousel-item" style={ {width: "25%"} }>
+        <div className="carousel-item" style={ {width: "20%"} }>
           <div className="carousel-action" onClick={clickHandler}>&#9733;</div>
-          <div className = "carousel-productDetails">
-            <div className = 'carousel-productImage' src={props.thumbnail} />
-            <div className = 'carousel-productCategory carousel-details'>{props.product.category}  </div>
-            <div className = 'carousel-productName carousel-details'>{props.product.name} </div>
-            <div className = 'carousel-productPrice carousel-details'>{props.product.default_price} </div>
+          <div className = "carousel-productDetails" onClick={props.product_selection}>
+
+            <img className = 'carousel-productImage'  src={props.product.thumbnail_url}></img>
+              <div className = 'carousel-details'>
+                <div className = 'carousel-productCategory'> Category: {props.product.category}  </div>
+                <div className = 'carousel-productName'>{props.product.name}  </div>
+                <div className = 'carousel-slogan'>"{props.product.slogan}" </div>
+                <div className = 'carousel-product-description'>{props.product.description}</div>
+                <div className = 'carousel-productPrice'>price: ${props.product.default_price} </div>
+              </div>
           </div>
         </div>
     </React.Fragment>

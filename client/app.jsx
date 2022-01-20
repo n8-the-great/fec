@@ -21,35 +21,42 @@ class App extends React.Component {
   }
 
   productSelector(id=59554) {
-    console.log('changing to this id: ', id);
-    var options = {
-      method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
-      headers: {
-        // Authorization: token,
-        Authorization: token,
-        accept: 'application/json',
-        'content-type': 'application/json',
-      }
-    }
-    return axios(options)
-    .then(result => {
-      // console.log('name', result.data.name, 'id', result.data.id);
+
+    if (typeof id === 'object') {
+      console.log('no api call');
       this.setState({
-        product: result.data
-      }, () => {
-        console.log('this state product',this.state.product, this.state.product.id, this.state.product.name);
+        product: id
+      })
+    } else {
+      var options = {
+        method: 'get',
+        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
+        headers: {
+          // Authorization: token,
+          Authorization: token,
+          accept: 'application/json',
+          'content-type': 'application/json',
+        }
+      }
+      return axios(options)
+      .then(result => {
+        // console.log('name', result.data.name, 'id', result.data.id);
+        this.setState({
+          product: result.data
+        }, () => {
+          console.log('this state product',this.state.product, this.state.product.id, this.state.product.name);
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    }
   }
 
 
-  componentDidMount() {
-    this.productSelector();
-  }
+  // componentDidMount() {
+  //   this.productSelector();
+  // }
 
 
   render() {
@@ -58,7 +65,7 @@ class App extends React.Component {
       <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
       {/* <Questionapp product={this.state.product}/> */}
       <RelatedProducts product={this.state.product} productSelector={this.productSelector}/>
-      <Outfits product={this.state.product}/>
+      <Outfits product={this.state.product} productSelector={this.productSelector}/>
     </div>);
   }
 }

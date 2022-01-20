@@ -79,11 +79,19 @@ class RelatedProducts extends React.Component {
   }
 
   updateRelated(id = 59554) {
+    if (typeof id === 'object') {
+      this.props.productSelector(id);
+    }
+
     return new Promise((resolve, reject) => {
       this.setState({
         related: [],
         activeCarousel: 0,
       });
+
+      if (typeof id === 'object') {
+        id = id.id;
+      }
       this.props.productSelector(id) // update preview
       .then(() => {
         if (Object.keys(this.props.product).length !== 0) {
@@ -132,6 +140,7 @@ class RelatedProducts extends React.Component {
           }
       })
     })
+
   }
 
 
@@ -148,11 +157,11 @@ class RelatedProducts extends React.Component {
       </div>
       );
     } else {
-      console.log(this.state);
+      // console.log(this.state);
       return(
         <div className="carousel">
           <div className="carousel-inner"
-               style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/4}%)` }}>
+               style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/5}%)` }}>
             Related Products <br />
             {
               this.state.related.map((item, index) => {
@@ -168,12 +177,10 @@ class RelatedProducts extends React.Component {
                 />
               );})
             }
-
           </div>
           <div className="carousel-buttons">
             <button onClick = {() => { this.updateCarousel(this.state.activeCarousel - 1);}}>Previous</button>
             <button onClick = {() => { this.updateCarousel(this.state.activeCarousel + 1);}}>Next</button>
-
           </div>
         </div>
       );
