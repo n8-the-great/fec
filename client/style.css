@@ -1,3 +1,13 @@
+/*=================================================================*/
+/* App */
+/*=================================================================*/
+
+.app {
+  background-color: white;
+}
+
+/* Product Overview */
+
 body {
   color: grey;
   background-color: lightgray;
@@ -75,6 +85,330 @@ body {
   float: left;
 }
 
+/*=================================================================*/
+/* Questions and Answers */
+/*=================================================================*/
+
+/* Questionapp */
+.questionapp {
+  background: white;
+  margin: 0 auto;
+  width: 1400px;
+}
+
+.questionapptitle {
+  font-size: 25px;
+  margin-bottom: 10px;
+  color: #204ba1;
+}
+
+.newquestion {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.newquestion:hover {
+  cursor: pointer;
+  background-color: #226df5;
+  color: white;
+}
+
+.morequestions {
+  background-color: white;
+  float: left;
+}
+
+.morequestions:hover {
+  cursor: pointer;
+  background-color: #226df5;
+  color: white;
+}
+
+/* Questionlist */
+
+.productname {
+  color: #204ba1;
+}
+
+/* Question */
+
+.questionuseroptions {
+  float: right;
+}
+
+.asker {
+  display: flex;
+  color: #204ba1;
+}
+
+.askername {
+  margin-bottom: 10px;
+  color: black;
+}
+
+.questionq {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.questionqq {
+  color: #204ba1;
+}
+
+.questiona {
+  display: flex;
+  color: #204ba1;
+}
+
+.questionbody {
+  color: black;
+}
+
+.questionhelpful {
+  color:black;
+}
+/* Modals */
+.qmodal {
+  border: solid black 2px;
+  background-color: white;
+  position: fixed;
+  bottom: 250px;
+  top: 225px;
+  right: 900px;
+  left: 300px;
+}
+
+.modaltitle {
+  color: #204ba1;
+}
+
+.modalsubtitle {
+  color: #204ba1;
+}
+
+.modalwarning {
+  padding: 0px 0px 30px 0px;
+}
+
+.answermodalwarning {
+  padding: 0px 0px 30px 0px;
+}
+
+.modalwarning2 {
+  padding: 0px 0px 30px 0px;
+}
+
+.answermodalwarning2 {
+  padding: 0px 0px 30px 0px;
+}
+
+.modalnicknameheader {
+  padding: 15px 0px 0px 0px;
+}
+
+.answermodalnicknameheader {
+
+}
+
+.modalquestion {
+  width: 200px;
+  height: 50px;
+}
+
+.modalnickname {
+  width: 200px;
+  height: 25px;
+}
+
+.answermodalnickname {
+  width: 200px;
+  height: 25px;
+}
+
+.modalemail {
+  width: 200px;
+  height: 40px;
+}
+
+.answermodalemail {
+  width: 200px;
+  height: 40px;
+}
+
+.modalsubmit {
+  background-color: white;
+  display: flex;
+}
+
+.modalsubmit:hover {
+  cursor: pointer;
+  background-color: #226df5;
+  color: white;
+}
+
+.modalclose {
+  float: right;
+  color: black;
+  border: solid black 2px;
+}
+
+.modalclose:hover {
+  cursor: pointer;
+  background-color: #c70a23;
+  color: white;
+}
+
+.answermodal {
+  border: solid black 2px;
+  background-color: white;
+  position: fixed;
+  bottom: 100px;
+  top: 200px;
+  right: 900px;
+  left: 50px;
+}
+
+.answermodaltitle {
+  color: #204ba1;
+}
+
+.answermodalsubtitle {
+  color: #204ba1;
+}
+
+.answermodalclose {
+  float: right;
+  color: black;
+  border: solid black 2px;
+}
+
+.answermodalclose:hover {
+  cursor: pointer;
+  background-color: #c70a23;
+  color: white;
+}
+
+.answermodalanswer {
+  width: 200px;
+  height: 50px;
+}
+
+.image {
+  max-width: 15%;
+  height: auto;
+}
+
+.image2 {
+  max-width: 100%;
+  height: auto;
+}
+
+.image:hover{
+  cursor: pointer;
+}
+
+.addFileFalse {
+  display: none;
+}
+
+.submitanswer {
+  background-color: white;
+  display: flex;
+  margin-top: 30px;
+}
+
+.submitanswer:hover {
+  cursor: pointer;
+  background-color: #226df5;
+  color: white;
+}
+
+.required {
+  color: #c70a23;
+}
+
+.submitphototrue {
+  background-color: white;
+  display: flex;
+}
+
+.submitphototrue:hover {
+  cursor: pointer;
+  background-color: #226df5;
+  color: white;
+}
+
+.imagemodal {
+  position: fixed;
+  max-width: 100%;
+  height: auto;
+  top: 350px;
+  left: 50px;
+}
+
+.imagemodalclose {
+  position: fixed;
+  top: 290px;
+  left: 1300px;
+  color: black;
+  border: solid black 2px;
+}
+
+.imagemodalclose:hover {
+  cursor: pointer;
+  background-color: #c70a23;
+  color: white;
+}
+
+/* Search */
+
+.search {
+  height: 50px;
+  width: 1194px;
+}
+
+/* Answerlist */
+
+.moreanswers {
+  background-color: white;
+}
+
+.moreanswers:hover {
+  cursor: pointer;
+  background-color: #226df5;
+  color: white;
+}
+
+/* Answer */
+.answerhelpful {
+  color: black;
+}
+
+.answerbody {
+  color: black;
+}
+
+.byuser {
+  color: black;
+}
+
+.qaimage {
+  max-width: 50px;
+  height: auto;
+  margin: 10px;
+}
+
+/* img {
+  max-width: 50px;
+  height: auto;
+  margin: 10px;
+} */
+
+
+/*=================================================================*/
+/* Related Products */
+/*=================================================================*/
 
 .style-button {
   color:black;
@@ -82,6 +416,7 @@ body {
 
 .style-button:hover {
   color:grey;
+}
 .carousel {
   padding-left: 2%;
   overflow: hidden;

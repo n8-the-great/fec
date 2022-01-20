@@ -148,7 +148,6 @@ class RelatedProducts extends React.Component {
       </div>
       );
     } else {
-      console.log(this.state);
       return(
         <div className="carousel">
           <div className="carousel-inner"

@@ -11,19 +11,19 @@ class Questionslist extends React.Component {
 
   render() {
     if (this.props.questions.length === 0) {
-      return(<div>''</div>);
+      return null;
     } else if (this.props.questions.length > 2) {
-    return (<div style={{height: '900px', width: '1200px', border: '1px solid #ccc', overflow:'auto'}}>
-      <h1>Product ID {this.props.productid} product name</h1>
+    return (<div className='QuestionsAndAnswers' style={{height: '850px', width: '1200px', overflow:'auto', backgroundColor: 'white'}}>
+      <h1 className='productname QuestionsAndAnswers'>{this.props.productname}</h1>
       {this.props.questions.map(question => (
-        <Question key={this.props.questions.indexOf(question)} expandedView = {this.props.expandedView} index={this.props.questions.indexOf(question)} answers={question.answers} product_id={this.props.productid} asker_name={question.asker_name} question_body={question.question_body} question_date={question.question_date} question_helpfulness={question.question_helpfulness} question_id={question.question_id} reported={JSON.stringify(question.reported)} />
+        <Question key={this.props.questions.indexOf(question)} expandedView = {this.props.expandedView} index={this.props.questions.indexOf(question)} answers={question.answers} product_id={this.props.productid} asker_name={question.asker_name} question_body={question.question_body} question_date={question.question_date} question_helpfulness={question.question_helpfulness} question_id={question.question_id} reported={JSON.stringify(question.reported)} answerModalToggle={this.props.answerModalToggle} />
       ))}
     </div>);
     } else if (this.props.questions.length <= 2) {
-      return (<div>
-        <h1>{this.props.productid} {this.props.productname} product name</h1>
+      return (<div className='QuestionsAndAnswers' style={{height: '850px', width: '1200px', backgroundColor: 'white'}}>
+        <h1 className='productname QuestionsAndAnswers'>{this.props.productname}</h1>
         {this.props.questions.map(question => (
-          <Question key={this.props.questions.indexOf(question)} expandedView = {this.props.expandedView} index={this.props.questions.indexOf(question)} answers={question.answers} product_id={this.props.productid} asker_name={question.asker_name} question_body={question.question_body} question_date={question.question_date} question_helpfulness={question.question_helpfulness} question_id={question.question_id} reported={JSON.stringify(question.reported)} />
+          <Question key={this.props.questions.indexOf(question)} expandedView = {this.props.expandedView} index={this.props.questions.indexOf(question)} answers={question.answers} product_id={this.props.productid} asker_name={question.asker_name} question_body={question.question_body} question_date={question.question_date} question_helpfulness={question.question_helpfulness} question_id={question.question_id} reported={JSON.stringify(question.reported)} answerModalToggle={this.props.answerModalToggle} />
         ))}
       </div>);
     }
