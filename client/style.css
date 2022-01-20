@@ -373,12 +373,6 @@ body {
   color: white;
 }
 
-img {
-  max-width: 50px;
-  height: auto;
-  margin: 10px;
-}
-
 /* Answer */
 .answerhelpful {
   color: black;
@@ -391,6 +385,19 @@ img {
 .byuser {
   color: black;
 }
+
+.qaimage {
+  max-width: 50px;
+  height: auto;
+  margin: 10px;
+}
+
+/* img {
+  max-width: 50px;
+  height: auto;
+  margin: 10px;
+} */
+
 
 /*=================================================================*/
 /* Related Products */

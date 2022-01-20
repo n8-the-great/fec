@@ -86,11 +86,11 @@ class Answer extends React.Component {
         </span>
         <div className='byuser'>by <b style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller</b>  <span style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span>, {this.dateFormatter(this.props.date)}</div>
         <b style={{display: this.props.photos.length > 0 ? 'block' : 'none', color: '#204ba1'}}>Photos:</b>
-        <img src={this.props.photos[0]}/>
-        <img src={this.props.photos[1]}/>
-        <img src={this.props.photos[2]}/>
-        <img src={this.props.photos[3]}/>
-        <img src={this.props.photos[4]}/>
+        <img className='qaimage' src={this.props.photos[0]}/>
+        <img className='qaimage' src={this.props.photos[1]}/>
+        <img className='qaimage' src={this.props.photos[2]}/>
+        <img className='qaimage' src={this.props.photos[3]}/>
+        <img className='qaimage' src={this.props.photos[4]}/>
       </div>
       );
     } else {
@@ -103,11 +103,11 @@ class Answer extends React.Component {
       </span>
       <div>by <b style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller</b>  <span style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span>, {this.dateFormatter(this.props.date)}</div>
       <b style={{display: this.props.photos.length > 0 ? 'block' : 'none', color: '#204ba1'}}>Photos:</b>
-      <img src={this.props.photos[0]}/>
-      <img src={this.props.photos[1]}/>
-      <img src={this.props.photos[2]}/>
-      <img src={this.props.photos[3]}/>
-      <img src={this.props.photos[4]}/>
+      <img className='qaimage' src={this.props.photos[0]}/>
+      <img className='qaimage' src={this.props.photos[1]}/>
+      <img className='qaimage' src={this.props.photos[2]}/>
+      <img className='qaimage' src={this.props.photos[3]}/>
+      <img className='qaimage' src={this.props.photos[4]}/>
       <div>{JSON.stringify(this.props.photos)}</div>
     </div>
     );
