@@ -107,7 +107,8 @@ class Questionapp extends React.Component {
     axios(options)
     .then(result => {
       this.setState({
-        questions: this.sortHelpfulness(result.data.results)
+        questions: this.sortHelpfulness(result.data.results),
+        expandedView: 1
       });
     })
     .catch(err => {
@@ -115,11 +116,11 @@ class Questionapp extends React.Component {
     });
   }
 
-  componentDidUpdate() {
-    if (this.state.questions.length === 0) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.questions.length === 0 || prevProps.product.id !== this.props.product.id) {
       this.get();
     }
-  }
+}
 
   render() {
     return (<div className='questionapp'>

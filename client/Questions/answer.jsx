@@ -78,14 +78,14 @@ class Answer extends React.Component {
   render() {
     if (this.state.expanded === false) {
       return (<div>
-        <div>{this.props.body}</div>
-        <span>Helpful?</span>
+        <div className='answerbody'>{this.props.body}</div>
+        <span className='answerhelpful'>Helpful?</span>
         <span>
           <a style={{display: 'inline-block', padding: '5px'}} href={this.state.voted ? null : '#'} onClick={this.state.voted ? null : this.voteHelpful}>Yes {this.state.helpfulness}</a>
           <a style={{display: 'inline-block', padding: '5px'}} onClick={this.state.reported ? null : this.report}  href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
         </span>
-        <div>by <b style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller</b>  <span style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span>, {this.dateFormatter(this.props.date)}</div>
-        <b style={{display: this.props.photos.length > 0 ? 'block' : 'none'}}>Photos:</b>
+        <div className='byuser'>by <b style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller</b>  <span style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span>, {this.dateFormatter(this.props.date)}</div>
+        <b style={{display: this.props.photos.length > 0 ? 'block' : 'none', color: '#204ba1'}}>Photos:</b>
         <img src={this.props.photos[0]}/>
         <img src={this.props.photos[1]}/>
         <img src={this.props.photos[2]}/>
@@ -96,12 +96,13 @@ class Answer extends React.Component {
     } else {
       return (<div>
       <div>{this.props.body}</div>
-      <span>Helpful?</span>
+      <span className='answerhelpful'>Helpful?</span>
       <span>
         <a style={{display: 'inline-block', padding: '5px'}} href='#' onClick={this.voteHelpful}>Yes {this.state.helpfulness}</a>
         <a onClick={this.report} style={{display: 'inline-block', padding: '5px'}} href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
       </span>
       <div>by <b style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller</b>  <span style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span>, {this.dateFormatter(this.props.date)}</div>
+      <b style={{display: this.props.photos.length > 0 ? 'block' : 'none', color: '#204ba1'}}>Photos:</b>
       <img src={this.props.photos[0]}/>
       <img src={this.props.photos[1]}/>
       <img src={this.props.photos[2]}/>

@@ -19,6 +19,8 @@ class Answermodal extends React.Component {
     this.emailIsValid = this.emailIsValid.bind(this);
     this.submit = this.submit.bind(this);
     this.imagesAreValid = this.imagesAreValid.bind(this);
+    this.thumbnailClick = this.thumbnailClick.bind(this);
+    this.imageClose = this.imageClose.bind(this);
   }
 
   imagesAreValid(imageArray) {
@@ -47,7 +49,7 @@ class Answermodal extends React.Component {
 
   uploadImage(e) {
     e.preventDefault();
-    if(this.state.image && this.state.imageCount < 4) {
+    if(this.state.image && this.state.imageCount < 5) {
       var formData = new FormData();
       formData.append('file', this.state.image);
       formData.append('upload_preset', 'ovajzq8x');
@@ -64,7 +66,6 @@ class Answermodal extends React.Component {
       .then(result => {
         this.setState({
           images: [...this.state.images, result.data.secure_url],
-          currentImage: result.data.secure_url,
           imageCount: this.state.imageCount + 1
         }, () => {
           console.log(this.state.images);
@@ -74,11 +75,11 @@ class Answermodal extends React.Component {
       .catch(err => {
         console.log(err);
       });
-    } else if (this.state.image && this.state.imageCount >= 4) {
+    } else if (this.state.image && this.state.imageCount >= 5) {
       this.setState({
         addFileClass: 'addFileFalse'
       }, () => {
-        alert('Maximum number of photos have been uploaded, you may not upload any additional photos after this one');
+        alert('Maximum number of photos have been uploaded, you may not upload any additional photos');
       })
     }
   }
@@ -95,9 +96,16 @@ class Answermodal extends React.Component {
     this.setState({
       images: [],
       imageCount: 0,
-      addFileClass: 'addFileTrue'
+      addFileClass: 'addFileTrue',
+      currentImage: ''
     }, this.props.answerModalToggle(this.props.currentQuestion))
+  }
 
+  imageClose(e) {
+    e.preventDefault();
+    this.setState({
+      currentImage: ''
+    })
   }
 
   mandatoryAreFilled(text) {
@@ -114,6 +122,13 @@ class Answermodal extends React.Component {
     } else {
       return false;
     }
+  }
+
+  thumbnailClick(e) {
+    e.preventDefault();
+    this.setState({
+      currentImage: e.target.src
+    });
   }
 
   submit(e) {
@@ -137,6 +152,15 @@ class Answermodal extends React.Component {
         .then(result => {
           alert('Submission successful');
           this.props.answerModalToggle(this.props.currentQuestion, this.props.currentQuestionId, this.props.get);
+          this.setState({
+            answer: '',
+            nickname: '',
+            email: '',
+            images: [],
+            imageCount: 0,
+            addFileClass: 'addFileTrue',
+            currentImage: ''
+          });
         })
         .catch(err => {
           alert(err);
@@ -194,19 +218,29 @@ class Answermodal extends React.Component {
       return null;
     }
     return (<div className='answermodal'>
-      <img className='image' src={this.state.currentImage} />
+      <div>
+        <span style={{display: this.state.currentImage && this.state.currentImage.length > 0 ? 'block' : 'none'}} className='imagemodalclose' onClick={this.imageClose}>X</span>
+        <img src={this.state.currentImage} className='imagemodal' />
+      </div>
       <span className='answermodalclose' onClick={this.close}>X</span>
       <span>
       <h1 className='answermodaltitle'>Submit your Answer</h1>
       </span>
       <h5 className='answermodalsubtitle'>{this.props.productname}: {this.props.currentQuestion}</h5>
       <div>
-        <span>Your Answer </span>
-        <span className='required'>*</span>
+        <div>
+          <span>Your Answer </span>
+          <span className='required'>*</span>
+        </div>
+        <textarea rows='20' cols='50' className='answermodalanswer' name='answer' maxLength='1000' onChange={this.inputChange} value={this.state.answer || ''}></textarea>
       </div>
-      <textarea rows='20' cols='50' className='answermodalanswer' name='answer' maxLength='1000' onChange={this.inputChange} value={this.state.answer || ''}></textarea>
-      <div>
-        <span className='answermodalnicknameheader'>Your Nickname </span>
+      <img onClick={this.thumbnailClick} className='image' src={this.state.images[0]} />
+      <img onClick={this.thumbnailClick} className='image' src={this.state.images[1]} />
+      <img onClick={this.thumbnailClick} className='image' src={this.state.images[2]} />
+      <img onClick={this.thumbnailClick} className='image' src={this.state.images[3]} />
+      <img onClick={this.thumbnailClick} className='image' src={this.state.images[4]} />
+      <div className='answermodalnicknameheader'>
+        <span>Your Nickname </span>
         <span className='required'>*</span>
       </div>
       <textarea placeholder='Example: jackson11!' rows='20' cols='50' className='answermodalnickname' name='nickname' maxLength='60' onChange={this.inputChange} value={this.state.nickname || ''}></textarea>

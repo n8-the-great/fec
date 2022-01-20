@@ -28,6 +28,14 @@ class Answerlist extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.question !== this.props.question) {
+      this.setState({
+        expanded: false
+      })
+    }
+  }
+
   render() {
     if (this.state.expanded === false && this.props.answers.length > 2) {
       return (<div style={{boxSizing: 'border-box', border: '1px solid #ccc', backgroundColor: '#e4e7ed'}}>

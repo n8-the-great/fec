@@ -99,7 +99,7 @@ class Modal extends React.Component {
     if (this.props.showModal === false) {
       return null;
     }
-    return (<div className='modal'>
+    return (<div className='qmodal'>
       <span className='modalclose' onClick={this.close}>X</span>
       <span>
       <h1 className='modaltitle'>Ask Your Question</h1>
