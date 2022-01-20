@@ -69,11 +69,12 @@ body {
 }
 
 .carousel {
+  display: inline-flex;
   padding-left: 2%;
   overflow: hidden;
   z-index: 0;
   height: 400px;
-  width: 100%;
+  width: 90%;
 }
 
 
@@ -86,15 +87,15 @@ body {
 .carousel-item {
   position: relative;
   display: inline-flex;
+  flex-direction: row;
   align-items: top;
-  justify-content: top;
+  justify-content: bottom;
   color: black;
   font-size: 10px;
   border: 2px solid black;
   border-radius: 5px;
   margin: 10px;
   height: 80%;
-  width: 250px;
 
 }
 
@@ -114,14 +115,24 @@ body {
   top: 2px;
   right: 2px;
 }
-.carousel-buttons {
+.carousel-button-left {
   display: flex;
   justify-content: center;
-  align-items: bottom;
   z-index: 1;
 }
 
-.carousel-buttons > button {
+.carousel-button-left > button {
+  margin: 5px;
+  align-content: bottom;
+}
+
+.carousel-button-right {
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.carousel-button-right > button {
   margin: 5px;
   align-content: bottom;
 }

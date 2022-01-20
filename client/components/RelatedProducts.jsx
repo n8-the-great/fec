@@ -157,32 +157,36 @@ class RelatedProducts extends React.Component {
       </div>
       );
     } else {
-      // console.log(this.state);
+      console.log(this.state.related);
       return(
+        <React.Fragment>
+        <button className="carousel-button-left" onClick = {() => { this.updateCarousel(this.state.activeCarousel - 1);}}>Previous</button>
+        <button className="carousel-button-right" onClick = {() => { this.updateCarousel(this.state.activeCarousel + 1);}}>Next</button>
+
         <div className="carousel">
           <div className="carousel-inner"
                style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/5}%)` }}>
             Related Products <br />
+
+
             {
               this.state.related.map((item, index) => {
 
                 return (
                 // return React.cloneElement(item, {width: "100%"})
-                <RelatedProduct
-                  key = {index}
-                  previewProduct = {this.props.product}
-                  relatedProduct = {item}
-                  product_selection = {this.updateRelated}
-                  // add star rating later
-                />
-              );})
+                  <RelatedProduct
+                    key = {index}
+                    previewProduct = {this.props.product}
+                    relatedProduct = {item}
+                    product_selection = {this.updateRelated}
+                    // add star rating later
+                  />
+                );
+              })
             }
           </div>
-          <div className="carousel-buttons">
-            <button onClick = {() => { this.updateCarousel(this.state.activeCarousel - 1);}}>Previous</button>
-            <button onClick = {() => { this.updateCarousel(this.state.activeCarousel + 1);}}>Next</button>
-          </div>
         </div>
+        </React.Fragment>
       );
     }
   }

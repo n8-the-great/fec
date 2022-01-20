@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Outfit from './Outfit.jsx';
-
 import token from '../../config.js';
 
 class Outfits extends React.Component {
@@ -73,45 +72,34 @@ class Outfits extends React.Component {
   // always render a Outfit add
 
   render() {
-    if (this.state.length === 0) {
-      return (
-        <div className="carousel">
-          <div className="carousel-inner">
-            <Outfit key = {0} defaultAdd = {true}  action = {this.onAddClick}/>
-          </div>
+    return (
+      <React.Fragment>
+      <button className="carousel-button-left" onClick = {() => { this.updateCarousel(this.state.activeCarousel - 1);}}>Previous</button>
+      <button className="carousel-button-right" onClick = {() => { this.updateCarousel(this.state.activeCarousel + 1);}}>Next</button>
+
+      <div className="carousel">
+        <div className="carousel-inner"
+          style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/5}%)` }}>
+          Outfits <br />
+
+          <Outfit key = {0} defaultAdd = {true} action = {this.onAddClick}/>
+
+          { this.state.wardrobe.map((item, index) => (
+              <Outfit
+                key = {index + 1}
+                index = {index}
+                product = {item}
+                action = {this.onDeleteClick}
+                product_selection = {this.props.productSelector}
+                // add star rating later
+              />
+            ))
+          }
         </div>
-      )
-    }
-    else {
-      return(
-        <div className="carousel">
-          <div className="carousel-inner"
-                style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/5}%)` }}>
-            Outfits <br />
-            <Outfit key = {0} defaultAdd = {true} action = {this.onAddClick}/>
-            { this.state.wardrobe.map((item, index) => (
-
-                // return React.cloneElement(item, {width: "100%"})
-                <Outfit
-                  key = {index + 1}
-                  index = {index}
-                  product = {item}
-                  action = {this.onDeleteClick}
-                  product_selection = {this.props.productSelector}
-                  // add star rating later
-                />
-              ))
-            }
-
-          </div>
-          <div className="carousel-buttons">
-            <button onClick = {() => { this.updateCarousel(this.state.activeCarousel - 1);}}>Previous</button>
-            <button onClick = {() => { this.updateCarousel(this.state.activeCarousel + 1);}}>Next</button>
-
-          </div>
-        </div>
-      );
-    }
+      </div>
+      </React.Fragment>
+    );
+  //   }
   }
 }
 

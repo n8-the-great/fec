@@ -9,7 +9,7 @@ var port = '3000';
 
 var directory = path.join(__dirname, "../client/main");
 
-app.use(express.static(path.join(__dirname, "../client/main")));
+app.use(express.static(path.resolve(__dirname, "../client/main")));
 app.use(cors());
 app.use(bodyParser.json());
 
