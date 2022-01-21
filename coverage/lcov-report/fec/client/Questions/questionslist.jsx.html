@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/10</span>
+                <span class='fraction'>6/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/10</span>
+                <span class='fraction'>6/10</span>
             </div>
         
             
@@ -101,19 +101,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -139,18 +139,18 @@ class Questionslist extends React.Component {
   }
 &nbsp;
   render() {
-    if (this.props.questions.length === 0) {
-      return(&lt;div&gt;''&lt;/div&gt;);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.props.questions.length === 0) {
+<span class="cstat-no" title="statement not covered" >      return null;</span>
     } else if (this.props.questions.length &gt; 2) {
-    return (&lt;div style={{height: '900px', width: '1200px', border: '1px solid #ccc', overflow:'auto'}}&gt;
-      &lt;h1&gt;Product ID {this.props.productid} {this.props.productname} &lt;/h1&gt;
+    return (&lt;div className='QuestionsAndAnswers' style={{height: '850px', width: '1200px', overflow:'auto', backgroundColor: 'white'}}&gt;
+      &lt;h1 className='productname QuestionsAndAnswers'&gt;{this.props.productname}&lt;/h1&gt;
       {this.props.questions.map(question =&gt; (
         &lt;Question key={this.props.questions.indexOf(question)} expandedView = {this.props.expandedView} index={this.props.questions.indexOf(question)} answers={question.answers} product_id={this.props.productid} asker_name={question.asker_name} question_body={question.question_body} question_date={question.question_date} question_helpfulness={question.question_helpfulness} question_id={question.question_id} reported={JSON.stringify(question.reported)} answerModalToggle={this.props.answerModalToggle} /&gt;
       ))}
     &lt;/div&gt;);
     } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>if (this.props.questions.length &lt;= 2) {</span>
-<span class="cstat-no" title="statement not covered" >      return (&lt;div&gt;</span>
-        &lt;h1&gt;{this.props.productid} {this.props.productname} product name&lt;/h1&gt;
+<span class="cstat-no" title="statement not covered" >      return (&lt;div className='QuestionsAndAnswers' style={{height: '850px', width: '1200px', backgroundColor: 'white'}}&gt;</span>
+        &lt;h1 className='productname QuestionsAndAnswers'&gt;{this.props.productname}&lt;/h1&gt;
         {this.props.questions.map(<span class="fstat-no" title="function not covered" >qu</span>estion =&gt; (
 <span class="cstat-no" title="statement not covered" >          &lt;Question key={this.props.questions.indexOf(question)} expandedView = {this.props.expandedView} index={this.props.questions.indexOf(question)} answers={question.answers} product_id={this.props.productid} asker_name={question.asker_name} question_body={question.question_body} question_date={question.question_date} question_helpfulness={question.question_helpfulness} question_id={question.question_id} reported={JSON.stringify(question.reported)} answerModalToggle={this.props.answerModalToggle} /&gt;</span>
         ))}
@@ -165,10 +165,9 @@ export default Questionslist;</pre></td></tr></table></pre>
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
-                <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
-                at Mon Jan 03 2022 14:28:50 GMT-0500 (Eastern Standard Time)
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at Fri Jan 21 2022 15:25:54 GMT-0500 (Eastern Standard Time)
             </div>
-        </div>
         <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
