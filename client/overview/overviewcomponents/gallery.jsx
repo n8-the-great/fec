@@ -2,8 +2,10 @@ import React from 'react';
 import token from '../../../config.js';
 // const axios = require('axios');
 import axios from 'axios';
+import GallerySideBar from './GallerySideBar.jsx';
 
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/';
+
 
 class Gallery extends React.Component {
   constructor(props) {
@@ -50,17 +52,18 @@ class Gallery extends React.Component {
       photoURL = this.props.currentStyle.photos[this.state.photoIndex].url;
     }
     return (
-      <div className="gallery">
-      <img className="gallery-main-image" src={photoURL}></img>
-      <button value="Left" onClick={this.scrollGallery.bind(this)} className="gallery-scroll-button scroll-left">Scroll Image Left</button>
-      <button value="Right" onClick={this.scrollGallery.bind(this)} className="gallery-scroll-button scroll-right">Scroll Image Right</button>
+      <div className="gallery overview">
+      <GallerySideBar currentStyle={this.props.currentStyle}/>
+      <img className="gallery-main-image overview" src={photoURL}></img>
+      <button value="Left" onClick={this.scrollGallery.bind(this)} className="gallery-scroll-button scroll-left overview">Scroll Image Left</button>
+      <button value="Right" onClick={this.scrollGallery.bind(this)} className="gallery-scroll-button scroll-right overview">Scroll Image Right</button>
+
       </div>
+
+
     )
   }
 };
 
-/*
-
-*/
-
+/**/
 export default Gallery;

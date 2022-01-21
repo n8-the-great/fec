@@ -11,7 +11,6 @@
 body {
   color: grey;
   background-color: lightgray;
-  height: 100%;
 }
 
 .stars {
@@ -77,12 +76,48 @@ body {
   margin-bottom: 50px;
 }
 
+.thumbnail-scroller {
+  display:table;
+  clear:both;
+}
+
+.sidebar-thumbnail {
+  margin:5px;
+  padding:1px;
+
+  outline-style:solid;
+  outline-color:grey;
+
+  object-fit: cover;
+  height: 60px;
+  width: 60px;
+}
+
 .product-info {
   color: gray;
   outline-style:solid;
   width: 35%;
   margin-left: 64%;
   float: left;
+}
+
+
+.style-button {
+  border: black;
+  border-style: inset;
+
+  object-fit: cover;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+}
+
+.selected-style {
+  border: yellow;
+}
+
+.style-button:hover {
+  border:grey;
 }
 
 /*=================================================================*/
