@@ -23,25 +23,54 @@ class App extends React.Component {
   }
 
   productSelector(id=59556) {
-    var options = {
-      method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
-      headers: {
-        Authorization: token,
-        accept: 'application/json',
-        'content-type': 'application/json'
-      }
-    }
-    return axios(options)
-    .then(result => {
+    // don't make an api call for preview object if related cards pass back the object
+    if (typeof id === 'object') {
+      console.log('no api call');
       this.setState({
-        product: result.data,
-        haveProduct: true
+        product: id
+      })
+    } else {
+      var options = {
+        method: 'get',
+        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
+        headers: {
+          // Authorization: token,
+          Authorization: token,
+          accept: 'application/json',
+          'content-type': 'application/json',
+        }
+      }
+      return axios(options)
+      .then(result => {
+        var options = {
+          method: 'get',
+          url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}/styles`,
+          headers: {
+            // Authorization: token,
+            Authorization: token,
+            accept: 'application/json',
+            'content-type': 'application/json',
+          }
+        }
+        return axios(options)
+        .then((stylesResult) => {
+          result.data.styles = stylesResult.data.results;
+
+          this.setState({
+            product: result.data,
+            haveProduct: true
+          }), () => {
+            console.log('this state product',this.state.product, this.state.product.id, this.state.product.name);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    }
   }
 
 
@@ -97,18 +126,12 @@ getDateTime() {
     });
   }
 
-
-  componentDidMount() {
-    this.productSelector();
-  }
-
-
   render() {
     return (<div className='app'>
       <GeneralProductInfo productid={this.state.id} product={this.state.product} productSelector={this.productSelector}/>
       <Questionapp clickTracker={this.clickTracker} product={this.state.product}/>
-      <RelatedProducts product={this.state.product} productSelector={this.productSelector}/>
-      <Outfits product={this.state.product}/>
+      <RelatedProducts clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
+      <Outfits clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
     </div>);
   }
 }
