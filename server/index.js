@@ -7,25 +7,10 @@ var app = express();
 
 var port = '3000';
 
-var directory = path.join(__dirname, "../client/main");
-
-app.use(express.static(path.join(__dirname, "../client/main")));
+app.use(express.static(path.resolve(__dirname, "../client/main")));
 app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/')
 
-app.get('/products/:product_id/related', (req, res) => {
-
-  console.log('showing related products of: ', req.params.product_id);
-  res.end(req.params.product_id);
-  // res.sendStatus(200);
-
-});
-
-// this is for a test
-app.listen(port, () => {
-  console.log('serving: ', directory );
-  console.log(`app listening at http://localhost:${port}`);
-
-})
+app.listen(port);

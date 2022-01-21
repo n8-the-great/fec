@@ -14,12 +14,30 @@ class GeneralProductInfo extends React.Component {
     this.selectProduct = this.selectProduct.bind(this);
     this.state = {
       styles: [],
-      currentStyle: {},
+      currentStyle: {}
     };
   }
 
   requestProductStyles() {
-    axios.get(API_URL + 'products/' + this.props.product.id + '/styles',
+    if(this.props.product.id !== undefined) {
+      axios.get(API_URL + 'products/' + this.props.product.id + '/styles',
+        {
+          headers: {
+            Authorization: token
+          }
+      })
+      .then(results => {
+        console.log('GPI.jsx line 29 results: ', results.data.results);
+        this.setState({
+          styles: results.data.results,
+          currentStyle: results.data.results[0]
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    } else {
+      axios.get(API_URL + 'products/' + JSON.stringify(this.props.productid) + '/styles',
       {
         headers: {
           Authorization: token
@@ -32,16 +50,24 @@ class GeneralProductInfo extends React.Component {
         currentStyle: results.data.results[0]
       });
     })
+
     .catch(error => {
       console.log(error);
     });
+    }
   }
 
-  componentDidMount() {
-    if (this.state.styles.length === 0) {
-        this.requestProductStyles();
-    }
+  // componentDidMount() {
+  //   if (this.state.styles.length === 0) {
+  //       this.requestProductStyles();
+  //   }
 
+  // }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.state.styles.length === 0 || prevProps.product.id !== this.props.product.id) {
+      this.requestProductStyles();
+    }
   }
 
   selectProduct(e) {

@@ -72,6 +72,8 @@ class RelatedProducts extends React.Component {
     } else if (newIndex >= this.state.related.count) {
       newIndex = this.state.related.count - 1;
     }
+    console.log('related.count:', this.state.related.count);
+    console.log('newIndex:', newIndex);
 
     this.setState({
       activeCarousel: newIndex,
@@ -79,11 +81,19 @@ class RelatedProducts extends React.Component {
   }
 
   updateRelated(id = 59554) {
+    if (typeof id === 'object') {
+      this.props.productSelector(id);
+    }
+
     return new Promise((resolve, reject) => {
       this.setState({
         related: [],
         activeCarousel: 0,
       });
+
+      if (typeof id === 'object') {
+        id = id.id;
+      }
       this.props.productSelector(id) // update preview
       .then(() => {
         if (Object.keys(this.props.product).length !== 0) {
@@ -132,6 +142,7 @@ class RelatedProducts extends React.Component {
           }
       })
     })
+
   }
 
 
@@ -148,34 +159,36 @@ class RelatedProducts extends React.Component {
       </div>
       );
     } else {
-      console.log(this.state);
+      console.log(this.state.related);
       return(
+        <React.Fragment>
+        <button className="carousel-button-left" onClick = {() => { this.updateCarousel(this.state.activeCarousel - 1);}}>Previous</button>
+        <button className="carousel-button-right" onClick = {() => { this.updateCarousel(this.state.activeCarousel + 1);}}>Next</button>
+
         <div className="carousel">
           <div className="carousel-inner"
-               style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/4}%)` }}>
+               style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/5}%)` }}>
             Related Products <br />
+
+
             {
               this.state.related.map((item, index) => {
 
                 return (
                 // return React.cloneElement(item, {width: "100%"})
-                <RelatedProduct
-                  key = {index}
-                  previewProduct = {this.props.product}
-                  relatedProduct = {item}
-                  product_selection = {this.updateRelated}
-                  // add star rating later
-                />
-              );})
+                  <RelatedProduct
+                    key = {index}
+                    previewProduct = {this.props.product}
+                    relatedProduct = {item}
+                    product_selection = {this.updateRelated}
+                    // add star rating later
+                  />
+                );
+              })
             }
-
-          </div>
-          <div className="carousel-buttons">
-            <button onClick = {() => { this.updateCarousel(this.state.activeCarousel - 1);}}>Previous</button>
-            <button onClick = {() => { this.updateCarousel(this.state.activeCarousel + 1);}}>Next</button>
-
           </div>
         </div>
+        </React.Fragment>
       );
     }
   }

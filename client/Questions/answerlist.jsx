@@ -1,16 +1,6 @@
 import React from 'react';
 import Answer from './answer.jsx';
 
-// var Answerlist = (props) => (
-//   <div style={{border: 'solid red 5px'}}>
-//     {props.answers.map(answer => {
-//       return <Answer key={answer.id} answerid={JSON.stringify(answer.id)} index={props.answers.indexOf(answer)} body={answer.body} date={answer.date} name={answer.answerer_name} helpfulness={answer.helpfulness} photos={answer.photos}/>
-//     }
-//     )}
-  // <button style={{display: (props.answers.length > 2) ? 'block' : 'none'}}>See more answers</button>
-  // </div>
-// )
-
 class Answerlist extends React.Component {
   constructor(props) {
     super(props);
@@ -38,27 +28,35 @@ class Answerlist extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.question !== this.props.question) {
+      this.setState({
+        expanded: false
+      })
+    }
+  }
+
   render() {
     if (this.state.expanded === false && this.props.answers.length > 2) {
-      return (<div style={{boxSizing: 'border-box', border: '1px solid #ccc'}}>
+      return (<div className='QuestionsAndAnswers' style={{boxSizing: 'border-box', border: '1px solid #ccc', backgroundColor: '#e4e7ed'}}>
         {this.arrayShortener(this.props.answers).map(answer => (
-          <Answer key={answer.id} answerid={JSON.stringify(answer.id)} index={this.props.answers.indexOf(answer)} body={answer.body} date={answer.date} name={answer.answerer_name} helpfulness={answer.helpfulness} photos={answer.photos}/>
+          <Answer className='answer QuestionsAndAnswers' key={answer.id} answerid={JSON.stringify(answer.id)} index={this.props.answers.indexOf(answer)} body={answer.body} date={answer.date} name={answer.answerer_name} helpfulness={answer.helpfulness} photos={answer.photos}/>
       ))}
-        <button onClick={this.toggleAnswers}>See more answers</button>
+        <button className='moreanswers QuestionsAndAnswers' onClick={this.toggleAnswers}>See more answers</button>
       </div>
       );
     } else if (this.state.expanded === true && this.props.answers.length > 2) {
-      return (<div style={{height: '400px', width: '600px', border: '1px solid #ccc', overflow:'auto'}}>
+      return (<div className='QuestionsAndAnswers' style={{height: '200px', width: '400px', border: '1px solid #ccc', backgroundColor: '#e4e7ed', overflow:'auto'}}>
       {this.props.answers.map(answer => (
-        <Answer key={answer.id} answerid={JSON.stringify(answer.id)} index={this.props.answers.indexOf(answer)} body={answer.body} date={answer.date} name={answer.answerer_name} helpfulness={answer.helpfulness} photos={answer.photos}/>
+        <Answer className='answer QuestionsAndAnswers' key={answer.id} answerid={JSON.stringify(answer.id)} index={this.props.answers.indexOf(answer)} body={answer.body} date={answer.date} name={answer.answerer_name} helpfulness={answer.helpfulness} photos={answer.photos}/>
     ))}
-      <button onClick={this.toggleAnswers}>Collapse answers</button>
+      <button className='moreanswers QuestionsAndAnswers' onClick={this.toggleAnswers}>Collapse answers</button>
     </div>
     );
     } else {
-      return (<div style={{boxSizing: 'border-box', border: '1px solid #ccc'}}>
+      return (<div className='QuestionsAndAnswers'style={{boxSizing: 'border-box', border: '1px solid #ccc', backgroundColor: '#e4e7ed'}}>
       {this.props.answers.map(answer => (
-        <Answer key={answer.id} answerid={JSON.stringify(answer.id)} index={this.props.answers.indexOf(answer)} body={answer.body} date={answer.date} name={answer.answerer_name} helpfulness={answer.helpfulness} photos={answer.photos}/>
+        <Answer className='answer QuestionsAndAnswers' key={answer.id} answerid={JSON.stringify(answer.id)} index={this.props.answers.indexOf(answer)} body={answer.body} date={answer.date} name={answer.answerer_name} helpfulness={answer.helpfulness} photos={answer.photos}/>
     ))}
     </div>
     );

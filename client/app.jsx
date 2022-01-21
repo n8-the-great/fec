@@ -55,9 +55,10 @@ class App extends React.Component {
 
     return (<div>
       <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
-      <Questionapp product={this.state.product}/>
+
       <RelatedProducts product={this.state.product} productSelector={this.productSelector}/>
       <Outfits product={this.state.product}/>
+      <Questionapp product={this.state.product}/>
     </div>);
   }
 }
