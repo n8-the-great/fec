@@ -36,7 +36,7 @@ var Outfit = (props) => {
     return (
       <React.Fragment>
       <div className="carousel-item" style={ {width: "20%"} }>
-        <div className="carousel-action" onClick={clickHandler}>&#9733;</div>
+        <div className="carousel-add-action" onClick={clickHandler}>X</div>
         <div className = "carousel-productDetails" onClick={props.product_selection}>
           <img className = 'carousel-productImage'  src={props.product.styles[0].photos[0].thumbnail_url}></img>
             <div className = 'carousel-details'>

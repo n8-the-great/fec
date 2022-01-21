@@ -37,17 +37,14 @@ class Outfits extends React.Component {
   }
 
   onDeleteClick(e) {
-    // console.log('delete click');
-    // console.log(e);
 
     var wardrobe = [...this.state.wardrobe];
 
     if (wardrobe.length === 1) {
       wardrobe.pop();
     } else {
-      wardrobe.slice(e, 1);
+      wardrobe.splice(e, 1);
     }
-
 
     this.setState({
       wardrobe: wardrobe,

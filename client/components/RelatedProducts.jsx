@@ -11,8 +11,9 @@ class RelatedProducts extends React.Component {
     this.state = {
       product: {},
       related: [],
+
       activeCarousel: 0,
-      carouselSize: 4
+      carouselSize: 0
 
     }
     this.requestPromise = this.requestPromise.bind(this);
@@ -69,10 +70,10 @@ class RelatedProducts extends React.Component {
   updateCarousel(newIndex) {
     if (newIndex < 0) {
       newIndex = 0;
-    } else if (newIndex >= this.state.related.count) {
-      newIndex = this.state.related.count - 1;
+    } else if (newIndex >= this.state.carouselSize) {
+      newIndex = this.state.carouselSize - 1;
     }
-    console.log('related.count:', this.state.related.count);
+    console.log('related.count:', this.state.carouselSize);
     console.log('newIndex:', newIndex);
 
     this.setState({
@@ -105,6 +106,7 @@ class RelatedProducts extends React.Component {
                   .then((product) => {
                     this.setState({
                       related: [...this.state.related, product],
+                      carouselSize: p + 1
                     })
 
                     return this.productStylesRequest(relatedProductArray[p]);
