@@ -38,8 +38,8 @@ class Outfits extends React.Component {
   }
 
   onDeleteClick(e) {
-    // console.log('delete click');
-    // console.log(e);
+    console.log('delete click');
+    console.log(e);
 
     var wardrobe = [...this.state.wardrobe];
 
@@ -86,7 +86,7 @@ class Outfits extends React.Component {
       return(
         <div className="carousel">
           <div className="carousel-inner"
-                style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/5}%)` }}>
+                style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/4}%)` }}>
             Outfits <br />
             <Outfit key = {0} defaultAdd = {true} action = {this.onAddClick}/>
             { this.state.wardrobe.map((item, index) => (
@@ -97,7 +97,6 @@ class Outfits extends React.Component {
                   index = {index}
                   product = {item}
                   action = {this.onDeleteClick}
-                  product_selection = {this.props.productSelector}
                   // add star rating later
                 />
               ))
