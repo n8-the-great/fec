@@ -84,7 +84,7 @@ class Answer extends React.Component {
           <a className='QuestionsAndAnswers' style={{display: 'inline-block', padding: '5px'}} href={this.state.voted ? null : '#'} onClick={this.state.voted ? null : this.voteHelpful}>Yes {this.state.helpfulness}</a>
           <a className='QuestionsAndAnswers' style={{display: 'inline-block', padding: '5px'}} onClick={this.state.reported ? null : this.report}  href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
         </span>
-        <div className='byuser QuestionsAndAnswers'>by <b className='QuestionsAndAnswers' style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller</b>  <span className='QuestionsAndAnswers' style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span>, {this.dateFormatter(this.props.date)}</div>
+        <div className='byuser QuestionsAndAnswers'>by <b className='QuestionsAndAnswers' style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller, </b>  <span className='QuestionsAndAnswers' style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span> {this.dateFormatter(this.props.date)}</div>
         <b className='QuestionsAndAnswers' style={{display: this.props.photos.length > 0 ? 'block' : 'none', color: '#204ba1'}}>Photos:</b>
         <img className='qaimage QuestionsAndAnswers' src={this.props.photos[0]}/>
         <img className='qaimage QuestionsAndAnswers' src={this.props.photos[1]}/>
@@ -101,7 +101,7 @@ class Answer extends React.Component {
         <a className='QuestionsAndAnswers' style={{display: 'inline-block', padding: '5px'}} href='#' onClick={this.voteHelpful}>Yes {this.state.helpfulness}</a>
         <a className='QuestionsAndAnswers' onClick={this.report} style={{display: 'inline-block', padding: '5px'}} href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
       </span>
-      <div className='QuestionsAndAnswers'>by <b className='QuestionsAndAnswers' style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller</b>  <span className='QuestionsAndAnswers' style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span>, {this.dateFormatter(this.props.date)}</div>
+      <div className='QuestionsAndAnswers'>by <b className='QuestionsAndAnswers' style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller, </b>  <span className='QuestionsAndAnswers' style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span> {this.dateFormatter(this.props.date)}</div>
       <b className='QuestionsAndAnswers' style={{display: this.props.photos.length > 0 ? 'block' : 'none', color: '#204ba1'}}>Photos:</b>
       <img className='qaimage QuestionsAndAnswers' src={this.props.photos[0]}/>
       <img className='qaimage QuestionsAndAnswers' src={this.props.photos[1]}/>

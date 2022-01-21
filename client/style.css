@@ -207,10 +207,6 @@ body {
   padding: 15px 0px 0px 0px;
 }
 
-.answermodalnicknameheader {
-
-}
-
 .modalquestion {
   width: 200px;
   height: 50px;
@@ -351,7 +347,7 @@ body {
   position: fixed;
   top: 290px;
   left: 1300px;
-  color: black;
+  color: red;
   border: solid black 2px;
 }
 
