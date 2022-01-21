@@ -98,6 +98,7 @@ body {
 
 .questionapptitle {
   font-size: 25px;
+  margin-top: 50px;
   margin-bottom: 10px;
   color: #204ba1;
 }
@@ -106,6 +107,7 @@ body {
   background-color: white;
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 .newquestion:hover {
