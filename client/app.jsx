@@ -134,8 +134,5 @@ getDateTime() {
     </div>);
   }
 }
-/*
-<Questionapp product={this.state.product}/>
-*/
 
 ReactDOM.render(<App />, document.getElementById('app'));
