@@ -10,13 +10,20 @@ class Question extends React.Component {
       qStyle: 'none',
       reported: false,
       helpfulness: this.props.question_helpfulness,
-      expandedView: 1
+      expandedView: 1,
+      voted: false
     }
     this.arrayify = this.arrayify.bind(this);
     this.sortHelpfulness = this. sortHelpfulness.bind(this);
     this.report = this.report.bind(this);
     this.sortSeller = this.sortSeller.bind(this);
     this.voteHelpful = this.voteHelpful.bind(this);
+    this.answerModalToggle = this.answerModalToggle.bind(this);
+  }
+
+  answerModalToggle(e) {
+    e.preventDefault();
+    this.props.answerModalToggle(this.props.question_body, this.props.question_id);
   }
 
   arrayify(obj) {
@@ -82,7 +89,8 @@ class Question extends React.Component {
     axios(options)
     .then(result => {
       this.setState({
-        helpfulness: this.state.helpfulness + 1
+        helpfulness: this.state.helpfulness + 1,
+        voted: true
       })
     })
     .catch(err => {
@@ -92,25 +100,23 @@ class Question extends React.Component {
 
 
   render() {
-    return (<div style={{display: (this.props.index <= this.props.expandedView) ? 'block ' : 'none'}}>
-      <b>Q:</b>
-      <span>{this.props.question_body} </span>
-      <span>Helpful?</span>
-      <span>
-        <a style={{display: 'inline-block', padding: '5px'}} href='#' onClick={this.voteHelpful}>Yes {this.state.helpfulness}</a>
-        <a onClick={this.report} style={{display: 'inline-block', padding: '5px'}} href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
-        <a href='#'>Add Answer</a>
+    return (<div className='QuestionsAndAnswers' style={{display: (this.props.index <= this.props.expandedView) ? 'block ' : 'none'}}>
+      <div className='questionq QuestionsAndAnswers'>
+        <b className='questionqq QuestionsAndAnswers'>Q: </b>
+        <span className='questionbody QuestionsAndAnswers'>{this.props.question_body} </span>
+      </div>
+      <span className='questionuseroptions QuestionsAndAnswers'>
+        <span className='questionhelpful QuestionsAndAnswers'>Helpful?</span>
+        <span className='QuestionsAndAnswers'>
+          <a className='QuestionsAndAnswers' style={{display: 'inline-block', padding: '5px'}} href={this.state.voted ? null : '#'} onClick={this.state.voted ? null : this.voteHelpful}>Yes {this.state.helpfulness}</a>
+          <a className='QuestionsAndAnswers' onClick={this.report} style={{display: 'inline-block', padding: '5px'}} href={this.state.reported ? null : '#'}>{(this.state.reported ? 'Reported' : 'Report')}</a>
+          <a className='QuestionsAndAnswers' href='#' onClick={this.answerModalToggle}>Add Answer</a>
+        </span>
       </span>
-      <b style={{display: 'flex'}}>A: </b>
-      <Answerlist answers={this.sortSeller(this.sortHelpfulness(this.arrayify(this.props.answers)))} />
-      <b>Asker</b>
-      <div>{this.props.asker_name}</div>
-      <b>Date</b>
-      <div>{this.props.question_date}</div>
-      <b>Helpfulness</b>
-      <div>{this.props.question_helpfulness}</div>
-      <b>Question ID</b>
-      <div>{this.props.question_id}</div>
+      <b className='asker QuestionsAndAnswers'>Asker</b>
+      <div className='askername QuestionsAndAnswers'>{this.props.asker_name}</div>
+      <b className='questiona QuestionsAndAnswers'>A: </b>
+      <Answerlist question={this.props.question_id} answers={this.sortSeller(this.sortHelpfulness(this.arrayify(this.props.answers)))} />
     </div>);
   }
 }

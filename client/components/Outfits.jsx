@@ -37,8 +37,8 @@ class Outfits extends React.Component {
   }
 
   onDeleteClick(e) {
-    // console.log('delete click');
-    // console.log(e);
+    console.log('delete click');
+    console.log(e);
 
     var wardrobe = [...this.state.wardrobe];
 
@@ -72,6 +72,7 @@ class Outfits extends React.Component {
   // always render a Outfit add
 
   render() {
+<<<<<<< HEAD
     return (
       <React.Fragment>
       <button className="carousel-button-left" onClick = {() => { this.updateCarousel(this.state.activeCarousel - 1);}}>Previous</button>
@@ -95,6 +96,43 @@ class Outfits extends React.Component {
               />
             ))
           }
+=======
+    if (this.state.length === 0) {
+      return (
+        <div className="carousel">
+          <div className="carousel-inner">
+            <Outfit key = {0} defaultAdd = {true}  action = {this.onAddClick}/>
+          </div>
+        </div>
+      )
+    }
+    else {
+      return(
+        <div className="carousel">
+          <div className="carousel-inner"
+                style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/4}%)` }}>
+            Outfits <br />
+            <Outfit key = {0} defaultAdd = {true} action = {this.onAddClick}/>
+            { this.state.wardrobe.map((item, index) => (
+
+                // return React.cloneElement(item, {width: "100%"})
+                <Outfit
+                  key = {index + 1}
+                  index = {index}
+                  product = {item}
+                  action = {this.onDeleteClick}
+                  // add star rating later
+                />
+              ))
+            }
+
+          </div>
+          <div className="carousel-buttons">
+            <button onClick = {() => { this.updateCarousel(this.state.activeCarousel - 1);}}>Previous</button>
+            <button onClick = {() => { this.updateCarousel(this.state.activeCarousel + 1);}}>Next</button>
+
+          </div>
+>>>>>>> master
         </div>
       </div>
       </React.Fragment>
