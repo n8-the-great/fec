@@ -82,6 +82,8 @@ body {
 
 .style-button:hover {
   color:grey;
+}
+
 .carousel {
   padding-left: 2%;
   overflow: hidden;
