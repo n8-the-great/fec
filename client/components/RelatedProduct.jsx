@@ -7,13 +7,6 @@ import token from '../../config.js';
 
 var RelatedProduct = (props) => {
 
-  // handleClick(e) {
-
-  // }
-
-  // console.log('preview product');
-  //   console.log(props.previewProduct);
-
   var [show, setShow] = useState(false);
 
   var changeShow = (e) => {
@@ -26,7 +19,7 @@ var RelatedProduct = (props) => {
 
   var changeProduct = (e) => {
     e.preventDefault();
-    console.log(props);
+    // console.log(props);
     props.product_selection(props.relatedProduct);
   }
 

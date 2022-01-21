@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import RelatedProduct from './RelatedProduct.jsx';
-
+import CarouselButtons from './CarouselButtons.jsx';
 import token from '../../config.js';
+
+import plusSign from './src/plusSign.png';
+
 
 class RelatedProducts extends React.Component {
   constructor(props) {
@@ -21,6 +24,7 @@ class RelatedProducts extends React.Component {
     this.relatedProductsRequest = this.relatedProductsRequest.bind(this);
     this.productStylesRequest = this.productStylesRequest.bind(this);
     this.updateRelated = this.updateRelated.bind(this);
+    this.updateCarousel = this.updateCarousel.bind(this);
 
   };
 
@@ -68,13 +72,15 @@ class RelatedProducts extends React.Component {
   }
 
   updateCarousel(newIndex) {
+    var overflow = 2;
+
     if (newIndex < 0) {
       newIndex = 0;
-    } else if (newIndex >= this.state.carouselSize) {
-      newIndex = this.state.carouselSize - 1;
+    } else if (newIndex >= this.state.carouselSize - overflow) {
+      newIndex = this.state.carouselSize - 1 - overflow;
     }
-    console.log('related.count:', this.state.carouselSize);
-    console.log('newIndex:', newIndex);
+    // console.log('related.count:', this.state.carouselSize);
+    // console.log('newIndex:', newIndex);
 
     this.setState({
       activeCarousel: newIndex,
@@ -161,18 +167,16 @@ class RelatedProducts extends React.Component {
       </div>
       );
     } else {
-      console.log(this.state.related);
+      // console.log(this.state.related);
       return(
         <React.Fragment>
-        <button className="carousel-button-left" onClick = {() => { this.updateCarousel(this.state.activeCarousel - 1);}}>Previous</button>
-        <button className="carousel-button-right" onClick = {() => { this.updateCarousel(this.state.activeCarousel + 1);}}>Next</button>
-
+        <div className="carousel-title">Related Products </div>
         <div className="carousel">
+          <div className="carousel-buttons">
+            <CarouselButtons view={this.state.activeCarousel} updateCarousel={this.updateCarousel} />
+          </div>
           <div className="carousel-inner"
                style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/5}%)` }}>
-            Related Products <br />
-
-
             {
               this.state.related.map((item, index) => {
 

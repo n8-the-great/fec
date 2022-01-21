@@ -434,7 +434,65 @@ body {
   transition: transform 0.3s;
   height: 100%;
   width: 100%;
+  z-index: 0;
 }
+
+
+.carousel-buttons {
+  position: absolute;
+  display: inline-flex;
+  margin-top: 150px;
+  margin-bottom: auto;
+  width: 90%;
+  z-index: 9;
+}
+
+.carousel-button-left {
+  position: relative;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: -5;
+  margin-right: auto;
+  font-size: small;
+  border: inset lightgray 1px;
+  border-radius: 2px;
+}
+
+.carousel-button-left > button {
+  margin: 5px;
+  align-content: bottom;
+}
+
+.carousel-button-right {
+  position: relative;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: 105;
+  font-size: small;
+  border: inset lightgray 1px;
+  border-radius: 2px;
+}
+
+.carousel-button-right > button {
+  margin: 5px;
+  align-content: bottom;
+}
+
+.carousel-button-left:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+  font-weight: bold;
+  color: white;
+}
+
+.carousel-button-right:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+  font-weight: bold;
+  color: white;
+}
+
 
 .carousel-item {
   position: relative;
@@ -467,6 +525,15 @@ body {
   font-size: 13px;
   top: 2px;
   right: 2px;
+  border: inset lightgray 1px;
+  border-radius: 2px;
+}
+
+.carousel-action:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+  font-weight: bold;
+  color: white;
 }
 
 .carousel-add-action {
@@ -476,29 +543,15 @@ body {
   right: 2px;
   float: right;
   color: black;
-  border: solid black 2px;
+  border: inset lightgrey 1px;
 }
 
-.carousel-button-left {
-  display: flex;
-  justify-content: center;
-  z-index: 1;
-}
-
-.carousel-button-left > button {
-  margin: 5px;
-  align-content: bottom;
-}
-
-.carousel-button-right {
-  display: flex;
-  justify-content: center;
-  z-index: 1;
-}
-
-.carousel-button-right > button {
-  margin: 5px;
-  align-content: bottom;
+.carousel-add-action:hover {
+  cursor: pointer;
+  background-color: #b12235;
+  font-weight: bold;
+  border: inset lightgray 1px;
+  border-radius: 2px;
 }
 
 .carousel-productImage {
@@ -592,6 +645,7 @@ body {
   right: 2px;
 }
 
+
 .modal {
   position: fixed;
   left: 0;
@@ -602,7 +656,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 7;
 }
 
 

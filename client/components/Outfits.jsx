@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Outfit from './Outfit.jsx';
 import token from '../../config.js';
+import CarouselButtons from './CarouselButtons.jsx';
 
 class Outfits extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class Outfits extends React.Component {
     }
    this.onAddClick = this.onAddClick.bind(this);
    this.onDeleteClick = this.onDeleteClick.bind(this);
+   this.updateCarousel = this.updateCarousel.bind(this);
 
   };
 
@@ -33,7 +35,6 @@ class Outfits extends React.Component {
     } else {
       console.log('outfit already exists');
     }
-
   }
 
   onDeleteClick(e) {
@@ -54,15 +55,21 @@ class Outfits extends React.Component {
 
 
   updateCarousel(newIndex) {
-    if (newIndex < 0) {
-      newIndex = 0;
-    } else if (newIndex >= this.state.length) {
-      newIndex = this.state.length - 1;
-    }
 
-    this.setState({
-      activeCarousel: newIndex,
-    });
+    if (this.state.length === 0) {
+      return;
+    } else {
+
+      if (newIndex < 0) {
+        newIndex = 0;
+      } else if (newIndex >= this.state.length) {
+        newIndex = this.state.length - 1;
+      }
+
+      this.setState({
+        activeCarousel: newIndex,
+      });
+    }
   }
 
 
@@ -71,13 +78,14 @@ class Outfits extends React.Component {
   render() {
     return (
       <React.Fragment>
-      <button className="carousel-button-left" onClick = {() => { this.updateCarousel(this.state.activeCarousel - 1);}}>Previous</button>
-      <button className="carousel-button-right" onClick = {() => { this.updateCarousel(this.state.activeCarousel + 1);}}>Next</button>
-
+      <div className="carousel-title">My Outfits</div>
       <div className="carousel">
+        <div className="carousel-buttons">
+          <CarouselButtons view={this.state.activeCarousel} updateCarousel={this.updateCarousel} />
+        </div>
         <div className="carousel-inner"
           style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/5}%)` }}>
-          Outfits <br />
+
 
           <Outfit key = {0} defaultAdd = {true} action = {this.onAddClick}/>
 

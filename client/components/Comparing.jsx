@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import CompareTable from './CompareTable.jsx';
-import $ from 'jquery';
+// import CompareTable from './CompareTable.jsx';
+// import $ from 'jquery';
 
 
 var Comparing = (props) => {
@@ -10,15 +10,15 @@ var Comparing = (props) => {
   // console.log(props);
 
 
-  var [show, setShow] = useState(true);
+  // var [show, setShow] = useState(true);
 
-  var changeShow = () => {
-    if (show === false) {
-      setShow(true);
-    } else {
-      setShow(false);
-    }
-  }
+  // var changeShow = () => {
+  //   if (show === false) {
+  //     setShow(true);
+  //   } else {
+  //     setShow(false);
+  //   }
+  // }
 
   var onActionClick = () => {
     props.hide();
@@ -57,8 +57,8 @@ var Comparing = (props) => {
     }
   }
 
-  console.log('features table: ');
-  console.log(features);
+  // console.log('features table: ');
+  // console.log(features);
 
 
   var displayCheckMarkIf = (included, side) => {

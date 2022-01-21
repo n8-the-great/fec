@@ -5,8 +5,8 @@ import $ from 'jquery';
 
 var CompareTable = (props) => {
 
-  console.log('compare table');
-  console.log(props.compareTable);
+  // console.log('compare table');
+  // console.log(props.compareTable);
 
   var renderComparisonTable = props.compareTable.map((item, index) => {
     return(
