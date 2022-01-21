@@ -4,6 +4,7 @@ import token from '../../config.js';
 import axios from 'axios';
 import StyleSelector from './overviewcomponents/styleselector.jsx';
 import Gallery from './overviewcomponents/gallery.jsx';
+import AddToCart from './overviewcomponents/addtocart.jsx';
 
 
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/';
@@ -91,6 +92,7 @@ class GeneralProductInfo extends React.Component {
           <h1 className='product-title'>{this.props.product.name}</h1>
           <div className='product-price'>{this.props.product.default_price}</div>
           <StyleSelector updateGallery={this.updateGallery.bind(this)} styles={this.state.styles}/>
+          <AddToCart currentStyle={this.state.currentStyle}/>
         </div>
 
         <Gallery currentStyle={this.state.currentStyle}/>
@@ -100,5 +102,9 @@ class GeneralProductInfo extends React.Component {
     )
   }
 }
+
+/*
+
+*/
 
 export default GeneralProductInfo;
