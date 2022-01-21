@@ -132,6 +132,8 @@ class Questionapp extends React.Component {
       <Questionslist questions={this.searchSort(this.state.questions)} productid={JSON.stringify(this.props.product.id)} productname={this.props.product.name} expandedView={this.state.expandedView} answerModalToggle={this.answerModalToggle}/>
       <button className='morequestions QuestionsAndAnswers' onClick={this.toggleQuestions} style={{display: (this.state.expandedView >= this.state.questions.length - 1) ? 'none' : 'block'}}>More Answered Questions</button>
       <button className='newquestion QuestionsAndAnswers' onClick={this.modalToggle}>Submit new question</button>
+      <form>
+      </form>
     </div>
     );
   }

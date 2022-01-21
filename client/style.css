@@ -98,6 +98,7 @@ body {
 
 .questionapptitle {
   font-size: 25px;
+  margin-top: 50px;
   margin-bottom: 10px;
   color: #204ba1;
 }
@@ -106,6 +107,7 @@ body {
   background-color: white;
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 .newquestion:hover {
@@ -206,10 +208,6 @@ body {
 .modalnicknameheader {
   padding: 15px 0px 0px 0px;
 }
-
-/* .answermodalnicknameheader {
-
-} */
 
 .modalquestion {
   width: 200px;
@@ -351,7 +349,7 @@ body {
   position: fixed;
   top: 290px;
   left: 1300px;
-  color: black;
+  color: red;
   border: solid black 2px;
 }
 

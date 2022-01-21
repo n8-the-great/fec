@@ -99,7 +99,6 @@ getDateTime() {
 
 
   clickTracker(e) {
-    e.preventDefault();
     console.log(e.target.localName, e.target.classList[e.target.classList.length - 1], this.getDateTime());
 
     var options = {
