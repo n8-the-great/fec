@@ -72,6 +72,8 @@ class RelatedProducts extends React.Component {
     } else if (newIndex >= this.state.related.count) {
       newIndex = this.state.related.count - 1;
     }
+    console.log('related.count:', this.state.related.count);
+    console.log('newIndex:', newIndex);
 
     this.setState({
       activeCarousel: newIndex,

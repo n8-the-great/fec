@@ -609,8 +609,12 @@ body {
   padding-bottom: 10px;
 }
 
-.modal-header, .modal-footer {
-  padding: 10px;
+.modal-header {
+  padding: 3px;
+}
+
+.modal-footer {
+  padding: 5px;
 }
 
 .modal-title {
@@ -633,7 +637,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
-  width: 25%;
+  width: 20%;
 }
 
 .modal-body-middle {
@@ -641,7 +645,8 @@ body {
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
-  width: 50%;
+  font-size: small;
+  width: 65%;
 }
 
 .modal-body-right {
@@ -650,7 +655,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
-  width: 25%;
+  width: 15%;
 }
 
 

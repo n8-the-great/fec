@@ -57,7 +57,8 @@ class App extends React.Component {
           result.data.styles = stylesResult.data.results;
 
           this.setState({
-            product: result.data
+            product: result.data,
+            haveProduct: true
           }), () => {
             console.log('this state product',this.state.product, this.state.product.id, this.state.product.name);
           }
@@ -128,7 +129,7 @@ getDateTime() {
   render() {
     return (<div className='app'>
       <GeneralProductInfo productid={this.state.id} product={this.state.product} productSelector={this.productSelector}/>
-      {/* <Questionapp clickTracker={this.clickTracker} product={this.state.product}/> */}
+      <Questionapp clickTracker={this.clickTracker} product={this.state.product}/>
       <RelatedProducts clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
       <Outfits clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
     </div>);

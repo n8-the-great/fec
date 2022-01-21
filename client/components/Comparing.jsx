@@ -83,7 +83,7 @@ var renderComparisonTable = features.map( (detail) => {
       {displayCheckMarkIf(detail[1], 'left')}
       <span className="modal-body-middle">{detail[0]}</span>
       {displayCheckMarkIf(detail[2], 'right')}
-      <br/>
+      <br/> <br />
     </div>
 
 
@@ -113,9 +113,9 @@ var renderComparisonTable = features.map( (detail) => {
           {/* <CompareTable compareTable={features}/> */}
           {renderComparisonTable}
         </div>
-        {/* <div className="modal-footer">
-          <button className="button">Close</button>
-        </div> */}
+        <div className="modal-footer">
+          {/* <button className="button">Close</button> */}
+        </div>
       </div>
     </div>
   )
