@@ -133,6 +133,7 @@ getDateTime() {
     });
   }
 
+
   render() {
     return (<div className={this.state.darkmode === false ? 'app' : 'appdark'} onClick={this.clickTracker}>
       <button className='modetoggle' onClick={this.modeToggle}>{this.state.darkmode === false ? 'Toggle Dark Mode' : 'Toggle Light Mode'}</button>
