@@ -83,13 +83,13 @@ class Outfits extends React.Component {
       <div className="carousel-title relatedProductCards">My Outfits</div>
       <div className="carousel relatedProductCards">
         <div className="carousel-buttons relatedProductCards">
-          <CarouselButtons view={this.state.activeCarousel} updateCarousel={this.updateCarousel} />
+          <CarouselButtons view={this.state.activeCarousel} updateCarousel={this.updateCarousel} darkMode = {this.props.darkMode}/>
         </div>
         <div className="carousel-inner relatedProductCards"
           style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/5}%)` }}>
 
 
-          <Outfit key = {0} defaultAdd = {true} action = {this.onAddClick}/>
+          <Outfit key = {0} defaultAdd = {true} action = {this.onAddClick} darkMode = {this.props.darkMode}/>
 
           { this.state.wardrobe.map((item, index) => (
               <Outfit
@@ -98,6 +98,7 @@ class Outfits extends React.Component {
                 product = {item}
                 action = {this.onDeleteClick}
                 product_selection = {this.props.productSelector}
+                darkMode = {this.props.darkMode}
                 // add star rating later
               />
             ))

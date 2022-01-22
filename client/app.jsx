@@ -34,7 +34,7 @@ class App extends React.Component {
     // don't make an api call for preview object if related cards pass back the object
 
     if (typeof id === 'object') {
-      console.log('no api call');
+      // console.log('no api call');
       this.setState({
         product: id
       })
@@ -163,8 +163,8 @@ class App extends React.Component {
     return (<div className={this.state.darkmode === false ? 'app' : 'appdark'} onClick={this.clickTracker}>
       <button className='modetoggle' onClick={this.modeToggle}>{this.state.darkmode === false ? 'Toggle Dark Mode' : 'Toggle Light Mode'}</button>
       <GeneralProductInfo productid={this.state.id} product={this.state.product} productSelector={this.productSelector}/>
-      <RelatedProducts clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
-      <Outfits clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
+      <RelatedProducts darkMode={this.state.darkmode} clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
+      <Outfits darkMode={this.state.darkmode} clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
       <Questionapp clickTracker={this.clickTracker} product={this.state.product}/>
     </div>);
   }
