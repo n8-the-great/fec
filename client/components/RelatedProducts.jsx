@@ -158,7 +158,10 @@ class RelatedProducts extends React.Component {
   }
 
 
+
+
   render() {
+
     if (this.state.related === undefined ) {
       return (
         <div className="relatedProducts relatedProductCards">
@@ -174,7 +177,7 @@ class RelatedProducts extends React.Component {
             <CarouselButtons view={this.state.activeCarousel} updateCarousel={this.updateCarousel} />
           </div>
           <div className="carousel-inner relatedProductCards"
-               style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/5}%)` }}>
+              style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/5}%)` }}>
             {
               this.state.related.map((item, index) => {
 
@@ -185,6 +188,7 @@ class RelatedProducts extends React.Component {
                     previewProduct = {this.props.product}
                     relatedProduct = {item}
                     product_selection = {this.updateRelated}
+                    darkMode = {this.props.darkMode}
                     // add star rating later
                   />
                 );

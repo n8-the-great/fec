@@ -5,20 +5,6 @@ import ReactDOM from 'react-dom';
 
 
 var Comparing = (props) => {
-  // console.log('comparing');
-  // console.log('props: ');
-  // console.log(props);
-
-
-  // var [show, setShow] = useState(true);
-
-  // var changeShow = () => {
-  //   if (show === false) {
-  //     setShow(true);
-  //   } else {
-  //     setShow(false);
-  //   }
-  // }
 
   var onActionClick = () => {
     props.hide();
@@ -94,7 +80,7 @@ var renderComparisonTable = features.map( (detail) => {
   return (
     <div className="modal relatedProductCards" onClick={onActionClick}>
       <div className="modal-action relatedProductCards" onClick={onActionClick}>&#9733;</div>
-      <div className="modal-content relatedProductCards">
+      <div className = {props.darkMode === false ? "modal-content relatedProductCards" : "modal-content-dark relatedProductCards"}>
         <div className="modal-header relatedProductCards">
           <h5 className="modal-title relatedProductCards">Comparing</h5>
           <div className="modal-products relatedProductCards">
