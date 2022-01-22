@@ -17,8 +17,7 @@ var CarouselButtons = (props) => {
   //   }
   // }
   var handleClick = (e) => {
-
-    if (e.target.className === 'carousel-button-right') {
+    if (e.target.classList[0] === 'carousel-button-right') {
       props.updateCarousel(1);
     } else {
       props.updateCarousel(-1);

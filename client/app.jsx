@@ -123,7 +123,7 @@ class App extends React.Component {
 
 
   clickTracker(e) {
-    console.log(e.target.localName, e.target.classList[e.target.classList.length - 1], this.getDateTime());
+    // console.log(e.target.localName, e.target.classList[e.target.classList.length - 1], this.getDateTime());
 
     var options = {
       method: 'post',
@@ -142,7 +142,7 @@ class App extends React.Component {
 
     axios(options)
     .then(result => {
-      console.log(result);
+      console.log('clicked', result);
     })
     .catch(err => {
       console.log(err);
