@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Questionapp from './Questions/questionapp.jsx';
 import Reviews from './reviews/index.jsx';
-import GeneralProductInfo from './overview/generalProductInfo.jsx';
+import GeneralProductInfo from './overview/GeneralProductInfo.jsx';
 import token from '../config.js';
 import axios from 'axios';
 import './style.css';
 import RelatedProducts from './components/RelatedProducts.jsx';
-import Outfits from './components/Outfits.jsx';
+import Outfits from './components/Outfits.jsx'
 
 class App extends React.Component {
   constructor (props) {
@@ -131,15 +131,16 @@ class App extends React.Component {
 
 
   clickTracker(e) {
-    // console.log(e.target.localName, e.target.classList[e.target.classList.length - 1], this.getDateTime());
+    //console.log(e.target.localName, e.target.classList[e.target.classList.length - 1], this.getDateTime());
 
     var options = {
       method: 'post',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions',
       headers: {
+        // Authorization: token,
         Authorization: token,
         accept: 'application/json',
-        'content-type': 'application/json'
+        'content-type': 'application/json',
       },
       data: {
         element: e.target.localName,
