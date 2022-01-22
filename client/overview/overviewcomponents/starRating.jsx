@@ -44,7 +44,7 @@ class StarRating extends React.Component {
       }
     }
 
-    var totalReviewsSpan = <span className="total-reviews overview">{numratings} reviews</span>
+    var totalReviewsSpan = <span className="total-reviews overview">{numratings}</span>
 
     return (
       <div className="stars">
