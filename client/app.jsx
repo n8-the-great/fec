@@ -24,6 +24,7 @@ class App extends React.Component {
 
   productSelector(id=59556) {
     // don't make an api call for preview object if related cards pass back the object
+
     if (typeof id === 'object') {
       console.log('no api call');
       this.setState({
@@ -56,6 +57,12 @@ class App extends React.Component {
         .then((stylesResult) => {
           result.data.styles = stylesResult.data.results;
 
+          return this.getReviews(id);
+        })
+        .then((reviewMetaResult) => {
+          console.log('review meta result', reviewMetaResult);
+          result.data.reviews = reviewMetaResult;
+          console.log(result.data);
           this.setState({
             product: result.data,
             haveProduct: true
@@ -73,8 +80,27 @@ class App extends React.Component {
     }
   }
 
+  getReviews(id) {
+    var options = {
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${JSON.stringify(id)}`,
+      headers: {
+        Authorization: token,
+        accept: 'application/json',
+        'content-type': 'application/json',
+      }
+    }
+    return axios(options)
+    .then(result => {
+      return result.data;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
 
-getDateTime() {
+
+  getDateTime() {
     var date = new Date();
 
     var hour = date.getHours();
@@ -95,7 +121,7 @@ getDateTime() {
     day = (day < 10 ? "0" : "") + day;
 
     return year + ":" + month + ":" + day + ":" + hour + ":" + min + ":" + sec;
-}
+  }
 
 
   clickTracker(e) {
@@ -127,7 +153,7 @@ getDateTime() {
   }
 
   render() {
-    return (<div className='app'>
+    return (<div className='app' onClick={this.clickTracker}>
       <GeneralProductInfo productid={this.state.id} product={this.state.product} productSelector={this.productSelector}/>
       {/* <Questionapp clickTracker={this.clickTracker} product={this.state.product}/> */}
       <RelatedProducts clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>

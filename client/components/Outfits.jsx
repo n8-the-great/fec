@@ -78,12 +78,12 @@ class Outfits extends React.Component {
   render() {
     return (
       <React.Fragment>
-      <div className="carousel-title">My Outfits</div>
-      <div className="carousel">
-        <div className="carousel-buttons">
+      <div className="carousel-title relatedProductCards">My Outfits</div>
+      <div className="carousel relatedProductCards">
+        <div className="carousel-buttons relatedProductCards">
           <CarouselButtons view={this.state.activeCarousel} updateCarousel={this.updateCarousel} />
         </div>
-        <div className="carousel-inner"
+        <div className="carousel-inner relatedProductCards"
           style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/5}%)` }}>
 
 

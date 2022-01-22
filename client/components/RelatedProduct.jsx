@@ -25,18 +25,18 @@ var RelatedProduct = (props) => {
 
 
   return (
-    <div className="carousel-item" style={ {width: "20%"} }>
+    <div className="carousel-item relatedProductCards" style={ {width: "20%"} }>
 
-      <div className="carousel-action" onClick={ () => {changeShow()}}>&#9733;</div>
-      <div className = "carousel-productDetails" onClick={changeProduct} >
+      <div className="carousel-action relatedProductCards" onClick={ () => {changeShow()}}>&#9733;</div>
+      <div className = "carousel-productDetails relatedProductCards" onClick={changeProduct} >
 
-      <img className = 'carousel-productImage' src={props.relatedProduct.thumbnail_url}></img>
-        <div className = 'carousel-details'>
-          <div className = 'carousel-productCategory'> Category: {props.relatedProduct.category}  </div>
-          <div className = 'carousel-productName'>{props.relatedProduct.name}  </div>
-          <div className = 'carousel-slogan'>"{props.relatedProduct.slogan}" </div>
-          <div className = 'carousel-product-description'>{props.relatedProduct.description}</div>
-          <div className = 'carousel-productPrice'>price: ${props.relatedProduct.default_price} </div>
+      <img className = 'carousel-productImage relatedProductCards' src={props.relatedProduct.thumbnail_url}></img>
+        <div className = 'carousel-details relatedProductCards'>
+          <div className = 'carousel-productCategory relatedProductCards'> Category: {props.relatedProduct.category}  </div>
+          <div className = 'carousel-productName relatedProductCards'>{props.relatedProduct.name}  </div>
+          <div className = 'carousel-slogan relatedProductCards'>"{props.relatedProduct.slogan}" </div>
+          <div className = 'carousel-product-description relatedProductCards'>{props.relatedProduct.description}</div>
+          <div className = 'carousel-productPrice relatedProductCards'>price: ${props.relatedProduct.default_price} </div>
         </div>
       </div>
       <Comparing previewProduct={props.previewProduct} relatedProduct={props.relatedProduct} show={show} hide={changeShow}/>

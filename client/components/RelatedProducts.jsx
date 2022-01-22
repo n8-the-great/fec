@@ -162,20 +162,19 @@ class RelatedProducts extends React.Component {
   render() {
     if (this.state.related === undefined ) {
       return (
-        <div className="relatedProducts">
+        <div className="relatedProducts relatedProductCards">
           Related Products Not Found
       </div>
       );
     } else {
-      // console.log(this.state.related);
       return(
         <React.Fragment>
-        <div className="carousel-title">Related Products </div>
-        <div className="carousel">
-          <div className="carousel-buttons">
+        <div className="carousel-title relatedProductCards">Related Products </div>
+        <div className="carousel relatedProductCards">
+          <div className="carousel-buttons relatedProductCards">
             <CarouselButtons view={this.state.activeCarousel} updateCarousel={this.updateCarousel} />
           </div>
-          <div className="carousel-inner"
+          <div className="carousel-inner relatedProductCards"
                style={{ transform: `translateX(-${(this.state.activeCarousel * 100)/5}%)` }}>
             {
               this.state.related.map((item, index) => {

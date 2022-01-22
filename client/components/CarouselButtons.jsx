@@ -17,6 +17,7 @@ var CarouselButtons = (props) => {
   //   }
   // }
   var handleClick = (e) => {
+
     if (e.target.className === 'carousel-button-right') {
       props.updateCarousel(1);
     } else {
@@ -26,8 +27,8 @@ var CarouselButtons = (props) => {
 
   return (
     <React.Fragment>
-      <div className = 'carousel-button-left' src={chevronLeft} onClick={handleClick}>&lt;</div>
-      <div className = 'carousel-button-right' src={chevronRight} onClick={handleClick}>&gt;</div>
+      <div className = 'carousel-button-left relatedProductCards' src={chevronLeft} onClick={handleClick}>&lt;</div>
+      <div className = 'carousel-button-right relatedProductCards' src={chevronRight} onClick={handleClick}>&gt;</div>
     </React.Fragment>
   );
 }
