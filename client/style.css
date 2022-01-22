@@ -64,8 +64,8 @@ body {
 
 
 .star {
-  font-size: x-large;
-  width: 24px;
+  font-size: medium;
+  width: 16px;
   display: inline-block;
   color:gray;
 }
@@ -86,8 +86,8 @@ body {
    content:'\2605';
    color:yellow;
    position: absolute;
-   margin-left: -24px;
-   width: 11px;
+   margin-left: -16px;
+   width: 7px;
    overflow:hidden;
 }
 
@@ -95,8 +95,8 @@ body {
   content:'\2605';
   color:yellow;
   position: absolute;
-  margin-left: -24px;
-  width: 6px;
+  margin-left: -16px;
+  width: 4px;
   overflow:hidden;
 }
 
@@ -104,8 +104,8 @@ body {
   content:'\2605';
   color:yellow;
   position: absolute;
-  margin-left: -24px;
-  width: 17px;
+  margin-left: -16px;
+  width: 11px;
   overflow:hidden;
 }
 
