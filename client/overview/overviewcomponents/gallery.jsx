@@ -79,11 +79,11 @@ class Gallery extends React.Component {
 
     return (
       <div className={this.state.expanded ? "gallery-expanded overview" : "gallery overview"}>
-        <button className="toggle-expanded=button overview" onClick={this.expand.bind(this)}>expand</button>
-      <GallerySideBar currentStyle={this.props.currentStyle} changePhoto={this.changePhoto.bind(this)}/>
+        <button className="toggle-expanded-button overview" onClick={this.expand.bind(this)}>{this.state.expanded? "collapse" : "expand"}</button>
       {galleryImage}
-      <button value="Left" onClick={this.scrollGallery.bind(this)} className="gallery-scroll-button scroll-left overview">Scroll Image Left</button>
-      <button value="Right" onClick={this.scrollGallery.bind(this)} className="gallery-scroll-button scroll-right overview">Scroll Image Right</button>
+      <GallerySideBar currentStyle={this.props.currentStyle} changePhoto={this.changePhoto.bind(this)}/>
+      <button value="Left" onClick={this.scrollGallery.bind(this)} className="gallery-scroll-button scroll-left overview">&lt;</button>
+      <button value="Right" onClick={this.scrollGallery.bind(this)} className="gallery-scroll-button scroll-right overview">&gt;</button>
       </div>
 
 
