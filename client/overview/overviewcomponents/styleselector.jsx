@@ -49,7 +49,7 @@ class StyleSelector extends React.Component {
         isSelected = true;
       }
 
-
+      //console.log(style.photos[0].thumbnail_url);
       return <td className="table-data overview" onClick={this.styleButtonClick.bind(this)}>
         <div className="mask overview">
           <img className={(isSelected ? "selected-style" : "non-selected-style") + " style-button overview"} alt={style.name} src={style.photos[0].thumbnail_url}></img>

@@ -41,19 +41,29 @@ class Gallery extends React.Component {
 
     }
 
-    console.log(this.state.photoIndex);
+  }
 
+  changePhoto(newPhotoIndex) {
+    if (newPhotoIndex !== undefined) {
+      this.setState({
+        photoIndex: newPhotoIndex
+      })
+    }
   }
 
 
   render() {
     var photoURL;
+    var photoIndex = this.state.photoIndex;
     if (this.props.currentStyle.photos !== undefined) {
-      photoURL = this.props.currentStyle.photos[this.state.photoIndex].url;
+      if(this.props.currentStyle.photos.length < this.state.photoIndex) {
+        photoIndex = this.props.currentStyle.photos.length - 1;
+      }
+      photoURL = this.props.currentStyle.photos[photoIndex].url;
     }
     return (
       <div className="gallery overview">
-      <GallerySideBar currentStyle={this.props.currentStyle}/>
+      <GallerySideBar currentStyle={this.props.currentStyle} changePhoto={this.changePhoto.bind(this)}/>
       <img className="gallery-main-image overview" src={photoURL}></img>
       <button value="Left" onClick={this.scrollGallery.bind(this)} className="gallery-scroll-button scroll-left overview">Scroll Image Left</button>
       <button value="Right" onClick={this.scrollGallery.bind(this)} className="gallery-scroll-button scroll-right overview">Scroll Image Right</button>
