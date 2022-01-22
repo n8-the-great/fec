@@ -7,6 +7,8 @@
   color: black;
 }
 
+/* padding-left: 2%; */
+
 .appdark {
   background-color: #2a2a36;
   color: rgb(219, 194, 194);
@@ -437,11 +439,11 @@ body {
 
 .carousel {
   display: inline-flex;
-  padding-left: 2%;
   overflow: hidden;
   z-index: 0;
   height: 400px;
   width: 90%;
+  margin: 0 auto;
 }
 
 
@@ -450,7 +452,65 @@ body {
   transition: transform 0.3s;
   height: 100%;
   width: 100%;
+  z-index: 0;
 }
+
+
+.carousel-buttons {
+  position: absolute;
+  display: inline-flex;
+  margin-top: 150px;
+  margin-bottom: auto;
+  width: 90%;
+  z-index: 9;
+}
+
+.carousel-button-left {
+  position: relative;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: -5;
+  margin-right: auto;
+  font-size: small;
+  border: inset lightgray 1px;
+  border-radius: 2px;
+}
+
+.carousel-button-left > button {
+  margin: 5px;
+  align-content: bottom;
+}
+
+.carousel-button-right {
+  position: relative;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: 105;
+  font-size: small;
+  border: inset lightgray 1px;
+  border-radius: 2px;
+}
+
+.carousel-button-right > button {
+  margin: 5px;
+  align-content: bottom;
+}
+
+.carousel-button-left:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+  font-weight: bold;
+  color: white;
+}
+
+.carousel-button-right:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+  font-weight: bold;
+  color: white;
+}
+
 
 .carousel-item {
   position: relative;
@@ -483,27 +543,33 @@ body {
   font-size: 13px;
   top: 2px;
   right: 2px;
-}
-.carousel-button-left {
-  display: flex;
-  justify-content: center;
-  z-index: 1;
+  border: inset lightgray 1px;
+  border-radius: 2px;
 }
 
-.carousel-button-left > button {
-  margin: 5px;
-  align-content: bottom;
+.carousel-action:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+  font-weight: bold;
+  color: white;
 }
 
-.carousel-button-right {
-  display: flex;
-  justify-content: center;
-  z-index: 1;
+.carousel-add-action {
+  position: absolute;
+  font-size: 13px;
+  top: 2px;
+  right: 2px;
+  float: right;
+  color: black;
+  border: inset lightgrey 1px;
 }
 
-.carousel-button-right > button {
-  margin: 5px;
-  align-content: bottom;
+.carousel-add-action:hover {
+  cursor: pointer;
+  background-color: #b12235;
+  font-weight: bold;
+  border: inset lightgray 1px;
+  border-radius: 2px;
 }
 
 .carousel-productImage {
@@ -597,6 +663,7 @@ body {
   right: 2px;
 }
 
+
 .modal {
   position: fixed;
   left: 0;
@@ -607,7 +674,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 7;
 }
 
 
@@ -617,7 +684,7 @@ body {
 }
 .modal-content {
   height: auto;
-  width: 350px;
+  width: 450px;
   background-color: #fff;
   padding-top: 5px;
   padding-left: 5px;
@@ -645,6 +712,7 @@ body {
   display: flex;
   float: left;
   width: 100%;
+  padding: 2px;
 }
 
 .modal-body-left {
@@ -653,7 +721,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
-  width: 20%;
+  width: 15%;
 }
 
 .modal-body-middle {
@@ -662,7 +730,8 @@ body {
   margin-right: auto;
   justify-content: center;
   font-size: small;
-  width: 65%;
+  padding-left: 10%;
+  width: 70%;
 }
 
 .modal-body-right {
