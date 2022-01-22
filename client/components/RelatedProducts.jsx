@@ -71,16 +71,15 @@ class RelatedProducts extends React.Component {
     return this.requestPromise(getStylesFromURL, id);
   }
 
-  updateCarousel(newIndex) {
+  updateCarousel(direction) {
+    var newIndex = this.state.activeCarousel + direction;
     var overflow = 2;
 
     if (newIndex < 0) {
       newIndex = 0;
     } else if (newIndex >= this.state.carouselSize - overflow) {
-      newIndex = this.state.carouselSize - 1 - overflow;
+      newIndex = this.state.carouselSize - overflow;
     }
-    // console.log('related.count:', this.state.carouselSize);
-    // console.log('newIndex:', newIndex);
 
     this.setState({
       activeCarousel: newIndex,

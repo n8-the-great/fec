@@ -223,7 +223,7 @@ class Answermodal extends React.Component {
     return (<div className='answermodal QuestionsAndAnswers'>
       <div className='QuestionsAndAnswers'>
         <span style={{display: this.state.currentImage && this.state.currentImage.length > 0 ? 'block' : 'none'}} className='imagemodalclose QuestionsAndAnswers' onClick={this.imageClose}>X</span>
-        <img src={this.state.currentImage} className='imagemodal QuestionsAndAnswers' />
+        <img src={this.state.currentImage} className='imagemodal QuestionsAndAnswers' alt={this.state.currentImage ? 'selected thumbnail image' : null} />
       </div>
       <span className='answermodalclose QuestionsAndAnswers' onClick={this.close}>X</span>
       <span className='QuestionsAndAnswers'>
@@ -237,11 +237,11 @@ class Answermodal extends React.Component {
         </div>
         <textarea rows='20' cols='50' className='answermodalanswer QuestionsAndAnswers' name='answer' maxLength='1000' onChange={this.inputChange} value={this.state.answer || ''}></textarea>
       </div>
-      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[0]} />
-      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[1]} />
-      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[2]} />
-      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[3]} />
-      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[4]} />
+      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[0]} alt={this.state.images[0] ? 'answer submission image' : null}/>
+      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[1]} alt={this.state.images[0] ? 'answer submission image' : null}/>
+      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[2]} alt={this.state.images[0] ? 'answer submission image' : null}/>
+      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[3]} alt={this.state.images[0] ? 'answer submission image' : null}/>
+      <img onClick={this.thumbnailClick} className='image QuestionsAndAnswers' src={this.state.images[4]} alt={this.state.images[0] ? 'answer submission image' : null}/>
       <div className='answermodalnicknameheader QuestionsAndAnswers'>
         <span className='QuestionsAndAnswers'>Your Nickname </span>
         <span className='required QuestionsAndAnswers'>*</span>

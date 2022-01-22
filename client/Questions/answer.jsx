@@ -86,11 +86,11 @@ class Answer extends React.Component {
         </span>
         <div className='byuser QuestionsAndAnswers'>by <b className='QuestionsAndAnswers' style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller, </b>  <span className='QuestionsAndAnswers' style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span> {this.dateFormatter(this.props.date)}</div>
         <b className='QuestionsAndAnswers' style={{display: this.props.photos.length > 0 ? 'block' : 'none', color: '#204ba1'}}>Photos:</b>
-        <img className='qaimage QuestionsAndAnswers' src={this.props.photos[0]}/>
-        <img className='qaimage QuestionsAndAnswers' src={this.props.photos[1]}/>
-        <img className='qaimage QuestionsAndAnswers' src={this.props.photos[2]}/>
-        <img className='qaimage QuestionsAndAnswers' src={this.props.photos[3]}/>
-        <img className='qaimage QuestionsAndAnswers' src={this.props.photos[4]}/>
+        <img className='qaimage QuestionsAndAnswers' src={this.props.photos[0]} alt={this.props.photos[0] ? 'answer image' : null}/>
+        <img className='qaimage QuestionsAndAnswers' src={this.props.photos[1]} alt={this.props.photos[1] ? 'answer image' : null}/>
+        <img className='qaimage QuestionsAndAnswers' src={this.props.photos[2]} alt={this.props.photos[2] ? 'answer image' : null}/>
+        <img className='qaimage QuestionsAndAnswers' src={this.props.photos[3]} alt={this.props.photos[3] ? 'answer image' : null}/>
+        <img className='qaimage QuestionsAndAnswers' src={this.props.photos[4]} alt={this.props.photos[4] ? 'answer image' : null}/>
       </div>
       );
     } else {
@@ -103,11 +103,11 @@ class Answer extends React.Component {
       </span>
       <div className='QuestionsAndAnswers'>by <b className='QuestionsAndAnswers' style={{display: (this.props.name === 'Seller') ? 'inline-block' : 'none'}}>Seller, </b>  <span className='QuestionsAndAnswers' style={{display: (this.props.name !== 'Seller') ? 'inline-block' : 'none'}}>{this.props.name}</span> {this.dateFormatter(this.props.date)}</div>
       <b className='QuestionsAndAnswers' style={{display: this.props.photos.length > 0 ? 'block' : 'none', color: '#204ba1'}}>Photos:</b>
-      <img className='qaimage QuestionsAndAnswers' src={this.props.photos[0]}/>
-      <img className='qaimage QuestionsAndAnswers' src={this.props.photos[1]}/>
-      <img className='qaimage QuestionsAndAnswers' src={this.props.photos[2]}/>
-      <img className='qaimage QuestionsAndAnswers' src={this.props.photos[3]}/>
-      <img className='qaimage QuestionsAndAnswers' src={this.props.photos[4]}/>
+      <img className='qaimage QuestionsAndAnswers' src={this.props.photos[0]} alt={this.props.photos[0] ? 'answer image' : null}/>
+      <img className='qaimage QuestionsAndAnswers' src={this.props.photos[1]} alt={this.props.photos[1] ? 'answer image' : null}/>
+      <img className='qaimage QuestionsAndAnswers' src={this.props.photos[2]} alt={this.props.photos[2] ? 'answer image' : null}/>
+      <img className='qaimage QuestionsAndAnswers' src={this.props.photos[3]} alt={this.props.photos[3] ? 'answer image' : null}/>
+      <img className='qaimage QuestionsAndAnswers' src={this.props.photos[4]} alt={this.props.photos[4] ? 'answer image' : null}/>
       <div classname='QuestionsAndAnswers'>{JSON.stringify(this.props.photos)}</div>
     </div>
     );
