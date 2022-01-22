@@ -9,7 +9,10 @@ class Answermodal extends React.Component {
     this.state = {
       imageCount: 0,
       addFileClass: 'addfiletrue',
-      images: []
+      images: [],
+      answer: '',
+      email: '',
+      nickname: ''
     };
     this.close= this.close.bind(this);
     this.inputChange = this.inputChange.bind(this);

@@ -1,5 +1,5 @@
  {
-  "setupFiles": ["<rootDir>/src/enzyme.config.js"],
+  "setupFiles": ["<rootDir>/test/client/enzyme.config.js"],
   "testRegex": "/*.test.js$",
   "collectCoverage": true,
   "coverageReporters": ["lcov"],
