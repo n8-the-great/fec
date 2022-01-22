@@ -53,18 +53,19 @@ class Outfits extends React.Component {
     });
   }
 
-  updateCarousel(direction) {
-    var newIndex = this.state.activeCarousel + direction;
-    var overflow = 2;
 
+  updateCarousel(direction) {
+    var newIndex = direction + this.state.activeCarousel;
 
     if (this.state.length === 0) {
       return;
     } else {
       if (newIndex < 0) {
         newIndex = 0;
-      } else if (newIndex >= this.state.length) {
+        console.log(newIndex);
+      } else if (newIndex > this.state.length) {
         newIndex = this.state.length - 1;
+        console.log(newIndex);
       }
 
       this.setState({
