@@ -60,9 +60,7 @@ class App extends React.Component {
           return this.getReviews(id);
         })
         .then((reviewMetaResult) => {
-          console.log('review meta result', reviewMetaResult);
           result.data.reviews = reviewMetaResult;
-          console.log(result.data);
           this.setState({
             product: result.data,
             haveProduct: true
@@ -155,9 +153,9 @@ class App extends React.Component {
   render() {
     return (<div className='app' onClick={this.clickTracker}>
       <GeneralProductInfo productid={this.state.id} product={this.state.product} productSelector={this.productSelector}/>
-      {/* <Questionapp clickTracker={this.clickTracker} product={this.state.product}/> */}
       <RelatedProducts clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
       <Outfits clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
+      <Questionapp clickTracker={this.clickTracker} product={this.state.product}/>
     </div>);
   }
 }
