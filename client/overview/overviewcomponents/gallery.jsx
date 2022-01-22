@@ -11,7 +11,8 @@ class Gallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photoIndex: 0
+      photoIndex: 0,
+      expanded: false
     }
   }
 
@@ -51,6 +52,14 @@ class Gallery extends React.Component {
     }
   }
 
+  expand(e) {
+    e.preventDefault();
+
+    this.setState({
+      expanded: !this.state.expanded
+    })
+  }
+
 
   render() {
     var photoURL;
@@ -61,6 +70,8 @@ class Gallery extends React.Component {
       }
       photoURL = this.props.currentStyle.photos[photoIndex].url;
     }
+
+
     return (
       <div className="gallery overview">
       <GallerySideBar currentStyle={this.props.currentStyle} changePhoto={this.changePhoto.bind(this)}/>

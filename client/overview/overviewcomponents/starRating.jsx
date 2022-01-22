@@ -9,7 +9,6 @@ class StarRating extends React.Component {
   render() {
     return (
       <div className="stars">
-        <div>Place Holder while i figure out image uploading!</div>
         <div className="star-left">o</div>
         <div className="star-middle-left">o</div>
         <div className="star-middle">o</div>

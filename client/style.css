@@ -74,6 +74,14 @@ body {
   margin-bottom: 50px;
 }
 
+.gallery-expanded {
+  width:100%
+}
+
+.gallery-main-image-expanded {
+  max-height: 100%
+}
+
 .thumbnail-scroller {
   display:table;
   clear:both;

@@ -81,7 +81,7 @@ class GeneralProductInfo extends React.Component {
       currentStyle: newStyle
     });
   }
-
+  //this.state.product.reviews
   render() {
     return (
       <div className='product-general-info overview'>
