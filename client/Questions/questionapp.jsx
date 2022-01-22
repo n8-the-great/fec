@@ -124,7 +124,7 @@ class Questionapp extends React.Component {
 
 
   render() {
-    return (<div className='questionapp QuestionsAndAnswers' onClick={this.props.clickTracker}>
+    return (<div className='questionapp QuestionsAndAnswers'>
       <div className='questionapptitle QuestionsAndAnswers'>{`Questions & Answers`}</div>
       <Search search={this.searchKeyword}/>
       <Modal productname={this.props.product.name} productid={this.props.product.id} showModal={this.state.showModal} modalToggle={this.modalToggle} getQuestionModalValues={this.getQuestionModalValues}/>
