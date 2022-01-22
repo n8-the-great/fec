@@ -58,15 +58,27 @@ class Gallery extends React.Component {
       }
       photoURL = this.props.currentStyle.photos[photoIndex].url;
     }
+
+
     return (
       <div className="gallery overview">
       <GallerySideBar currentStyle={this.props.currentStyle} changePhoto={this.changePhoto.bind(this)}/>
       <img className="gallery-main-image overview" src={photoURL}></img>
       <button value="Left" onClick={this.scrollGallery.bind(this)} className="gallery-scroll-button scroll-left overview">Scroll Image Left</button>
       <button value="Right" onClick={this.scrollGallery.bind(this)} className="gallery-scroll-button scroll-right overview">Scroll Image Right</button>
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
       </div>
+
+
     )
   }
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 /**/
 export default Gallery;

@@ -5,6 +5,8 @@ import axios from 'axios';
 import StyleSelector from './overviewcomponents/styleselector.jsx';
 import Gallery from './overviewcomponents/gallery.jsx';
 import AddToCart from './overviewcomponents/addtocart.jsx';
+
+
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/';
 class GeneralProductInfo extends React.Component {
   constructor (props) {
