@@ -27,7 +27,6 @@ class GeneralProductInfo extends React.Component {
           }
       })
       .then(results => {
-        console.log('GPI.jsx line 29 results: ', results.data.results);
         this.setState({
           styles: results.data.results,
           currentStyle: results.data.results[0]
@@ -44,7 +43,6 @@ class GeneralProductInfo extends React.Component {
         }
     })
     .then(results => {
-      console.log('GPI.jsx line 29 results: ', results.data.results);
       this.setState({
         styles: results.data.results,
         currentStyle: results.data.results[0]

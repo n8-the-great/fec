@@ -79,40 +79,6 @@ body {
   overflow:hidden;
 }
 
-/*.star-left {
-  width: 10px;
-  float: left;
-  color: red;
-}
-
-.star-middle-left {
-  color: yellow;
-  width: 10px;
-  margin-left: 5px;
-  float: left;
-}
-
-.star-middle {
-  width: 10px;
-  margin-left: 5px;
-  float: left;
-  color: green;
-}
-
-.star-middle-right {
-  color: blue;
-  width: 10px;
-  margin-left: 5px;
-  float: left;
-}
-
-.star-right {
-  margin-left: 5px;
-  width: 10px;
-  float: left;
-  color: purple;
-}*/
-
 .product-general-info {
   width:100%;
 }
@@ -127,6 +93,7 @@ body {
   color: gray;
   outline-style:solid;
   width: 63%;
+  z-index: 2;
 
 }
 
