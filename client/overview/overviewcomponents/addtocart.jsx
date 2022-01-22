@@ -1,14 +1,10 @@
 import React from 'react';
 import token from '../../../config.js';
-
 import axios from 'axios';
-
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/';
-
 class AddToCart extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       quantity: 0,
       selectedSizeSkuID: undefined,
@@ -17,10 +13,8 @@ class AddToCart extends React.Component {
       selectedQuantity: 0
     }
   }
-
   sizeSelected(e) {
     e.preventDefault();
-
     if (e.target.value === "Select Size") {
       this.setState({
         sizeSelected: false,
@@ -40,15 +34,12 @@ class AddToCart extends React.Component {
       });
     }
   }
-
   quantitySelected(e) {
     e.preventDefault();
     this.setState({
       quantitySelected: e.target.value
     });
   }
-
-
   addToCart(e) {
     e.preventDefault();
     /** */
@@ -70,13 +61,10 @@ class AddToCart extends React.Component {
       console.log(err);
     });/* */
   }
-
   invalidAddToCart(e) {
     e.preventDefault();
     console.log('open size selector and display message to user');
-
   }
-
   render() {
     var skuList = [];
     if (this.props.currentStyle.skus !== undefined) {
@@ -85,13 +73,11 @@ class AddToCart extends React.Component {
         skuList.push(newSku);
       }
     }
-
     /*
     for (var i = 0; i < skuList.length; i++ ) {
       skuList[i].quantity = 0;
     }
     /* out of stock tester function*/
-
     var quantitySelector = [];
     if (this.state.quantity > 0 && this.state.sizeSelected) {
       quantitySelector = <select className="overview" onChange={this.quantitySelected.bind(this)}>
@@ -105,15 +91,12 @@ class AddToCart extends React.Component {
         <option className="overview" value={'-'} selected>-</option>
       </select>
     }
-
     var sizeOptionsList = [];
-
     for (var i = 0; i < skuList.length; i++) {
       if (skuList[i].quantity > 0) {
         sizeOptionsList.push(<option className="overview" value={JSON.stringify(skuList[i])}>{skuList[i].size}</option>);
       }
     }
-
     var sizeSelector = [];
     if (sizeOptionsList.length > 0) {
       sizeSelector = <select className="overview" onChange={this.sizeSelected.bind(this)} name="size">
@@ -125,9 +108,7 @@ class AddToCart extends React.Component {
         <option value="OUT OF STOCK" selected>OUT OF STOCK</option>
       </select>
     }
-
     var addToCartButton = [];
-
     if (sizeOptionsList.length === 0) { //no stock
       //button shouldnt exist in this situation
     } else if (this.state.sizeSelected && this.state.quantitySelected) { //valid size and quantity
@@ -137,7 +118,6 @@ class AddToCart extends React.Component {
       //
       addToCartButton = <button className="addToCartButton overview" onClick={this.invalidAddToCart.bind(this)}>Add To Cart</button>
     }
-
     return (
       <div className="addToCart overview">
         {sizeSelector}
@@ -147,10 +127,6 @@ class AddToCart extends React.Component {
     );
   }
 };
-
 /*
-
 */
-
-
 export default AddToCart;
