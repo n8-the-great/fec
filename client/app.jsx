@@ -16,10 +16,18 @@ class App extends React.Component {
       product: {},
       haveProduct: false,
       id: 59556,
-      related: []
+      related: [],
+      darkmode: false
     }
     this.productSelector = this.productSelector.bind(this);
     this.clickTracker = this.clickTracker.bind(this);
+    this.modeToggle = this.modeToggle.bind(this);
+  }
+
+  modeToggle() {
+    this.setState({
+      darkmode: !this.state.darkmode
+    })
   }
 
   productSelector(id=59556) {
@@ -126,9 +134,10 @@ getDateTime() {
   }
 
   render() {
-    return (<div className='app'>
+    return (<div className={this.state.darkmode === false ? 'app' : 'appdark'} onClick={this.clickTracker}>
+      <button className='modetoggle' onClick={this.modeToggle}>{this.state.darkmode === false ? 'Toggle Dark Mode' : 'Toggle Light Mode'}</button>
       <GeneralProductInfo productid={this.state.id} product={this.state.product} productSelector={this.productSelector}/>
-      <Questionapp clickTracker={this.clickTracker} product={this.state.product}/>
+      <Questionapp product={this.state.product}/>
       <RelatedProducts clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
       <Outfits clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
     </div>);
