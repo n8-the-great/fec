@@ -65,7 +65,7 @@ class Gallery extends React.Component {
     var photoURL;
     var photoIndex = this.state.photoIndex;
     if (this.props.currentStyle.photos !== undefined) {
-      if(this.props.currentStyle.photos.length < this.state.photoIndex) {
+      if(this.props.currentStyle.photos.length <= this.state.photoIndex) {
         photoIndex = this.props.currentStyle.photos.length - 1;
       }
       photoURL = this.props.currentStyle.photos[photoIndex].url;
