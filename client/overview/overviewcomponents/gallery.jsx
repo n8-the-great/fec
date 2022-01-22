@@ -12,6 +12,13 @@ class Gallery extends React.Component {
       expanded: false
     }
   }
+  componentDidMount() {
+    if (this.state.photoIndex !== 0) {
+      this.setState({
+        photoIndex: 0
+      })
+    }
+  }
   scrollGallery(e) {
     e.preventDefault();
     if (e.target.value === 'Right') {
@@ -58,7 +65,6 @@ class Gallery extends React.Component {
       }
       photoURL = this.props.currentStyle.photos[photoIndex].url;
     }
-
 
     return (
       <div className="gallery overview">

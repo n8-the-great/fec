@@ -5,6 +5,7 @@ import axios from 'axios';
 import StyleSelector from './overviewcomponents/styleselector.jsx';
 import Gallery from './overviewcomponents/gallery.jsx';
 import AddToCart from './overviewcomponents/addtocart.jsx';
+import StarRating from './overviewcomponents/starRating.jsx';
 
 
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/';
@@ -77,8 +78,8 @@ class GeneralProductInfo extends React.Component {
   render() {
     return (
       <div className='product-general-info overview'>
-        General Product Info
         <div className='product-info overview'>
+          <StarRating reviews={this.props.product.reviews}/>
           <h3 className='product-category overview'>{this.props.product.category}</h3>
           <h1 className='product-title overview'>{this.props.product.name}</h1>
           <div className='product-price overview'>{this.props.product.default_price}</div>
