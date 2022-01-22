@@ -75,8 +75,6 @@ var Comparing = (props) => {
   )
 
 
-
-
   return (
     <div className="modal relatedProductCards" onClick={onActionClick}>
       <div className="modal-action relatedProductCards" onClick={onActionClick}>&#9733;</div>
@@ -93,7 +91,7 @@ var Comparing = (props) => {
           {renderComparisonTable}
           <div className="modal-body-detail relatedProductCards">
             <span className = "modal-body-leftRating relatedProductCards">
-              <StarRating reviews={props.relatedProduct.reviews}/>
+              <StarRating reviews={props.previewProduct.reviews}/>
             </span>
             <span className = "modal-body-middle relatedProductCards">Rating</span>
             <span className = "modal-body-rightRating relatedProductCards">
