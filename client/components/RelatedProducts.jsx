@@ -86,7 +86,7 @@ class RelatedProducts extends React.Component {
     });
   }
 
-  updateRelated(id = 59554) {
+  updateRelated(id = 59555) {
     if (typeof id === 'object') {
       this.props.productSelector(id);
     }
