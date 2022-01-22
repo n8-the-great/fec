@@ -21,7 +21,109 @@ class App extends React.Component {
     this.productSelector = this.productSelector.bind(this);
   }
 
-  productSelector(id=59555) {
+  productSelector(id=59556) {
+    // don't make an api call for preview object if related cards pass back the object
+
+    if (typeof id === 'object') {
+      console.log('no api call');
+      this.setState({
+        product: id
+      })
+    } else {
+      var options = {
+        method: 'get',
+        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
+        headers: {
+          // Authorization: token,
+          Authorization: token,
+          accept: 'application/json',
+          'content-type': 'application/json',
+        }
+      }
+      return axios(options)
+      .then(result => {
+        var options = {
+          method: 'get',
+          url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}/styles`,
+          headers: {
+            // Authorization: token,
+            Authorization: token,
+            accept: 'application/json',
+            'content-type': 'application/json',
+          }
+        }
+        return axios(options)
+        .then((stylesResult) => {
+          result.data.styles = stylesResult.data.results;
+
+          return this.getReviews(id);
+        })
+        .then((reviewMetaResult) => {
+          result.data.reviews = reviewMetaResult;
+          this.setState({
+            product: result.data,
+            haveProduct: true
+          }), () => {
+            console.log('this state product',this.state.product, this.state.product.id, this.state.product.name);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
+  }
+
+  getReviews(id) {
+    var options = {
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${JSON.stringify(id)}`,
+      headers: {
+        Authorization: token,
+        accept: 'application/json',
+        'content-type': 'application/json',
+      }
+    }
+    return axios(options)
+    .then(result => {
+      return result.data;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
+
+  getDateTime() {
+    var date = new Date();
+
+    var hour = date.getHours();
+    hour = (hour < 10 ? "0" : "") + hour;
+
+    var min  = date.getMinutes();
+    min = (min < 10 ? "0" : "") + min;
+
+    var sec  = date.getSeconds();
+    sec = (sec < 10 ? "0" : "") + sec;
+
+    var year = date.getFullYear();
+
+    var month = date.getMonth() + 1;
+    month = (month < 10 ? "0" : "") + month;
+
+    var day  = date.getDate();
+    day = (day < 10 ? "0" : "") + day;
+
+    return year + ":" + month + ":" + day + ":" + hour + ":" + min + ":" + sec;
+  }
+
+
+  clickTracker(e) {
+    console.log(e.target.localName, e.target.classList[e.target.classList.length - 1], this.getDateTime());
+
     var options = {
       method: 'get',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
@@ -52,18 +154,13 @@ class App extends React.Component {
 
 
   render() {
-
-    return (<div>
-      <GeneralProductInfo product={this.state.product} productSelector={this.productSelector}/>
-
-      <RelatedProducts product={this.state.product} productSelector={this.productSelector}/>
-      <Outfits product={this.state.product}/>
-      <Questionapp product={this.state.product}/>
+    return (<div className='app' onClick={this.clickTracker}>
+      <GeneralProductInfo productid={this.state.id} product={this.state.product} productSelector={this.productSelector}/>
+      <RelatedProducts clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
+      <Outfits clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
+      <Questionapp clickTracker={this.clickTracker} product={this.state.product}/>
     </div>);
   }
 }
-/*
-<Questionapp product={this.state.product}/>
-*/
 
 ReactDOM.render(<App />, document.getElementById('app'));

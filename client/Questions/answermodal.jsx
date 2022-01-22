@@ -9,7 +9,10 @@ class Answermodal extends React.Component {
     this.state = {
       imageCount: 0,
       addFileClass: 'addfiletrue',
-      images: []
+      images: [],
+      answer: '',
+      email: '',
+      nickname: ''
     };
     this.close= this.close.bind(this);
     this.inputChange = this.inputChange.bind(this);
@@ -251,10 +254,10 @@ class Answermodal extends React.Component {
       </div>
       <textarea placeholder='Why did you like the product or not?' rows='20' cols='50' className='answermodalemail QuestionsAndAnswers' name='email' maxLength='60' onChange={this.inputChange} value={this.state.email || ''}></textarea>
       <div className='answermodalwarning2 QuestionsAndAnswers'>For authentication reasons, you will not be emailed</div>
-      <span className={this.state.addFileClass + ' ' + 'QuestionsAndAnswers'}>Upload your photos<input type='file'
-       className={this.state.addFileClass + ' ' + 'QuestionsAndAnswers'} name='photo'
+      <span className={this.state.addFileClass}>Upload your photos<input type='file'
+       className={this.state.addFileClass} name='photo'
        accept='image/png, image/jpeg, image/gif' onChange={this.imageChange}/></span>
-      <button className={(this.state.addFileClass === 'addfiletrue' ? 'submitphototrue' : this.state.addFileClass) + ' ' + 'QuestionsAndAnswers'} onClick={this.uploadImage}>Submit Photo</button>
+      <button className={this.state.addFileClass === 'addfiletrue' ? 'submitphototrue' : this.state.addFileClass} onClick={this.uploadImage}>Submit Photo</button>
       <span className='QuestionsAndAnswers'><button className='submitanswer QuestionsAndAnswers' onClick={this.submit}>Submit Answer</button></span>
     </div>
     );
