@@ -4,6 +4,7 @@
 
 .app {
   background-color: white;
+  padding-left: 2%;
 }
 
 /* Product Overview */
@@ -421,11 +422,11 @@ body {
 
 .carousel {
   display: inline-flex;
-  padding-left: 2%;
   overflow: hidden;
   z-index: 0;
   height: 400px;
   width: 90%;
+  margin: 0 auto;
 }
 
 
