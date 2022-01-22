@@ -44,7 +44,7 @@ var Outfit = (props) => {
             <div className = 'carousel-slogan relatedProductCards'>"{props.product.slogan}" </div>
             <div className = 'carousel-product-description relatedProductCards'>{props.product.description}</div>
             <div className = 'carousel-details-footer relatedProductCards'>
-              <div className = 'carousel-productPrice relatedProductCards'>price: ${props.product.default_price} </div>
+              <div className = 'carousel-productPrice relatedProductCards'> ${props.product.default_price} </div>
               <div className = 'carousel-starRating relatedProductCards'>
                 <StarRating reviews={props.product.reviews}/>
               </div>

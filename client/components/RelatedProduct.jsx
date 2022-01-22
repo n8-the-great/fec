@@ -37,11 +37,12 @@ var RelatedProduct = (props) => {
           <div className = 'carousel-slogan relatedProductCards'>"{props.relatedProduct.slogan}" </div>
           <div className = 'carousel-product-description relatedProductCards'>{props.relatedProduct.description}</div>
           <div className = 'carousel-details-footer relatedProductCards'>
-            <div className = 'carousel-productPrice relatedProductCards'>${props.relatedProduct.default_price} </div>
-            <div className = 'carousel-footer-separator relatedProductCards'></div>
             <div className = 'carousel-starRating relatedProductCards'>
               <StarRating reviews={props.relatedProduct.reviews}/>
             </div>
+            <div className = 'carousel-footer-separator relatedProductCards'></div>
+            <div className = 'carousel-productPrice relatedProductCards'>${props.relatedProduct.default_price} </div>
+
           </div>
         </div>
       </div>

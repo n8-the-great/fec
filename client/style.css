@@ -712,7 +712,6 @@ body {
   word-wrap: break-word;
   white-space: initial;
   background-color: whitesmoke;
-  /* color: black; */
 }
 
 .carousel-details-dark {
@@ -728,7 +727,6 @@ body {
   word-wrap: break-word;
   white-space: initial;
   background-color: rgb(117, 117, 117);
-  /* color: black; */
 }
 
 .carousel-productCategory {
@@ -737,8 +735,6 @@ body {
   margin-right: auto;
   justify-content: bottom;
   width: 90%;
-  /* background-color: whitesmoke; */
-  /* color: lightgrey; */
 }
 
 .carousel-productCategory-dark {
@@ -747,8 +743,6 @@ body {
   margin-right: auto;
   justify-content: bottom;
   width: 90%;
-  /* background-color: whitesmoke; */
-  /* color: lightgrey; */
 }
 
 .carousel-productName {
@@ -768,7 +762,8 @@ body {
   /* overflow: clip; */
 }
 .carousel-productPrice {
-  padding-left: 5%;
+  padding-left: auto;
+  padding-right: 5%;
   padding-top: 2%;
   align-items: center;
   margin-left: auto;
@@ -783,15 +778,13 @@ body {
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
-  padding-left: 10%;
   width: 1%;
 }
 .carousel-starRating {
-
-  padding-left: 10%;
-  align-items: center;
+  padding-left: auto;
+  padding-left: 5%;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 0;
   justify-content: center;
   width: 69%;
 }
@@ -803,8 +796,6 @@ body {
   justify-content: bottom;
   width: 90%;
   max-width: 90%;
-  /* background-color: whitesmoke; */
-  /* color: black; */
 }
 
 
@@ -817,8 +808,6 @@ body {
   font-style: italic;
   width: 90%;
   max-width: 90%;
-  /* background-color: whitesmoke; */
-  /* color: black; */
 }
 .carousel-action {
   position: absolute;

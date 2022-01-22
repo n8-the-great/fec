@@ -65,7 +65,7 @@ class Outfits extends React.Component {
         console.log(newIndex);
       } else if (newIndex > this.state.length) {
         newIndex = this.state.length - 1;
-        console.log(newIndex);
+        // console.log(newIndex);
       }
 
       this.setState({
