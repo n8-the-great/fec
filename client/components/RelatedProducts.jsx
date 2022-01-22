@@ -143,7 +143,7 @@ class RelatedProducts extends React.Component {
                   // replace property
                   relatedItem.reviews = productReviews;
                   relatedItems[p] = relatedItem;
-                  console.log(relatedItems);
+                  // console.log(relatedItems);
                   p++;
                   this.setState({
                     related: relatedItems
