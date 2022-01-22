@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Comparing from './Comparing.jsx';
-
+import StarRating from '../overview/overviewcomponents/starRating.jsx';
 import token from '../../config.js';
 
 var RelatedProduct = (props) => {
@@ -36,7 +36,13 @@ var RelatedProduct = (props) => {
           <div className = 'carousel-productName relatedProductCards'>{props.relatedProduct.name}  </div>
           <div className = 'carousel-slogan relatedProductCards'>"{props.relatedProduct.slogan}" </div>
           <div className = 'carousel-product-description relatedProductCards'>{props.relatedProduct.description}</div>
-          <div className = 'carousel-productPrice relatedProductCards'>price: ${props.relatedProduct.default_price} </div>
+          <div className = 'carousel-details-footer relatedProductCards'>
+            <div className = 'carousel-productPrice relatedProductCards'>${props.relatedProduct.default_price} </div>
+            <div className = 'carousel-footer-separator relatedProductCards'></div>
+            <div className = 'carousel-starRating relatedProductCards'>
+              <StarRating reviews={props.relatedProduct.reviews}/>
+            </div>
+          </div>
         </div>
       </div>
       <Comparing darkMode={props.darkMode} previewProduct={props.previewProduct} relatedProduct={props.relatedProduct} show={show} hide={changeShow}/>

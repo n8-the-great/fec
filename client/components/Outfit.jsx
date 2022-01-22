@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import plusSign from './src/plusSign.png';
+import StarRating from '../overview/overviewcomponents/starRating.jsx';
 
 
 var Outfit = (props) => {
@@ -39,10 +40,15 @@ var Outfit = (props) => {
           <img className = 'carousel-productImage'  src={props.product.styles[0].photos[0].thumbnail_url}></img>
           <div className = {props.darkMode === false ? 'carousel-details relatedProductCards': 'carousel-details-dark relatedProductCards'}>
             <div className = {props.darkMode === false ? 'carousel-productCategory relatedProductCards' : 'carousel-productCategory-dark relatedProductCards'} />
-            <div className = 'carousel-productName'>{props.product.name}  </div>
-            <div className = 'carousel-slogan'>"{props.product.slogan}" </div>
-            <div className = 'carousel-product-description'>{props.product.description}</div>
-            <div className = 'carousel-productPrice'>price: ${props.product.default_price} </div>
+            <div className = 'carousel-productName relatedProductCards'>{props.product.name}  </div>
+            <div className = 'carousel-slogan relatedProductCards'>"{props.product.slogan}" </div>
+            <div className = 'carousel-product-description relatedProductCards'>{props.product.description}</div>
+            <div className = 'carousel-details-footer relatedProductCards'>
+              <div className = 'carousel-productPrice relatedProductCards'>price: ${props.product.default_price} </div>
+              <div className = 'carousel-starRating relatedProductCards'>
+                <StarRating reviews={props.product.reviews}/>
+              </div>
+            </div>
           </div>
         </div>
       </div>

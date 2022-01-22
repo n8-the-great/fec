@@ -34,8 +34,8 @@ body {
 
 
 .star {
-  font-size: x-large;
-  width: 24px;
+  font-size: medium;
+  width: 16px;
   display: inline-block;
   color:gray;
 }
@@ -56,8 +56,8 @@ body {
    content:'\2605';
    color:yellow;
    position: absolute;
-   margin-left: -24px;
-   width: 11px;
+   margin-left: -16px;
+   width: 7px;
    overflow:hidden;
 }
 
@@ -65,8 +65,8 @@ body {
   content:'\2605';
   color:yellow;
   position: absolute;
-  margin-left: -24px;
-  width: 6px;
+  margin-left: -16px;
+  width: 4px;
   overflow:hidden;
 }
 
@@ -74,8 +74,8 @@ body {
   content:'\2605';
   color:yellow;
   position: absolute;
-  margin-left: -24px;
-  width: 17px;
+  margin-left: -16px;
+  width: 12px;
   overflow:hidden;
 }
 
@@ -700,6 +700,7 @@ body {
 
 .carousel-details {
   display: block;
+  position:relative;
   margin-left: auto;
   margin-right: auto;
   margin-top: auto;
@@ -757,18 +758,42 @@ body {
   justify-content: bottom;
   font-weight: bold;
   width: 90%;
-  /* background-color: whitesmoke; */
-  /* color: black; */
+}
+.carousel-details-footer {
+  position: absolute;
+  display: flex;
+  padding: 2px;
+  bottom: 5%;
+  width: 90%;
+  /* overflow: clip; */
+}
+.carousel-productPrice {
+  padding-left: 5%;
+  padding-top: 2%;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  width: 30%;
+  font-size: small;
 }
 
-.carousel-productPrice {
-  position: absolute;
-  bottom: 5%;
-  right: 15%;
-  width: 80%;
-  /* background-color: whitesmoke; */
-  /* color: darkgrey; */
-  text-align: right;
+.carousel-footer-separator {
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  padding-left: 10%;
+  width: 1%;
+}
+.carousel-starRating {
+
+  padding-left: 10%;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  width: 69%;
 }
 
 .carousel-slogan {
@@ -823,7 +848,7 @@ body {
 }
 .modal-content {
   height: auto;
-  width: 450px;
+  width: 650px;
   border-radius: 3px;
   background-color: #eee;
   padding-top: 5px;
@@ -834,7 +859,7 @@ body {
 
 .modal-content-dark {
   height: auto;
-  width: 450px;
+  width: 650px;
   border-radius: 3px;
   background-color: #333;
   padding-top: 5px;
@@ -847,16 +872,16 @@ body {
   padding: 3px;
 }
 
-.modal-footer {
-  padding: 5px;
-}
-
 .modal-title {
   margin: 0;
 }
 
-.modal-body {
+.modal-body{
   padding: 10px;
+}
+
+.modal-footer {
+  padding: 5px;
 }
 
 .modal-body-detail {
@@ -874,6 +899,7 @@ body {
   justify-content: center;
   width: 15%;
 }
+
 
 .modal-body-middle {
   align-items: center;
@@ -895,6 +921,23 @@ body {
 }
 
 
+.modal-body-leftRating {
+  padding-left: 4%;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  width: 21%;
+}
+
+.modal-body-rightRating {
+  /* padding-left: 10%; */
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  width: 15%;
+}
 
 .modal-leftName {
   justify-content: left;
@@ -905,3 +948,4 @@ body {
   justify-content: right;
   text-align: right;
 }
+

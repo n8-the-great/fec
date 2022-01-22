@@ -74,10 +74,11 @@ class Outfits extends React.Component {
     }
   }
 
-
   // always render a Outfit add
 
   render() {
+
+  console.log('outfits props', this.state.wardrobe);
     return (
       <React.Fragment>
       <div className="carousel-title relatedProductCards">My Outfits</div>
