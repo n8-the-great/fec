@@ -4,7 +4,25 @@
 
 .app {
   background-color: white;
-  padding-left: 2%;
+  color: black;
+}
+
+/* padding-left: 2%; */
+
+.appdark {
+  background-color: #2a2a36;
+  color: rgb(219, 194, 194);
+}
+
+.modetoggle {
+  background-color: white;
+  display: flex;
+}
+
+.modetoggle:hover {
+  cursor: pointer;
+  background-color: #226df5;
+  color: white;
 }
 
 /* Product Overview */
@@ -14,11 +32,54 @@ body {
   background-color: lightgray;
 }
 
-.stars {
-  width: 100%
+
+.star {
+  font-size: x-large;
+  width: 24px;
+  display: inline-block;
+  color:gray;
 }
 
-.star-left {
+.star:last-child {
+  margin-right: 0;
+}
+
+.star:before {
+  content:'\2605';
+}
+
+.star.on {
+  color: yellow;
+}
+
+.star.half:after {
+   content:'\2605';
+   color:yellow;
+   position: absolute;
+   margin-left: -24px;
+   width: 11px;
+   overflow:hidden;
+}
+
+.star.quarter:after {
+  content:'\2605';
+  color:yellow;
+  position: absolute;
+  margin-left: -24px;
+  width: 6px;
+  overflow:hidden;
+}
+
+.star.threequarter:after  {
+  content:'\2605';
+  color:yellow;
+  position: absolute;
+  margin-left: -24px;
+  width: 17px;
+  overflow:hidden;
+}
+
+/*.star-left {
   width: 10px;
   float: left;
   color: red;
@@ -50,7 +111,7 @@ body {
   width: 10px;
   float: left;
   color: purple;
-}
+}*/
 
 .product-general-info {
   width:100%;
@@ -133,7 +194,7 @@ body {
 
 /* Questionapp */
 .questionapp {
-  background: white;
+  /* background: white; */
   margin: 0 auto;
   width: 1400px;
 }
@@ -188,7 +249,7 @@ body {
 
 .askername {
   margin-bottom: 10px;
-  color: black;
+  /* color: black; */
 }
 
 .questionq {
@@ -206,16 +267,17 @@ body {
 }
 
 .questionbody {
-  color: black;
+  /* color: black; */
 }
 
 .questionhelpful {
-  color:black;
+  /* color:black; */
 }
+
 /* Modals */
 .qmodal {
   border: solid black 2px;
-  background-color: white;
+  background-color: #737394;
   position: fixed;
   bottom: 250px;
   top: 225px;
@@ -301,7 +363,7 @@ body {
 
 .answermodal {
   border: solid black 2px;
-  background-color: white;
+  background-color: #737394;
   position: fixed;
   bottom: 100px;
   top: 200px;
@@ -422,15 +484,15 @@ body {
 
 /* Answer */
 .answerhelpful {
-  color: black;
+  /* color: black; */
 }
 
 .answerbody {
-  color: black;
+  /* color: black; */
 }
 
 .byuser {
-  color: black;
+  /* color: black; */
 }
 
 .qaimage {

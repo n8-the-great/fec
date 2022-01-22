@@ -71,10 +71,15 @@ class StyleSelector extends React.Component {
       }</tbody>
     </table>
 
+    var styleNameSpan;
+    if (this.props.styles.length !== 0) {
+      styleNameSpan = <span className="style-name overview">{this.props.styles[this.state.selectedStyle].name}</span>
+    }
+
     return (
       <div className="style-selector overview">
         {styleTable}
-
+        {styleNameSpan}
       </div>
     )
   }

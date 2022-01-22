@@ -15,10 +15,19 @@ class App extends React.Component {
     this.state = {
       product: {},
       haveProduct: false,
-      id: 59555,
-      related: []
+      id: 59556,
+      related: [],
+      darkmode: false
     }
     this.productSelector = this.productSelector.bind(this);
+    this.clickTracker = this.clickTracker.bind(this);
+    this.modeToggle = this.modeToggle.bind(this);
+  }
+
+  modeToggle() {
+    this.setState({
+      darkmode: !this.state.darkmode
+    })
   }
 
   productSelector(id=59556) {
@@ -122,25 +131,27 @@ class App extends React.Component {
 
 
   clickTracker(e) {
-    console.log(e.target.localName, e.target.classList[e.target.classList.length - 1], this.getDateTime());
+    //console.log(e.target.localName, e.target.classList[e.target.classList.length - 1], this.getDateTime());
 
     var options = {
-      method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + id,
+      method: 'post',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions',
       headers: {
         // Authorization: token,
         Authorization: token,
         accept: 'application/json',
         'content-type': 'application/json',
+      },
+      data: {
+        element: e.target.localName,
+        widget: e.target.classList[e.target.classList.length - 1],
+        time: this.getDateTime()
       }
     }
-    return axios(options)
+
+    axios(options)
     .then(result => {
-      // console.log('name', result.data.name, 'id', result.data.id);
-      this.setState({
-        product: result.data,
-        haveProduct: true
-      });
+      console.log('clicked', result);
     })
     .catch(err => {
       console.log(err);
@@ -148,13 +159,9 @@ class App extends React.Component {
   }
 
 
-  componentDidMount() {
-    this.productSelector();
-  }
-
-
   render() {
-    return (<div className='app' onClick={this.clickTracker}>
+    return (<div className={this.state.darkmode === false ? 'app' : 'appdark'} onClick={this.clickTracker}>
+      <button className='modetoggle' onClick={this.modeToggle}>{this.state.darkmode === false ? 'Toggle Dark Mode' : 'Toggle Light Mode'}</button>
       <GeneralProductInfo productid={this.state.id} product={this.state.product} productSelector={this.productSelector}/>
       <RelatedProducts clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
       <Outfits clickTracker={this.clickTracker} product={this.state.product} productSelector={this.productSelector}/>
