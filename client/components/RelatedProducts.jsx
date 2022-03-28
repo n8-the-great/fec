@@ -14,7 +14,6 @@ class RelatedProducts extends React.Component {
     this.state = {
       product: {},
       related: [],
-
       activeCarousel: 0,
       carouselSize: 0
 
@@ -42,7 +41,6 @@ class RelatedProducts extends React.Component {
         dataType: 'json',
         success: function (response) {
           resolve(response);
-          // runs a cb on an array of nums
         },
         failure: function (response) {
           console.log('failed!');
@@ -86,7 +84,7 @@ class RelatedProducts extends React.Component {
     });
   }
 
-  updateRelated(id = 59555) {
+  updateRelated(id = 64623) {
     if (typeof id === 'object') {
       this.props.productSelector(id);
     }
@@ -168,13 +166,9 @@ class RelatedProducts extends React.Component {
 
   }
 
-
   componentDidMount() {
     this.updateRelated();
   }
-
-
-
 
   render() {
 

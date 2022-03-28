@@ -15,7 +15,7 @@ class App extends React.Component {
     this.state = {
       product: {},
       haveProduct: false,
-      id: 59556,
+      id: 64623,
       related: [],
       darkmode: false
     }
@@ -31,7 +31,7 @@ class App extends React.Component {
     })
   }
 
-  productSelector(id=59556) {
+  productSelector(id=64623) {
     // don't make an api call for preview object if related cards pass back the object
 
     if (typeof id === 'object') {

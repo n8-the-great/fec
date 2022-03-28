@@ -3,7 +3,7 @@ import token from 'config.js';
 
 var options = {
   method: 'get',
-  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=59555',
+  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=64623',
   headers: {
     Authorization: token,
     accept: 'application/json',
@@ -18,7 +18,7 @@ axios(options)
 
 
 var state = {
-  productid: '59555',
+  productid: '64623',
   productname: 'Camo Onesie',
   productdescription: ''
   questions: [],
