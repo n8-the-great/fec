@@ -45,8 +45,6 @@ class StarRating extends React.Component {
     }
 
     var totalReviewsSpan = <span className="total-reviews overview">{numratings}</span>
-    console.log(this.props);
-
 
     return (
       <div className="stars">
