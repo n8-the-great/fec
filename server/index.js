@@ -4,7 +4,7 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 var app = express();
 var compression = require('compression');
-// app.use(compression());
+app.use(compression());
 
 
 var port = '3000';
